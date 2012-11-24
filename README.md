@@ -2,12 +2,12 @@ Some Color Picker Panels for Haiku.
 
 SimpleColorPanel
 
-![Simple Picker](jscipione.github.com/repository/images/SimplePicker.png)
+![Simple Picker](https://raw.github.com/jscipione/colorPickerPanel/master/images/SimplePicker.png)
 
 CrayonColorPanel
 
-![Crayon Picker](jscipione.github.com/repository/images/CrayonPicker.png)
+![Crayon Picker](https://raw.github.com/jscipione/colorPickerPanel/master/images/CrayonPicker.png)
 
 ColoredPencilColorPanel
 
-![Colored Pencil Picker](jscipione.github.com/repository/images/ColoredPencilPicker.png)
+![Colored Pencil Picker](https://raw.github.com/jscipione/colorPickerPanel/master/images/ColoredPencilPicker.png)
