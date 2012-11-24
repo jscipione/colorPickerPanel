@@ -21,8 +21,6 @@ class SelectedColoredPencil : public ColoredPencil {
 								~SelectedColoredPencil();
 
 	virtual	void				AttachedToWindow();
-	virtual	void				Draw(BRect updateRect);
-
 };
 
 

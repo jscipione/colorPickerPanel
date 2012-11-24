@@ -25,8 +25,8 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 {
 	fSelectedColor = new SelectedColoredPencil(color);
 
-	// add a bunch of crayons
-	for (int32 i = 0; i < kMaxColoredPencilCount; ++i)
+	// add a bunch of colored pencils
+	for (int32 i = 0; i < kMaxColoredPencilCount; i++)
 		fColoredPencilList[i] = new ColoredPencil;
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)

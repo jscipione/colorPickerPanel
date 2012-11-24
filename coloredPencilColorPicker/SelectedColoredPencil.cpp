@@ -319,22 +319,3 @@ SelectedColoredPencil::AttachedToWindow()
 		kColoredPencilColorSpace);
 	SetColor(fColor);
 }
-
-
-void
-SelectedColoredPencil::Draw(BRect updateRect)
-{
-	{
-	BRect frame(Bounds());
-
-	PushState();
-	SetHighColor(fColor);
-	SetLowColor(ViewColor());
-	FillRect(frame);
-	if (fIcon != NULL) {
-		SetDrawingMode(B_OP_OVER);
-		DrawBitmapAsync(fIcon, frame);
-	}
-	PopState();
-}
-}
