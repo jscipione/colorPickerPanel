@@ -318,17 +318,3 @@ SelectedCrayon::AttachedToWindow()
 	fIcon->SetBits(kCrayonBits, kCrayonWidth * kCrayonHeight, 0,
 		kCrayonColorSpace);
 }
-
-
-void
-SelectedCrayon::Draw(BRect updateRect)
-{
-	SetHighColor(fColor);
-	SetLowColor(Parent()->ViewColor());
-	FillRect(updateRect);
-	if (fIcon != NULL) {
-		SetDrawingMode(B_OP_OVER);
-		DrawBitmap(fIcon, updateRect);
-	}
-	SetDrawingMode(B_OP_COPY);
-}

@@ -27,59 +27,8 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 	fSelectedColor = new SelectedCrayon(color);
 
 	// add a bunch of crayons
-	fCrayonList[0]  = new Crayon((rgb_color) { 128, 0, 0 });
-	fCrayonList[1]  = new Crayon((rgb_color) { 128, 128, 0 });
-	fCrayonList[2]  = new Crayon((rgb_color) { 0, 128, 0 });
-	fCrayonList[3]  = new Crayon((rgb_color) { 0, 128, 128 });
-	fCrayonList[4]  = new Crayon((rgb_color) { 0, 0, 128 });
-	fCrayonList[5]  = new Crayon((rgb_color) { 128, 0, 128 });
-	fCrayonList[6]  = new Crayon((rgb_color) { 127, 127, 127 });
-	fCrayonList[7]  = new Crayon((rgb_color) { 128, 128, 128 });
-
-	fCrayonList[8]  = new Crayon((rgb_color) { 128, 64, 0 });
-	fCrayonList[9]  = new Crayon((rgb_color) { 64, 128, 0 });
-	fCrayonList[10] = new Crayon((rgb_color) { 0, 128, 64 });
-	fCrayonList[11] = new Crayon((rgb_color) { 0, 64, 128 });
-	fCrayonList[12] = new Crayon((rgb_color) { 64, 0, 128 });
-	fCrayonList[13] = new Crayon((rgb_color) { 128, 0, 64 });
-	fCrayonList[14] = new Crayon((rgb_color) { 102, 102, 102 });
-	fCrayonList[15] = new Crayon((rgb_color) { 153, 153, 153 });
-
-	fCrayonList[16] = new Crayon((rgb_color) { 255, 0, 0 });
-	fCrayonList[17] = new Crayon((rgb_color) { 255, 255, 0 });
-	fCrayonList[18] = new Crayon((rgb_color) { 0, 255, 0 });
-	fCrayonList[19] = new Crayon((rgb_color) { 0, 255, 255 });
-	fCrayonList[20] = new Crayon((rgb_color) { 0, 0, 255 });
-	fCrayonList[21] = new Crayon((rgb_color) { 255, 0, 255 });
-	fCrayonList[22] = new Crayon((rgb_color) { 76, 76, 76 });
-	fCrayonList[23] = new Crayon((rgb_color) { 179, 179, 179 });
-
-	fCrayonList[24] = new Crayon((rgb_color) { 255, 128, 0 });
-	fCrayonList[25] = new Crayon((rgb_color) { 128, 255, 0 });
-	fCrayonList[26] = new Crayon((rgb_color) { 0, 255, 128 });
-	fCrayonList[27] = new Crayon((rgb_color) { 0, 128, 255 });
-	fCrayonList[28] = new Crayon((rgb_color) { 128, 0, 255 });
-	fCrayonList[29] = new Crayon((rgb_color) { 255, 0, 128 });
-	fCrayonList[30] = new Crayon((rgb_color) { 51, 51, 51 });
-	fCrayonList[31] = new Crayon((rgb_color) { 204, 204, 204 });
-
-	fCrayonList[32] = new Crayon((rgb_color) { 255, 102, 102 });
-	fCrayonList[33] = new Crayon((rgb_color) { 255, 255, 102 });
-	fCrayonList[34] = new Crayon((rgb_color) { 102, 255, 102 });
-	fCrayonList[35] = new Crayon((rgb_color) { 102, 255, 255 });
-	fCrayonList[36] = new Crayon((rgb_color) { 102, 102, 255 });
-	fCrayonList[37] = new Crayon((rgb_color) { 255, 102, 255 });
-	fCrayonList[38] = new Crayon((rgb_color) { 25, 25, 25 });
-	fCrayonList[39] = new Crayon((rgb_color) { 230, 230, 230 });
-
-	fCrayonList[40] = new Crayon((rgb_color) { 255, 204, 102 });
-	fCrayonList[41] = new Crayon((rgb_color) { 204, 255, 102 });
-	fCrayonList[42] = new Crayon((rgb_color) { 102, 255, 204 });
-	fCrayonList[43] = new Crayon((rgb_color) { 102, 204, 255 });
-	fCrayonList[44] = new Crayon((rgb_color) { 204, 102, 255 });
-	fCrayonList[45] = new Crayon((rgb_color) { 255, 102, 204 });
-	fCrayonList[46] = new Crayon((rgb_color) { 0, 0, 0 });
-	fCrayonList[47] = new Crayon((rgb_color) { 255, 255, 255 });
+	for (int32 i = 0; i < kMaxCrayonCount; i++)
+		fCrayonList[i] = new Crayon();
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
 		.Add(fSelectedColor)
@@ -168,6 +117,63 @@ CrayonColorPicker::AttachedToWindow()
 		fCrayonList[i]->SetTarget(this);
 
 	SetColor(fColor);
+
+	fCrayonList[0]->SetColor((rgb_color) { 128, 0, 0 });
+	fCrayonList[1]->SetColor((rgb_color) { 128, 128, 0 });
+	fCrayonList[2]->SetColor((rgb_color) { 0, 128, 0 });
+	fCrayonList[3]->SetColor((rgb_color) { 0, 128, 128 });
+	fCrayonList[4]->SetColor((rgb_color) { 0, 0, 128 });
+	fCrayonList[5]->SetColor((rgb_color) { 128, 0, 128 });
+	fCrayonList[6]->SetColor((rgb_color) { 127, 127, 127 });
+	fCrayonList[7]->SetColor((rgb_color) { 128, 128, 128 });
+
+	fCrayonList[8]->SetColor((rgb_color) { 128, 64, 0 });
+	fCrayonList[9]->SetColor((rgb_color) { 64, 128, 0 });
+	fCrayonList[10]->SetColor((rgb_color) { 0, 128, 64 });
+	fCrayonList[11]->SetColor((rgb_color) { 0, 64, 128 });
+	fCrayonList[12]->SetColor((rgb_color) { 64, 0, 128 });
+	fCrayonList[13]->SetColor((rgb_color) { 128, 0, 64 });
+	fCrayonList[14]->SetColor((rgb_color) { 102, 102, 102 });
+	fCrayonList[15]->SetColor((rgb_color) { 153, 153, 153 });
+
+	fCrayonList[16]->SetColor((rgb_color) { 255, 0, 0 });
+	fCrayonList[17]->SetColor((rgb_color) { 255, 255, 0 });
+	fCrayonList[18]->SetColor((rgb_color) { 0, 255, 0 });
+	fCrayonList[19]->SetColor((rgb_color) { 0, 255, 255 });
+	fCrayonList[20]->SetColor((rgb_color) { 0, 0, 255 });
+	fCrayonList[21]->SetColor((rgb_color) { 255, 0, 255 });
+	fCrayonList[22]->SetColor((rgb_color) { 76, 76, 76 });
+	fCrayonList[23]->SetColor((rgb_color) { 179, 179, 179 });
+
+	fCrayonList[24]->SetColor((rgb_color) { 255, 128, 0 });
+	fCrayonList[25]->SetColor((rgb_color) { 128, 255, 0 });
+	fCrayonList[26]->SetColor((rgb_color) { 0, 255, 128 });
+	fCrayonList[27]->SetColor((rgb_color) { 0, 128, 255 });
+	fCrayonList[28]->SetColor((rgb_color) { 128, 0, 255 });
+	fCrayonList[29]->SetColor((rgb_color) { 255, 0, 128 });
+	fCrayonList[30]->SetColor((rgb_color) { 51, 51, 51 });
+	fCrayonList[31]->SetColor((rgb_color) { 204, 204, 204 });
+
+	fCrayonList[32]->SetColor((rgb_color) { 255, 102, 102 });
+	fCrayonList[33]->SetColor((rgb_color) { 255, 255, 102 });
+	fCrayonList[34]->SetColor((rgb_color) { 102, 255, 102 });
+	fCrayonList[35]->SetColor((rgb_color) { 102, 255, 255 });
+	fCrayonList[36]->SetColor((rgb_color) { 102, 102, 255 });
+	fCrayonList[37]->SetColor((rgb_color) { 255, 102, 255 });
+	fCrayonList[38]->SetColor((rgb_color) { 25, 25, 25 });
+	fCrayonList[39]->SetColor((rgb_color) { 230, 230, 230 });
+
+	fCrayonList[40]->SetColor((rgb_color) { 255, 204, 102 });
+	fCrayonList[41]->SetColor((rgb_color) { 204, 255, 102 });
+	fCrayonList[42]->SetColor((rgb_color) { 102, 255, 204 });
+	fCrayonList[43]->SetColor((rgb_color) { 102, 204, 255 });
+	fCrayonList[44]->SetColor((rgb_color) { 204, 102, 255 });
+	fCrayonList[45]->SetColor((rgb_color) { 255, 102, 204 });
+	fCrayonList[46]->SetColor((rgb_color) { 0, 0, 0 });
+	fCrayonList[47]->SetColor((rgb_color) { 255, 255, 255 });
+
+	for (int32 i = 0; i < kMaxCrayonCount; i++)
+		fCrayonList[i]->Invalidate();
 }
 
 

@@ -22,6 +22,7 @@ class BRect;
 
 class Crayon : public BControl {
  public:
+ 								Crayon();
 								Crayon(rgb_color color);
 								~Crayon();
 

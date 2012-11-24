@@ -21,8 +21,6 @@ class SelectedCrayon : public Crayon {
 								~SelectedCrayon();
 
 	virtual	void				AttachedToWindow();
-	virtual	void				Draw(BRect updateRect);
-
 };
 
 

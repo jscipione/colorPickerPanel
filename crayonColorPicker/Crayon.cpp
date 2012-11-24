@@ -68,6 +68,16 @@ const unsigned char kCrayonBits[] = {
 };
 
 
+Crayon::Crayon()
+	:
+	BControl(BRect(0, 0, kCrayonWidth - 1, kCrayonHeight - 1), "Crayon", "",
+		new BMessage(kColorChanged), B_FOLLOW_NONE, B_WILL_DRAW),
+	fColor((rgb_color) { 0, 0, 0 }),
+	fIcon(NULL)
+{
+}
+
+
 Crayon::Crayon(rgb_color color)
 	:
 	BControl(BRect(0, 0, kCrayonWidth - 1, kCrayonHeight - 1), "Crayon", "",
@@ -96,14 +106,17 @@ Crayon::AttachedToWindow()
 void
 Crayon::Draw(BRect updateRect)
 {
+	BRect frame(Bounds());
+
+	PushState();
 	SetHighColor(fColor);
 	SetLowColor(Parent()->ViewColor());
-	FillRect(updateRect);
+	FillRect(frame);
 	if (fIcon != NULL) {
 		SetDrawingMode(B_OP_OVER);
-		DrawBitmap(fIcon, updateRect);
+		DrawBitmap(fIcon, frame);
 	}
-	SetDrawingMode(B_OP_COPY);
+	PopState();
 }
 
 
