@@ -31,4 +31,5 @@ private:
 			ColorPickerPanel*		fColorPickerPanel;			
 };
 
+
 #endif	// SIMPLE_COLOR_PICKERAPP_H

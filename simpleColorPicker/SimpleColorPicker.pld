@@ -19,7 +19,6 @@ DEPENDENCY=/boot/home/projects/colorPickerPanel/Panel.h
 SOURCEFILE=/boot/home/projects/colorPickerPanel/ColorPickerPanel.h
 SOURCEFILE=/boot/home/projects/colorPickerPanel/ColorPickerPanel.cpp
 DEPENDENCY=/boot/home/projects/colorPickerPanel/ColorPickerPanel.cpp|/boot/home/projects/colorPickerPanel/ColorPickerPanel.h|/boot/home/projects/colorPickerPanel/Panel.h
-LOCALINCLUDE=
 LOCALINCLUDE=boot/home/projects/colorPickerPanel
 LOCALINCLUDE=boot/home/projects/colorPickerPanel
 LOCALINCLUDE=boot/home/projects/colorPickerPanel
