@@ -11,3 +11,7 @@ CrayonColorPanel
 ColoredPencilColorPanel
 
 ![Colored Pencil Picker](https://raw.github.com/jscipione/colorPickerPanel/master/images/ColoredPencilPicker.png)
+
+HexagonalColorPanel
+
+![Hexagonal Picker](https://raw.github.com/jscipione/colorPickerPanel/master/images/HexagonalPicker.png)
