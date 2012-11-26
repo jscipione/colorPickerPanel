@@ -8,10 +8,14 @@
 
 #include "HexagonalColorPicker.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <Alignment.h>
 #include <ControlLook.h>
 #include <LayoutBuilder.h>
 #include <Rect.h>
+#include <Size.h>
 #include <SpaceLayoutItem.h>
 
 #include "Hexagon.h"
@@ -27,7 +31,11 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 	for (int32 i = 0; i < kMaxHexagonCount; i++)
 		fHexagonList[i] = new Hexagon();
 
-	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+	fHexTextControl = new BTextControl(NULL, "#", NULL, NULL);
+	fHexTextControl->SetExplicitMaxSize(
+		BSize(be_control_look->DefaultItemSpacing() * 8, B_SIZE_UNSET));
+	
+	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_DEFAULT_SPACING)
 		.AddGroup(B_VERTICAL, -kHexagonHeight / 3.0f)
 			.AddGroup(B_HORIZONTAL, 0)
 				.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
@@ -206,7 +214,9 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 				.Add(fHexagonList[126])
 				.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
 			.End()
-		.End();
+		.End()
+		.Add(fHexTextControl)
+	.End();
 }
 
 
@@ -362,6 +372,19 @@ HexagonalColorPicker::AttachedToWindow()
 	fHexagonList[124]->SetColor((rgb_color) { 153, 0, 0 });
 	fHexagonList[125]->SetColor((rgb_color) { 128, 0, 0 });
 	fHexagonList[126]->SetColor((rgb_color) { 153, 51, 51 });
+
+	fHexTextControl->SetDivider(12.0);
+	fHexTextControl->SetTarget(this);
+
+	// Only permit (max 6) hexidecimal inputs
+	BTextView *hexTextView = fHexTextControl->TextView();
+	hexTextView->SetMaxBytes(6);
+	for (int32 j = 32; j < 255; ++j) {
+		if (!((j >= '0' && j <= '9') || (j >= 'a' && j <= 'f')
+			|| (j >= 'A' && j <= 'F'))) {
+			hexTextView->DisallowChar(j);
+		}
+	}
 }
 
 
@@ -403,4 +426,9 @@ HexagonalColorPicker::SetColor(rgb_color color)
 		if (fHexagonList[i]->Color() == color)
 			fHexagonList[i]->SetSelected(true);
 	}
+
+	char string[5];
+	sprintf(string, "%.6X", (color.red << 16) | (color.green << 8)
+		| color.blue);
+	fHexTextControl->TextView()->SetText(string);
 }

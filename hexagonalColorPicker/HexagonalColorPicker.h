@@ -17,6 +17,7 @@ const int32 kMaxHexagonCount = 127;
 
 class BMessage;
 class BPoint;
+class BTextControl;
 class Hexagon;
 
 class HexagonalColorPicker : public BView {
@@ -34,6 +35,7 @@ class HexagonalColorPicker : public BView {
 			rgb_color			fColor;
 			Hexagon*			fHexagonList[kMaxHexagonCount];
 			int32				fHexagonCount;
+			BTextControl*		fHexTextControl;
 };
 
 
