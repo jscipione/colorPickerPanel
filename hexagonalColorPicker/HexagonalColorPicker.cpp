@@ -231,8 +231,6 @@ HexagonalColorPicker::AttachedToWindow()
 	for (int32 i = 0; i < kMaxHexagonCount; i++)
 		fHexagonList[i]->SetTarget(this);
 
-	SetColor(fColor);
-
 	fHexagonList[0]->SetColor((rgb_color) { 0, 51, 102 });
 	fHexagonList[1]->SetColor((rgb_color) { 51, 102, 153 });
 	fHexagonList[2]->SetColor((rgb_color) { 51, 102, 204 });
@@ -385,6 +383,8 @@ HexagonalColorPicker::AttachedToWindow()
 			hexTextView->DisallowChar(j);
 		}
 	}
+
+	SetColor(fColor);
 }
 
 
@@ -427,6 +427,7 @@ HexagonalColorPicker::SetColor(rgb_color color)
 			fHexagonList[i]->SetSelected(true);
 	}
 
+	// Update the hex text control
 	char string[5];
 	sprintf(string, "%.6X", (color.red << 16) | (color.green << 8)
 		| color.blue);

@@ -150,5 +150,5 @@ void
 Hexagon::SetSelected(bool isSelected)
 {
 	fIsSelected = isSelected;
-	Invalidate(Bounds());
+		Invalidate();
 }
