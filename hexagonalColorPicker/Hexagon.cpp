@@ -67,36 +67,47 @@ Hexagon::Draw(BRect updateRect)
 	hexagon->LineTo(BPoint(kHexagonWidth / 2.0f, 0.0f));
 	hexagon->Close();
 	FillShape(hexagon);
+
 	if (fIsSelected) {
-		// outer border (grey)
 		SetHighColor((rgb_color) { 127, 127, 127 });
-		hexagon->MoveTo(BPoint(kHexagonWidth / 2.0f, 0.0f));
-		hexagon->LineTo(BPoint(kHexagonWidth,
-			ceilf(kHexagonHeight / 3.0f - 1.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth,
-			floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth / 2.0f, kHexagonHeight - 1.0f));
-		hexagon->LineTo(BPoint(0.0f,
-			floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
-		hexagon->LineTo(BPoint(0.0f, ceilf(kHexagonHeight / 3.0f - 1.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth / 2.0f, 0.0f));
-		hexagon->Close();
+		SetLowColor((rgb_color) { 255, 255, 255 });
 		StrokeShape(hexagon);
 
-		// outer border (grey)
-		hexagon->MoveTo(BPoint(kHexagonWidth / 2.0f, 1.0f));
-		hexagon->LineTo(BPoint(kHexagonWidth - 1.0f,
+		// outer border (white)
+		BShape* outer = new BShape();
+		outer->MoveTo(BPoint(kHexagonWidth / 2.0f, 2.0f));
+		outer->LineTo(BPoint(kHexagonWidth - 1.0f,
 			ceilf(kHexagonHeight / 3.0f - 1.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth - 1.0f,
-			floorf(kHexagonHeight * 2.0f / 3.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth / 2.0f, kHexagonHeight - 2.0f));
-		hexagon->LineTo(BPoint(1.0f, floorf(kHexagonHeight * 2.0f / 3.0f)));
-		hexagon->LineTo(BPoint(1.0f, ceilf(kHexagonHeight / 3.0f - 1.0f)));
-		hexagon->LineTo(BPoint(kHexagonWidth / 2.0f, 1.0f));
-		hexagon->Close();
-		StrokeShape(hexagon);
+		outer->LineTo(BPoint(kHexagonWidth - 1.0f,
+			floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
+		outer->LineTo(BPoint(kHexagonWidth / 2.0f, kHexagonHeight - 2.0f));
+		outer->LineTo(BPoint(1.0f, floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
+		outer->LineTo(BPoint(1.0f, ceilf(kHexagonHeight / 3.0f - 1.0f)));
+		outer->LineTo(BPoint(kHexagonWidth / 2.0f, 2.0f));
+		outer->Close();
+		SetPenSize(2.0);
+		StrokeShape(outer);
+		delete outer;
+
+		// inner border (white)
+		BShape* inner = new BShape();
+		inner->MoveTo(BPoint(kHexagonWidth / 2.0f, 3.0f));
+		inner->LineTo(BPoint(kHexagonWidth - 2.0f,
+			ceilf(kHexagonHeight / 3.0f - 1.0f)));
+		inner->LineTo(BPoint(kHexagonWidth - 2.0f,
+			floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
+		inner->LineTo(BPoint(kHexagonWidth / 2.0f, kHexagonHeight - 3.0f));
+		inner->LineTo(BPoint(2.0f, floorf(kHexagonHeight * 2.0f / 3.0f + 1.0f)));
+		inner->LineTo(BPoint(2.0f, ceilf(kHexagonHeight / 3.0f - 1.0f)));
+		inner->LineTo(BPoint(kHexagonWidth / 2.0f, 3.0f));
+		inner->Close();
+		SetPenSize(1.0);
+		StrokeShape(inner, B_SOLID_LOW);
+		delete inner;
 	}
+
 	PopState();
+	delete hexagon;
 }
 
 
