@@ -12,7 +12,7 @@
 #include <View.h>
 
 
-const int32 kMaxHexagonCount = 127;
+const int32 kMaxHexagonCount = 142;
 
 
 class BMessage;
