@@ -123,7 +123,7 @@ ColoredPencilColorPicker::AttachedToWindow()
 	fColoredPencilList[3]->SetColor((rgb_color) { 0, 128, 128 });
 	fColoredPencilList[4]->SetColor((rgb_color) { 0, 0, 128 });
 	fColoredPencilList[5]->SetColor((rgb_color) { 128, 0, 128 });
-	fColoredPencilList[6]->SetColor((rgb_color) { 127, 127, 127 });
+	fColoredPencilList[6]->SetColor((rgb_color) { 119, 119, 119 });
 	fColoredPencilList[7]->SetColor((rgb_color) { 128, 128, 128 });
 
 	fColoredPencilList[8]->SetColor((rgb_color) { 128, 64, 0 });
@@ -132,8 +132,8 @@ ColoredPencilColorPicker::AttachedToWindow()
 	fColoredPencilList[11]->SetColor((rgb_color) { 0, 64, 128 });
 	fColoredPencilList[12]->SetColor((rgb_color) { 64, 0, 128 });
 	fColoredPencilList[13]->SetColor((rgb_color) { 128, 0, 64 });
-	fColoredPencilList[14]->SetColor((rgb_color) { 102, 102, 102 });
-	fColoredPencilList[15]->SetColor((rgb_color) { 153, 153, 153 });
+	fColoredPencilList[14]->SetColor((rgb_color) { 95, 95, 95 });
+	fColoredPencilList[15]->SetColor((rgb_color) { 150, 150, 150 });
 
 	fColoredPencilList[16]->SetColor((rgb_color) { 255, 0, 0 });
 	fColoredPencilList[17]->SetColor((rgb_color) { 255, 255, 0 });
@@ -141,8 +141,8 @@ ColoredPencilColorPicker::AttachedToWindow()
 	fColoredPencilList[19]->SetColor((rgb_color) { 0, 255, 255 });
 	fColoredPencilList[20]->SetColor((rgb_color) { 0, 0, 255 });
 	fColoredPencilList[21]->SetColor((rgb_color) { 255, 0, 255 });
-	fColoredPencilList[22]->SetColor((rgb_color) { 76, 76, 76 });
-	fColoredPencilList[23]->SetColor((rgb_color) { 179, 179, 179 });
+	fColoredPencilList[22]->SetColor((rgb_color) { 77, 77, 77 });
+	fColoredPencilList[23]->SetColor((rgb_color) { 178, 178, 178 });
 
 	fColoredPencilList[24]->SetColor((rgb_color) { 255, 128, 0 });
 	fColoredPencilList[25]->SetColor((rgb_color) { 128, 255, 0 });
@@ -150,8 +150,8 @@ ColoredPencilColorPicker::AttachedToWindow()
 	fColoredPencilList[27]->SetColor((rgb_color) { 0, 128, 255 });
 	fColoredPencilList[28]->SetColor((rgb_color) { 128, 0, 255 });
 	fColoredPencilList[29]->SetColor((rgb_color) { 255, 0, 128 });
-	fColoredPencilList[30]->SetColor((rgb_color) { 51, 51, 51 });
-	fColoredPencilList[31]->SetColor((rgb_color) { 204, 204, 204 });
+	fColoredPencilList[30]->SetColor((rgb_color) { 41, 41, 41 });
+	fColoredPencilList[31]->SetColor((rgb_color) { 192, 192, 192 });
 
 	fColoredPencilList[32]->SetColor((rgb_color) { 255, 102, 102 });
 	fColoredPencilList[33]->SetColor((rgb_color) { 255, 255, 102 });
@@ -159,8 +159,8 @@ ColoredPencilColorPicker::AttachedToWindow()
 	fColoredPencilList[35]->SetColor((rgb_color) { 102, 255, 255 });
 	fColoredPencilList[36]->SetColor((rgb_color) { 102, 102, 255 });
 	fColoredPencilList[37]->SetColor((rgb_color) { 255, 102, 255 });
-	fColoredPencilList[38]->SetColor((rgb_color) { 25, 25, 25 });
-	fColoredPencilList[39]->SetColor((rgb_color) { 230, 230, 230 });
+	fColoredPencilList[38]->SetColor((rgb_color) { 28, 28, 28 });
+	fColoredPencilList[39]->SetColor((rgb_color) { 221, 221, 221 });
 
 	fColoredPencilList[40]->SetColor((rgb_color) { 255, 204, 102 });
 	fColoredPencilList[41]->SetColor((rgb_color) { 204, 255, 102 });
