@@ -217,7 +217,7 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 		.End()
 		.AddGroup(B_VERTICAL, -kHexagonHeight / 3.0f)
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 2.5)))
 				.Add(fHexagonList[127])
 				.Add(fHexagonList[128])
 				.Add(fHexagonList[129])
@@ -225,11 +225,11 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 				.Add(fHexagonList[131])
 				.Add(fHexagonList[132])
 				.Add(fHexagonList[133])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(kHexagonWidth * 3))
+				.Add(fHexagonList[134])
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.5)))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 2.5)))
-				.Add(fHexagonList[134])
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(floorf(kHexagonWidth * 3.0)))
 				.Add(fHexagonList[135])
 				.Add(fHexagonList[136])
 				.Add(fHexagonList[137])
@@ -237,7 +237,8 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 				.Add(fHexagonList[139])
 				.Add(fHexagonList[140])
 				.Add(fHexagonList[141])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.5)))
+				.Add(fHexagonList[142])
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.0)))
 			.End()
 		.End()
 		.Add(fHexTextControl)
@@ -396,22 +397,24 @@ HexagonalColorPicker::AttachedToWindow()
 	fHexagonList[125]->SetColor((rgb_color) { 128, 0, 0 });
 	fHexagonList[126]->SetColor((rgb_color) { 153, 51, 51 });
 
-	fHexagonList[127]->SetColor((rgb_color) { 221, 221, 221 });
-	fHexagonList[128]->SetColor((rgb_color) { 178, 178, 178 });
-	fHexagonList[129]->SetColor((rgb_color) { 128, 128, 128 });
-	fHexagonList[130]->SetColor((rgb_color) { 95, 95, 95 });
-	fHexagonList[131]->SetColor((rgb_color) { 51, 51, 51 });
-	fHexagonList[132]->SetColor((rgb_color) { 28, 28, 28 });
-	fHexagonList[133]->SetColor((rgb_color) { 8, 8, 8 });
+	// greys
+	fHexagonList[127]->SetColor((rgb_color) { 255, 255, 255 });
+	fHexagonList[128]->SetColor((rgb_color) { 221, 221, 221 });
+	fHexagonList[129]->SetColor((rgb_color) { 178, 178, 178 });
+	fHexagonList[130]->SetColor((rgb_color) { 128, 128, 128 });
+	fHexagonList[131]->SetColor((rgb_color) { 95, 95, 95 });
+	fHexagonList[132]->SetColor((rgb_color) { 51, 51, 51 });
+	fHexagonList[133]->SetColor((rgb_color) { 28, 28, 28 });
+	fHexagonList[134]->SetColor((rgb_color) { 8, 8, 8 });
 
-	fHexagonList[134]->SetColor((rgb_color) { 234, 234, 234 });
-	fHexagonList[135]->SetColor((rgb_color) { 192, 192, 192 });
-	fHexagonList[136]->SetColor((rgb_color) { 150, 150, 150 });
-	fHexagonList[137]->SetColor((rgb_color) { 119, 119, 119 });
-	fHexagonList[138]->SetColor((rgb_color) { 77, 77, 77 });
-	fHexagonList[139]->SetColor((rgb_color) { 41, 41, 41 });
-	fHexagonList[140]->SetColor((rgb_color) { 17, 17, 17 });
-	fHexagonList[141]->SetColor((rgb_color) { 0, 0, 0 });
+	fHexagonList[135]->SetColor((rgb_color) { 234, 234, 234 });
+	fHexagonList[136]->SetColor((rgb_color) { 192, 192, 192 });
+	fHexagonList[137]->SetColor((rgb_color) { 150, 150, 150 });
+	fHexagonList[138]->SetColor((rgb_color) { 119, 119, 119 });
+	fHexagonList[139]->SetColor((rgb_color) { 77, 77, 77 });
+	fHexagonList[140]->SetColor((rgb_color) { 41, 41, 41 });
+	fHexagonList[141]->SetColor((rgb_color) { 17, 17, 17 });
+	fHexagonList[142]->SetColor((rgb_color) { 0, 0, 0 });
 
 	fHexTextControl->SetDivider(12.0);
 	fHexTextControl->SetTarget(this);
