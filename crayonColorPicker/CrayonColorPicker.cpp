@@ -124,7 +124,7 @@ CrayonColorPicker::AttachedToWindow()
 	fCrayonList[3]->SetColor((rgb_color) { 0, 128, 128 });
 	fCrayonList[4]->SetColor((rgb_color) { 0, 0, 128 });
 	fCrayonList[5]->SetColor((rgb_color) { 128, 0, 128 });
-	fCrayonList[6]->SetColor((rgb_color) { 127, 127, 127 });
+	fCrayonList[6]->SetColor((rgb_color) { 119, 119, 119 });
 	fCrayonList[7]->SetColor((rgb_color) { 128, 128, 128 });
 
 	fCrayonList[8]->SetColor((rgb_color) { 128, 64, 0 });
@@ -133,8 +133,8 @@ CrayonColorPicker::AttachedToWindow()
 	fCrayonList[11]->SetColor((rgb_color) { 0, 64, 128 });
 	fCrayonList[12]->SetColor((rgb_color) { 64, 0, 128 });
 	fCrayonList[13]->SetColor((rgb_color) { 128, 0, 64 });
-	fCrayonList[14]->SetColor((rgb_color) { 102, 102, 102 });
-	fCrayonList[15]->SetColor((rgb_color) { 153, 153, 153 });
+	fCrayonList[14]->SetColor((rgb_color) { 95, 95, 95 });
+	fCrayonList[15]->SetColor((rgb_color) { 150, 150, 150 });
 
 	fCrayonList[16]->SetColor((rgb_color) { 255, 0, 0 });
 	fCrayonList[17]->SetColor((rgb_color) { 255, 255, 0 });
@@ -142,8 +142,8 @@ CrayonColorPicker::AttachedToWindow()
 	fCrayonList[19]->SetColor((rgb_color) { 0, 255, 255 });
 	fCrayonList[20]->SetColor((rgb_color) { 0, 0, 255 });
 	fCrayonList[21]->SetColor((rgb_color) { 255, 0, 255 });
-	fCrayonList[22]->SetColor((rgb_color) { 76, 76, 76 });
-	fCrayonList[23]->SetColor((rgb_color) { 179, 179, 179 });
+	fCrayonList[22]->SetColor((rgb_color) { 77, 77, 77 });
+	fCrayonList[23]->SetColor((rgb_color) { 178, 178, 178 });
 
 	fCrayonList[24]->SetColor((rgb_color) { 255, 128, 0 });
 	fCrayonList[25]->SetColor((rgb_color) { 128, 255, 0 });
@@ -151,8 +151,8 @@ CrayonColorPicker::AttachedToWindow()
 	fCrayonList[27]->SetColor((rgb_color) { 0, 128, 255 });
 	fCrayonList[28]->SetColor((rgb_color) { 128, 0, 255 });
 	fCrayonList[29]->SetColor((rgb_color) { 255, 0, 128 });
-	fCrayonList[30]->SetColor((rgb_color) { 51, 51, 51 });
-	fCrayonList[31]->SetColor((rgb_color) { 204, 204, 204 });
+	fCrayonList[30]->SetColor((rgb_color) { 41, 41, 41 });
+	fCrayonList[31]->SetColor((rgb_color) { 192, 192, 192 });
 
 	fCrayonList[32]->SetColor((rgb_color) { 255, 102, 102 });
 	fCrayonList[33]->SetColor((rgb_color) { 255, 255, 102 });
@@ -160,8 +160,8 @@ CrayonColorPicker::AttachedToWindow()
 	fCrayonList[35]->SetColor((rgb_color) { 102, 255, 255 });
 	fCrayonList[36]->SetColor((rgb_color) { 102, 102, 255 });
 	fCrayonList[37]->SetColor((rgb_color) { 255, 102, 255 });
-	fCrayonList[38]->SetColor((rgb_color) { 25, 25, 25 });
-	fCrayonList[39]->SetColor((rgb_color) { 230, 230, 230 });
+	fCrayonList[38]->SetColor((rgb_color) { 28, 28, 28 });
+	fCrayonList[39]->SetColor((rgb_color) { 221, 221, 221 });
 
 	fCrayonList[40]->SetColor((rgb_color) { 255, 204, 102 });
 	fCrayonList[41]->SetColor((rgb_color) { 204, 255, 102 });
