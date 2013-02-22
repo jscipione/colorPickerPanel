@@ -79,13 +79,6 @@ ColorPickerPanel::~ColorPickerPanel()
 
 
 void
-ColorPickerPanel::Cancel()
-{
-	PostMessage(MSG_CANCEL);
-}
-
-
-void
 ColorPickerPanel::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
@@ -114,6 +107,20 @@ ColorPickerPanel::MessageReceived(BMessage* message)
 
 
 // #pragma mark -
+
+
+void
+ColorPickerPanel::Cancel()
+{
+	PostMessage(MSG_CANCEL);
+}
+
+
+void
+ColorPickerPanel::Done()
+{
+	PostMessage(MSG_DONE);
+}
 
 
 void

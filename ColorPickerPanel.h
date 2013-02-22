@@ -28,9 +28,10 @@ class ColorPickerPanel : public BWindow {
 												 BHandler* target = NULL);
 	virtual						~ColorPickerPanel();
 
-	virtual	void				Cancel();
-
 	virtual	void				MessageReceived(BMessage* message);
+
+			void				Cancel();
+			void				Done();
 
 			void				SetMessage(BMessage* message);
 			void				SetTarget(BHandler* target);
