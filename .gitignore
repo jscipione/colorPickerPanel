@@ -1,8 +1,12 @@
 simpleColorPicker/(Objects*
 simpleColorPicker/BeApp
+simpleColorPicker/SimpleColorPicker.pld
 crayonColorPicker/\(Objects*
 crayonColorPicker/BeApp
+crayonColorPicker/CrayonColorPicker.pld
 coloredPencilColorPicker/\(Objects*
 coloredPencilColorPicker/BeApp
+coloredPencilColorPicker/ColoredPencilColorPicker.pld
 hexagonalColorPicker/\(Objects*
 hexagonalColorPicker/BeApp
+hexagonalColorPicker/hexagonalColorPicker.pld
