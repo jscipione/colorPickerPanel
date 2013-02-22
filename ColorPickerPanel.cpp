@@ -53,7 +53,8 @@ ColorPickerPanel::ColorPickerPanel(BRect frame, BView* colorPickerView,
 	BButton* defaultButton = new BButton("ok button", "OK",
 		new BMessage(MSG_DONE));
 	SetDefaultButton(defaultButton);
-	defaultButton->SetExplicitAlignment(BAlignment(B_ALIGN_RIGHT, B_ALIGN_VERTICAL_CENTER));
+	defaultButton->SetExplicitAlignment(BAlignment(B_ALIGN_RIGHT,
+		B_ALIGN_VERTICAL_CENTER));
 	BButton* cancelButton = new BButton("cancel button", "Cancel",
 		new BMessage(MSG_CANCEL));
 
