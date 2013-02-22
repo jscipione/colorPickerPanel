@@ -46,7 +46,7 @@ SimpleColorPickerApp::ReadyToRun()
 			new SimpleColorPicker((rgb_color){ 255, 0, 0 }));
 
 		fColorPickerPanel->Show();
-	}		
+	}
 }
 
 
