@@ -36,7 +36,7 @@ enum {
 ColorPickerPanel::ColorPickerPanel(BRect frame, BView* colorPickerView,
 	BWindow* window, BMessage* message, BHandler* target)
 	:
-	BWindow(frame, "ColorPickerPanel",
+	BWindow(frame, "Pick a color",
 		B_FLOATING_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
 			| B_CLOSE_ON_ESCAPE),
@@ -45,8 +45,6 @@ ColorPickerPanel::ColorPickerPanel(BRect frame, BView* colorPickerView,
 	fMessage(message),
 	fTarget(target)
 {
-	SetTitle("Pick a color");
-
 	BBox* divider = new BBox(
 		BRect(0, 0, 0, 0), B_EMPTY_STRING, B_FOLLOW_ALL_SIDES,
 			B_FRAME_EVENTS, B_FANCY_BORDER);
