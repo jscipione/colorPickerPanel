@@ -10,8 +10,6 @@
 
 #include "ColorPickerPanel.h"
 
-#include <stdio.h>
-
 #include <Alignment.h>
 #include <Application.h>
 #include <Box.h>
