@@ -10,7 +10,7 @@
 #define COLOR_PICKER_PANEL_H
 
 
-#include "Panel.h"
+#include "Window.h"
 
 
 class BHandler;
@@ -19,7 +19,7 @@ class BView;
 class BWindow;
 
 
-class ColorPickerPanel : public Panel {
+class ColorPickerPanel : public BWindow {
  public:
 								ColorPickerPanel(BRect frame,
 												 BView* colorPickerView,

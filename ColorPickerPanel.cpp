@@ -36,9 +36,10 @@ enum {
 ColorPickerPanel::ColorPickerPanel(BRect frame, BView* colorPickerView,
 	BWindow* window, BMessage* message, BHandler* target)
 	:
-	Panel(frame, "ColorPickerPanel",
+	BWindow(frame, "ColorPickerPanel",
 		B_FLOATING_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
-		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS),
+		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
+			| B_CLOSE_ON_ESCAPE),
 	fColorPickerView(colorPickerView),
 	fWindow(window),
 	fMessage(message),
@@ -106,7 +107,7 @@ ColorPickerPanel::MessageReceived(BMessage* message)
 		}
 
 		default:
-			Panel::MessageReceived(message);
+			BWindow::MessageReceived(message);
 			break;
 	}
 }
