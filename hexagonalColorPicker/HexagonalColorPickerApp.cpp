@@ -33,7 +33,8 @@ HexagonalColorPickerApp::~HexagonalColorPickerApp()
 
 void
 HexagonalColorPickerApp::MessageReceived(BMessage* message)
-{	
+{
+	BApplication::MessageReceived(message);
 }
 
 

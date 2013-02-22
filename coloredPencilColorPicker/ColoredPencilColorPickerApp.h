@@ -24,6 +24,7 @@ public:
 									ColoredPencilColorPickerApp();
 									~ColoredPencilColorPickerApp();
 
+	virtual	void					MessageReceived(BMessage* message);
 	virtual	void					ReadyToRun();
 
 private:

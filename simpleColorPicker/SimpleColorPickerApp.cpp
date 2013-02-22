@@ -33,7 +33,8 @@ SimpleColorPickerApp::~SimpleColorPickerApp()
 
 void
 SimpleColorPickerApp::MessageReceived(BMessage* message)
-{	
+{
+	BApplication::MessageReceived(message);
 }
 
 
@@ -43,6 +44,7 @@ SimpleColorPickerApp::ReadyToRun()
 	if (fColorPickerPanel == NULL) {
 		fColorPickerPanel = new ColorPickerPanel(BRect(100, 100, 100, 200),
 			new SimpleColorPicker((rgb_color){ 255, 0, 0 }));
+
 		fColorPickerPanel->Show();
 	}		
 }

@@ -34,6 +34,13 @@ ColoredPencilColorPickerApp::~ColoredPencilColorPickerApp()
 
 
 void
+ColoredPencilColorPickerApp::MessageReceived(BMessage* message)
+{
+	BApplication::MessageReceived(message);
+}
+
+
+void
 ColoredPencilColorPickerApp::ReadyToRun()
 {
 	if (fColorPickerPanel == NULL) {

@@ -35,7 +35,8 @@ CrayonColorPickerApp::~CrayonColorPickerApp()
 
 void
 CrayonColorPickerApp::MessageReceived(BMessage* message)
-{	
+{
+	BApplication::MessageReceived(message);
 }
 
 
