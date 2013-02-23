@@ -3,8 +3,8 @@
  * Copyright 2001-2008 Werner Freytag.
  * Distributed under the terms of the MIT License.
  */
-#ifndef _COLOR_WELL_H
-#define _COLOR_WELL_H
+#ifndef _COLOR_PREVIEW_H
+#define _COLOR_PREVIEW_H
 
 
 #include <View.h>
@@ -14,10 +14,10 @@
 
 class BMessageRunner;
 
-class ColorWell : public BView {
+class ColorPreview : public BView {
 	public:
-									ColorWell(BRect frame);
-		virtual						~ColorWell();
+									ColorPreview(BRect frame);
+		virtual						~ColorPreview();
 
 		virtual	void				Draw(BRect updateRect);
 
@@ -43,4 +43,4 @@ class ColorWell : public BView {
 };
 
 
-#endif	// _COLOR_WELL_H
+#endif	// _COLOR_PREVIEW_H

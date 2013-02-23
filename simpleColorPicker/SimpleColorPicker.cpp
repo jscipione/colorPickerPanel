@@ -14,7 +14,7 @@
 #include <Rect.h>
 #include <SpaceLayoutItem.h>
 
-#include "ColorWell.h"
+#include "ColorPreview.h"
 
 
 const int32 kColorDropped = 'cldp';
@@ -28,15 +28,15 @@ SimpleColorPicker::SimpleColorPicker(rgb_color color)
 {
 	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
 
-	fColorWell = new ColorWell(BRect(0, 0, 50, 50));
-	fColorWell->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
+	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50));
+	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
 		B_ALIGN_BOTTOM));
 
 	fColorControl = new BColorControl(B_ORIGIN, B_CELLS_32x8,
 		8.0, "ColorPicker", new BMessage(kColorChanged));
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
-		.Add(fColorWell)
+		.Add(fColorPreview)
 		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
 		.Add(fColorControl)
 		.End();
@@ -91,6 +91,6 @@ void
 SimpleColorPicker::SetColor(rgb_color color)
 {
 	fColor = color;
-	fColorWell->SetColor(color);
+	fColorPreview->SetColor(color);
 	fColorControl->SetValue(color);
 }

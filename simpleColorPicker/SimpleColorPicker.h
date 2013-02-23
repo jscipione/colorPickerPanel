@@ -15,7 +15,7 @@
 class BColorControl;
 class BMessage;
 class BPoint;
-class ColorWell;
+class ColorPreview;
 
 class SimpleColorPicker : public BView {
  public:
@@ -29,7 +29,7 @@ class SimpleColorPicker : public BView {
 			void				SetColor(rgb_color color);
 
  private:
-			ColorWell*			fColorWell;
+			ColorPreview*		fColorPreview;
 			BColorControl*		fColorControl;
 
 			rgb_color			fColor;

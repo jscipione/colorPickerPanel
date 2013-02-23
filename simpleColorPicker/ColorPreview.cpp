@@ -10,7 +10,7 @@
  */
 
 
-#include "ColorWell.h"
+#include "ColorPreview.h"
 
 #include <Application.h>
 #include <Bitmap.h>
@@ -23,9 +23,9 @@
 #include <Window.h>
 
 
-ColorWell::ColorWell(BRect frame)
+ColorPreview::ColorPreview(BRect frame)
 	:
-	BView(frame, "ColorWell", B_FOLLOW_TOP | B_FOLLOW_LEFT, B_WILL_DRAW),
+	BView(frame, "ColorPreview", B_FOLLOW_TOP | B_FOLLOW_LEFT, B_WILL_DRAW),
 	fMouseDown(false),
 	fMouseOffset(BPoint(0, 0)),
 	fMessageRunner(0),
@@ -34,13 +34,13 @@ ColorWell::ColorWell(BRect frame)
 }
 
 
-ColorWell::~ColorWell()
+ColorPreview::~ColorPreview()
 {
 }
 
 
 void
-ColorWell::Draw(BRect updateRect)
+ColorPreview::Draw(BRect updateRect)
 {
 	rgb_color background = ui_color(B_PANEL_BACKGROUND_COLOR);
 	rgb_color shadow = tint_color(background, B_DARKEN_1_TINT);
@@ -79,7 +79,7 @@ ColorWell::Draw(BRect updateRect)
 
 
 void
-ColorWell::MessageReceived(BMessage* message)
+ColorPreview::MessageReceived(BMessage* message)
 {
 	if (message->what == MSG_MESSAGERUNNER) {
 		BPoint where;
@@ -108,7 +108,7 @@ ColorWell::MessageReceived(BMessage* message)
 
 
 void
-ColorWell::MouseDown(BPoint where)
+ColorPreview::MouseDown(BPoint where)
 {
 	Window()->Activate();
 
@@ -139,7 +139,7 @@ ColorWell::MouseDown(BPoint where)
 
 
 void
-ColorWell::MouseMoved(BPoint where, uint32 code, const BMessage* message)
+ColorPreview::MouseMoved(BPoint where, uint32 code, const BMessage* message)
 {
 	if (fMouseDown)
 		DragColor(where);
@@ -147,7 +147,7 @@ ColorWell::MouseMoved(BPoint where, uint32 code, const BMessage* message)
 
 
 void
-ColorWell::MouseUp(BPoint where)
+ColorPreview::MouseUp(BPoint where)
 {
 	delete fMessageRunner;
 	fMessageRunner = 0;
@@ -158,14 +158,14 @@ ColorWell::MouseUp(BPoint where)
 
 
 rgb_color
-ColorWell::GetColor() const
+ColorPreview::GetColor() const
 {
 	return fColor;
 }
 
 
 void
-ColorWell::SetColor(long int c)
+ColorPreview::SetColor(long int c)
 {
 	rgb_color color;
 	color.red   = (c >> 16) & 255;
@@ -176,7 +176,7 @@ ColorWell::SetColor(long int c)
 
 
 void
-ColorWell::SetColor(rgb_color color)
+ColorPreview::SetColor(rgb_color color)
 {
 	color.alpha = 255;
 	fColor = color;
@@ -189,7 +189,7 @@ ColorWell::SetColor(rgb_color color)
 
 
 void
-ColorWell::DragColor(BPoint where)
+ColorPreview::DragColor(BPoint where)
 {
 	fGotFirstClick = false;
 
