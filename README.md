@@ -1,3 +1,7 @@
+Color Picker Client Sample App (Interoperates with the color pickers)
+
+![Client](https://raw.github.com/jscipione/colorPickerPanel/master/images/Client.png)
+
 Some Color Picker Panels for Haiku.
 
 SimpleColorPanel
