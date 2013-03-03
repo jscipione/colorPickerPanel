@@ -1,5 +1,6 @@
 colorPickerClient/(Objects*
 colorPickerClient/BeApp
+colorPickerClient/ColorPickerClient
 colorPickerClient/*.pld
 simpleColorPicker/(Objects*
 simpleColorPicker/BeApp
