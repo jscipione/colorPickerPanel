@@ -13,33 +13,28 @@
 #include <LayoutBuilder.h>
 #include <Rect.h>
 #include <SpaceLayoutItem.h>
+#include <Window.h>
 
 #include "ColorPreview.h"
 
 
-const int32 kColorDropped = 'cldp';
 const int32 kColorChanged = 'clch';
+const int32 kColorDropped = 'PSTE';
+
+
+SimpleColorPicker::SimpleColorPicker()
+	:
+	ColorPickerView()
+{
+	_Init();
+}
 
 
 SimpleColorPicker::SimpleColorPicker(rgb_color color)
 	:
-	BView("SimpleColorPicker", 0),
-	fColor(color)
+	ColorPickerView(color)
 {
-	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
-
-	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50));
-	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
-		B_ALIGN_BOTTOM));
-
-	fColorControl = new BColorControl(B_ORIGIN, B_CELLS_32x8,
-		8.0, "ColorPicker", new BMessage(kColorChanged));
-
-	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
-		.Add(fColorPreview)
-		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
-		.Add(fColorControl)
-		.End();
+	_Init();
 }
 
 
@@ -52,6 +47,7 @@ void
 SimpleColorPicker::AttachedToWindow()
 {
 	fColorControl->SetTarget(this);
+	fColorPreview->SetTarget(this);
 	SetColor(fColor);
 }
 
@@ -59,31 +55,43 @@ SimpleColorPicker::AttachedToWindow()
 void
 SimpleColorPicker::MessageReceived(BMessage* message)
 {
-	char* nameFound;
-	type_code typeFound;
+	switch (message->what) {
+		case kColorChanged:
+		{
+			// Received from the BColorControl when its color changes
+			rgb_color color = fColorControl->ValueAsColor();
+			SetColor(color);
+			color.alpha = 255;
+			BMessage* forward = new BMessage(kColorChanged);
+			forward->AddData("be:value", B_RGB_COLOR_TYPE, &color,
+				sizeof(color));
+			Window()->PostMessage(forward);
+			delete forward;
+			break;
+		}
 
-	if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &nameFound, &typeFound)
-			!= B_OK) {
-		switch (message->what) {
-			case kColorChanged:
-			{
-				// Received from the color fPicker when its color changes
-				rgb_color color = fColorControl->ValueAsColor();
-				SetColor(color);
-				break;
+		case kColorDropped:
+		{
+			char* nameFound;
+			type_code typeFound;
+			if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &nameFound, &typeFound)
+					!= B_OK) {
+				BView::MessageReceived(message);
+				return;
 			}
 
-			default:
-				BView::MessageReceived(message);
+			rgb_color* color;
+			ssize_t numBytes;
+			if (message->FindData(nameFound, typeFound, (const void **)&color,
+					&numBytes) == B_OK) {
+				SetColor(*color);
+				Window()->PostMessage(message);
+			}
 		}
-		return;
-	}
 
-	rgb_color* color;
-	ssize_t numBytes;
-	message->FindData(nameFound, typeFound, (const void **)&color,
-		&numBytes);
-	SetColor(*color);
+		default:
+			BView::MessageReceived(message);
+	}
 }
 
 
@@ -93,4 +101,25 @@ SimpleColorPicker::SetColor(rgb_color color)
 	fColor = color;
 	fColorPreview->SetColor(color);
 	fColorControl->SetValue(color);
+}
+
+
+void
+SimpleColorPicker::_Init()
+{
+	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
+
+	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50), "ColorPreview", "",
+		new BMessage(kColorDropped));
+	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
+		B_ALIGN_BOTTOM));
+
+	fColorControl = new BColorControl(B_ORIGIN, B_CELLS_32x8,
+		8.0, "ColorPicker", new BMessage(kColorChanged));
+
+	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+		.Add(fColorPreview)
+		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+		.Add(fColorControl)
+		.End();
 }

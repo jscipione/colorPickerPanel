@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Haiku, Inc.
+ * Copyright 2012-2013 Haiku, Inc.
  * Distributed under the terms of the MIT License.
  *
  * Authors:
@@ -9,30 +9,30 @@
 #define SIMPLE_COLOR_PICKER_H
 
 
-#include <View.h>
+#include "../ColorPickerView.h"
 
 
 class BColorControl;
 class BMessage;
-class BPoint;
 class ColorPreview;
 
-class SimpleColorPicker : public BView {
+class SimpleColorPicker : public ColorPickerView {
  public:
+ 								SimpleColorPicker();
 								SimpleColorPicker(rgb_color color);
 	virtual						~SimpleColorPicker();
 
 	virtual	void				AttachedToWindow();
 	virtual	void				MessageReceived(BMessage* message);
 
-			rgb_color			Color() const { return fColor; };
-			void				SetColor(rgb_color color);
+	virtual	void				SetColor(rgb_color color);
+
+ private:
+ 			void				_Init();
 
  private:
 			ColorPreview*		fColorPreview;
 			BColorControl*		fColorControl;
-
-			rgb_color			fColor;
 };
 
 

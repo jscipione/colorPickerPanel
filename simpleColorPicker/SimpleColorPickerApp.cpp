@@ -9,19 +9,17 @@
 
 #include "SimpleColorPickerApp.h"
 
-#include <Window.h>
-
-#include "../ColorPickerPanel.h"
+#include "../Protocol.h"
 #include "SimpleColorPicker.h"
 
 
 const char* kSignature = "application/x-vnd.Haiku.SimpleColorPicker";
 
 
-SimpleColorPickerApp::SimpleColorPickerApp()
+SimpleColorPickerApp::SimpleColorPickerApp(const char* signature)
 	:
-	BApplication(kSignature),
-	fColorPickerPanel(NULL)
+	BApplication(signature),
+	fPanel()
 {
 }
 
@@ -34,6 +32,14 @@ SimpleColorPickerApp::~SimpleColorPickerApp()
 void
 SimpleColorPickerApp::MessageReceived(BMessage* message)
 {
+	if (message->what == kInitiateConnection) {
+		// This is the initial open message that ModuleProxy::Invoke is sending
+		// us. Pass it on to the new color picker dialog which will find all
+		// the details in it
+		fPanel = new ColorPickerPanel(new SimpleColorPicker(),
+			message);
+	}
+
 	BApplication::MessageReceived(message);
 }
 
@@ -41,20 +47,19 @@ SimpleColorPickerApp::MessageReceived(BMessage* message)
 void
 SimpleColorPickerApp::ReadyToRun()
 {
-	if (fColorPickerPanel == NULL) {
-		fColorPickerPanel = new ColorPickerPanel(BRect(100, 100, 100, 200),
-			new SimpleColorPicker((rgb_color){ 255, 0, 0 }));
-
-		fColorPickerPanel->Show();
-	}
+	if (fPanel != NULL)
+		fPanel->Show();
+	else
+		Quit();
+		// Quit if run directly
 }
 
 
 int
 main()
 {
-	SimpleColorPickerApp app;
-	app.Run();
-
+	new SimpleColorPickerApp(kSignature);
+	be_app->Run();
+	delete be_app;
 	return 0;
 }

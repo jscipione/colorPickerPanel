@@ -10,37 +10,31 @@
 #define COLOR_PICKER_PANEL_H
 
 
-#include "Window.h"
+#include <Messenger.h>
+#include <View.h>
+#include <Window.h>
 
 
-class BHandler;
 class BMessage;
-class BView;
-class BWindow;
-
+class ColorPickerView;
 
 class ColorPickerPanel : public BWindow {
  public:
-								ColorPickerPanel(BRect frame,
-												 BView* colorPickerView,
-												 BWindow* window = NULL,
-												 BMessage* message = NULL,
-												 BHandler* target = NULL);
+								ColorPickerPanel(ColorPickerView* view,
+									BMessage* message = NULL);
 	virtual						~ColorPickerPanel();
 
 	virtual	void				MessageReceived(BMessage* message);
+	virtual	bool				QuitRequested();
 
 			void				Cancel();
 			void				Done();
 
-			void				SetMessage(BMessage* message);
-			void				SetTarget(BHandler* target);
-
  private:
-			BView*				fColorPickerView;
-			BWindow*			fWindow;
+			ColorPickerView*	fColorPickerView;
 			BMessage*			fMessage;
-			BHandler*			fTarget;
+			BMessenger			fTarget;
+			rgb_color			fInitialColor;
 };
 
 

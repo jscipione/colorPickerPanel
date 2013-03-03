@@ -7,40 +7,28 @@
 #define _COLOR_PREVIEW_H
 
 
-#include <View.h>
-
-#define MSG_MESSAGERUNNER 'MsgR'
+#include <Control.h>
 
 
-class BMessageRunner;
+class ColorPreview : public BControl {
+ public:
+								ColorPreview(BRect frame, const char* name,
+									const char* label, BMessage *message,
+									uint32 resizingMode = B_FOLLOW_LEFT
+										| B_FOLLOW_TOP,
+									uint32 flags = B_WILL_DRAW);
+	virtual						~ColorPreview();
 
-class ColorPreview : public BView {
-	public:
-									ColorPreview(BRect frame);
-		virtual						~ColorPreview();
+	virtual	void				Draw(BRect updateRect);
 
-		virtual	void				Draw(BRect updateRect);
+	virtual	void				MessageReceived(BMessage *message);
 
-		virtual	void				MessageReceived(BMessage *message);
+			rgb_color			Color() const;
+			void				SetColor(rgb_color color);
 
-		virtual	void				MouseDown(BPoint where);
-		virtual	void				MouseMoved(BPoint where, uint32 code,
-										const BMessage* message);
-		virtual	void				MouseUp(BPoint where);
+ private:
 
-				rgb_color			GetColor() const;
-				void				SetColor(rgb_color color);
-				void				SetColor(long int color);
-
-	private:
-				void				DragColor(BPoint where);
-
-				bool				fMouseDown;
-				BPoint				fMouseOffset;
-				rgb_color			fColor;
-				BMessageRunner*		fMessageRunner;
-				bool				fGotFirstClick;
+			rgb_color			fColor;
 };
-
 
 #endif	// _COLOR_PREVIEW_H
