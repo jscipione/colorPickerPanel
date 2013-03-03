@@ -49,9 +49,9 @@ public:
 	virtual	void				MessageReceived(BMessage* message);
 
 	virtual	void				KeyDown(const char* bytes, int32 numBytes);
-	virtual	void				MouseDown(BPoint point);
-	virtual	void				MouseUp(BPoint point);
-	virtual	void				MouseMoved(BPoint point, uint32 transit,
+	virtual	void				MouseDown(BPoint where);
+	virtual	void				MouseUp(BPoint where);
+	virtual	void				MouseMoved(BPoint where, uint32 transit,
 									const BMessage* dragMessage);
 
 	virtual	void				GetPreferredSize(float* _width,

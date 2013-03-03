@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include <Application.h>
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>

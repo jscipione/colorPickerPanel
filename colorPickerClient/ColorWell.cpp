@@ -188,54 +188,15 @@ BColorWell::FrameResized(float width, float height)
 status_t
 BColorWell::Invoke(BMessage* message)
 {
-	if (fConnectionOpen) {
-		fMessenger.SendMessage(kActivateWindow);
-		// we already have a picker serving us, pull it up
-		return B_OK;
-	}
+	// Send the color in a message to the control target
+	if (message == NULL)
+		message = Message();
 
-	bigtime_t now = system_time();
-	if (now - fLastInvokeTime < 1000000) {
-		// Don't invoke again for a bit after a first invoke to prevent
-		// launching two pickers. It would be nicer to wait after
-		// kOpenConnection returns.
-		return B_OK;
-	}
+	if (message == NULL)
+		return B_BAD_VALUE;
 
-	fLastInvokeTime = now;
-
-	uint32 buttons;
-	BPoint point;
-	GetMouse(&point, &buttons);
-
-	BMessage launchMessage(kInitiateConnection);
-
-	launchMessage.AddString(kTargetName, Name());
-		// add the current name so that the color picker
-		// can set the name, say in the title.
-	launchMessage.AddPoint(kInvokePoint, ConvertToScreen(point));
-		// add the current invocation point so that the color picker
-		// can position itself near the click
-	rgb_color color = Color();
-	launchMessage.AddData(kInitialValue, B_RGB_COLOR_TYPE, &color,
-		sizeof(color));
-		// add the current color value
-	launchMessage.AddInt32(kRequestedValues, B_RGB_COLOR_TYPE);
-		// ask for the fMimeType of values we need
-	launchMessage.AddMessenger(kClientAddress, BMessenger(this));
-		// this is the messenger we want the color picker to
-		// interact with
-
-	if (fPreferredApp != NULL) {
-		// whe have a specific preferred appliacation for this instance
-		// launch the picker - use the application signature for
-		// this particular client
-		be_roster->Launch(fPreferredApp, &launchMessage);
-	} else {
-		be_roster->Launch(kColorPickerType, &launchMessage);
-			// launch the picker, just use the mime fMimeType
-			// to choose the preferred application
-	}
+	message->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
+		sizeof(fColor));
 
 	return BControl::Invoke(message);
 }
@@ -310,25 +271,72 @@ BColorWell::KeyDown(const char *bytes, int32 numBytes)
 
 
 void
-BColorWell::MouseDown(BPoint point)
+BColorWell::MouseDown(BPoint where)
 {
+	if (fConnectionOpen) {
+		fMessenger.SendMessage(kActivateWindow);
+		// we already have a picker serving us, pull it up
+		return;
+	}
+
+	bigtime_t now = system_time();
+	if (now - fLastInvokeTime < 1000000) {
+		// Don't invoke again for a bit after a first invoke to prevent
+		// launching two pickers. It would be nicer to wait after
+		// kOpenConnection returns.
+		return;
+	}
+
+	fLastInvokeTime = now;
+
+	uint32 buttons;
+	BPoint point;
+	GetMouse(&point, &buttons);
+
+	BMessage launchMessage(kInitiateConnection);
+
+	launchMessage.AddString(kTargetName, Name());
+		// add the current name so that the color picker
+		// can set the name, say in the title.
+	launchMessage.AddPoint(kInvokePoint, ConvertToScreen(point));
+		// add the current invocation point so that the color picker
+		// can position itself near the click
+	rgb_color color = Color();
+	launchMessage.AddData(kInitialValue, B_RGB_COLOR_TYPE, &color,
+		sizeof(color));
+		// add the current color value
+	launchMessage.AddInt32(kRequestedValues, B_RGB_COLOR_TYPE);
+		// ask for the fMimeType of values we need
+	launchMessage.AddMessenger(kClientAddress, BMessenger(this));
+		// this is the messenger we want the color picker to
+		// interact with
+
+	if (fPreferredApp != NULL) {
+		// whe have a specific preferred appliacation for this instance
+		// launch the picker - use the application signature for
+		// this particular client
+		be_roster->Launch(fPreferredApp, &launchMessage);
+	} else {
+		be_roster->Launch(kColorPickerType, &launchMessage);
+			// launch the picker, just use the mime fMimeType
+			// to choose the preferred application
+	}
+
 	BControl::MouseDown(point);
 }
 
 
 void
-BColorWell::MouseUp(BPoint point)
+BColorWell::MouseUp(BPoint where)
 {
-	Invoke();
-
-	BControl::MouseUp(point);
+	BControl::MouseUp(where);
 }
 
 
 void
-BColorWell::MouseMoved(BPoint point, uint32 transit, const BMessage* message)
+BColorWell::MouseMoved(BPoint where, uint32 transit, const BMessage* message)
 {
-	BControl::MouseMoved(point, transit, message);
+	BControl::MouseMoved(where, transit, message);
 }
 
 
@@ -430,14 +438,7 @@ BColorWell::SetColor(rgb_color color)
 	if (Window())
 		Invalidate();
 
-	// Send the color in a message to the control target
-	BMessage* message = this->Message();
-	if (message != NULL) {
-		message->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
-			sizeof(fColor));
-		message->AddInt64("when", system_time());
-		BControl::Invoke(message);
-	}
+	Invoke();
 }
 
 
@@ -456,7 +457,7 @@ BColorWell::SetPreferredApp(const char* type)
 
 
 BHandler*
-BColorWell::ResolveSpecifier(BMessage *message, int32 index,
+BColorWell::ResolveSpecifier(BMessage* message, int32 index,
 	BMessage *specifier, int32 what, const char *property)
 {
 	return BControl::ResolveSpecifier(message, index, specifier, what,
@@ -465,7 +466,7 @@ BColorWell::ResolveSpecifier(BMessage *message, int32 index,
 
 
 status_t
-BColorWell::GetSupportedSuites(BMessage *message)
+BColorWell::GetSupportedSuites(BMessage* message)
 {
 	return BControl::GetSupportedSuites(message);
 }
