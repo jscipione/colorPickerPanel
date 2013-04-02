@@ -4,6 +4,7 @@ colorPickerClient/ColorPickerClient
 colorPickerClient/*.pld
 simpleColorPicker/(Objects*
 simpleColorPicker/BeApp
+simpleColorPicker/SimpleColorPicker
 simpleColorPicker/*.pld
 crayonColorPicker/\(Objects*
 crayonColorPicker/BeApp
