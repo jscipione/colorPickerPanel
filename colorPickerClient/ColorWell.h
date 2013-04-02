@@ -79,6 +79,9 @@ public:
 									int32 index, BMessage* specifier,
 									int32 what, const char* property);
 	virtual	status_t			GetSupportedSuites(BMessage* message);
+#if 0
+	virtual	status_t			Perform(perform_code code, void* data);
+#endif
 
 protected:
 	virtual	void				LayoutInvalidated(bool descendants = false);
