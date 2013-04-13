@@ -237,7 +237,8 @@ protected:
 	{
 		BWindow* window = new BWindow(BRect(200, 200, 300, 300),
 			"Example app", B_TITLED_WINDOW, B_NOT_ZOOMABLE
-				| B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS);
+				| B_NOT_RESIZABLE | B_QUIT_ON_WINDOW_CLOSE
+				| B_AUTO_UPDATE_SIZE_LIMITS);
 		window->SetLayout(new BGroupLayout(B_HORIZONTAL, 0));
 		window->GetLayout()->AddView(new ColorPickerClientView());
 		window->Show();
