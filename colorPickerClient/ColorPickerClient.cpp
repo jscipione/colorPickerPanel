@@ -117,30 +117,38 @@ public:
 			B_FOLLOW_ALL_SIDES, B_WILL_DRAW);
 		fCircle->SetColor((rgb_color){ 0, 0, 255 });
 
-		BColorWell* triangle = new BColorWell("Triangle", "triangle color",
-			(rgb_color){ 255, 0, 0 }, new BMessage('tria'));
-		triangle->SetTarget(this);
-		BColorWell* square = new BColorWell("Square", "square color",
-			(rgb_color){ 0, 255, 0 }, new BMessage('squa'));
-		square->SetTarget(this);
-		BColorWell* circle = new BColorWell("Circle", "circle color",
-			(rgb_color){ 0, 0, 255 }, new BMessage('circ'));
-		circle->SetTarget(this);
+		fTriangleColorWell = new BColorWell("Triangle", "triangle color",
+			(rgb_color){ 255, 0, 0 });
+		fSquareColorWell = new BColorWell("Square", "square color",
+			(rgb_color){ 0, 255, 0 });
+		fCircleColorWell = new BColorWell("Circle", "circle color",
+			(rgb_color){ 0, 0, 255 });
 
 		BLayoutBuilder::Group<>(this)
 			.AddGroup(B_VERTICAL, 0)
-				.Add(triangle)
-				.Add(square)
-				.Add(circle)
+				.Add(fTriangleColorWell)
+				.Add(fSquareColorWell)
+				.Add(fCircleColorWell)
 				.AddStrut(20)
 				.AddGroup(B_HORIZONTAL, 10)
 					.Add(fTriangle)
 					.Add(fSquare)
 					.Add(fCircle)
 				.End()
-				.SetInsets(B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING,
-					B_USE_DEFAULT_SPACING, B_USE_DEFAULT_SPACING)			
+				.SetInsets(B_USE_DEFAULT_SPACING)			
 			.End();
+	}
+
+	virtual void AttachedToWindow()
+	{
+		fTriangleColorWell->SetMessage(new BMessage('tria'));
+		fTriangleColorWell->SetTarget(this);
+
+		fSquareColorWell->SetMessage(new BMessage('squa'));
+		fSquareColorWell->SetTarget(this);
+
+		fCircleColorWell->SetMessage(new BMessage('circ'));
+		fCircleColorWell->SetTarget(this);
 	}
 
 	virtual void MessageReceived(BMessage* message)
@@ -215,6 +223,10 @@ private:
 	TriangleView*		fTriangle;
 	SquareView*			fSquare;
 	CircleView*			fCircle;
+
+	BColorWell*			fTriangleColorWell;
+	BColorWell*			fSquareColorWell;
+	BColorWell*			fCircleColorWell;
 };
 
 

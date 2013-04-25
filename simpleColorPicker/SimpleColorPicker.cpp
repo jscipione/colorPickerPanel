@@ -59,12 +59,13 @@ SimpleColorPicker::MessageReceived(BMessage* message)
 		case kColorChanged:
 		{
 			// Received from the BColorControl when its color changes
-			rgb_color color = fColorControl->ValueAsColor();
-			SetColor(color);
-			color.alpha = 255;
+			fColor = fColorControl->ValueAsColor();
+			fColor.alpha = 255;
+			fColorPreview->SetColor(fColor);
 			BMessage* forward = new BMessage(kColorChanged);
-			forward->AddData("be:value", B_RGB_COLOR_TYPE, &color,
-				sizeof(color));
+			forward->AddInt64("when", (int64)system_time());
+			forward->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
+				sizeof(fColor));
 			Window()->PostMessage(forward);
 			delete forward;
 			break;
