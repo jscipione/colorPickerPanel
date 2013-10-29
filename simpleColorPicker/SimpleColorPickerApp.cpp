@@ -36,8 +36,8 @@ SimpleColorPickerApp::MessageReceived(BMessage* message)
 		// This is the initial open message that ModuleProxy::Invoke is sending
 		// us. Pass it on to the new color picker dialog which will find all
 		// the details in it
-		fPanel = new ColorPickerPanel(new SimpleColorPicker(),
-			message);
+		fPanel = new ColorPickerPanel(
+			new SimpleColorPicker((rgb_color){ 0, 0, 0 }), message);
 	}
 
 	BApplication::MessageReceived(message);

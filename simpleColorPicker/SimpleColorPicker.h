@@ -17,8 +17,7 @@ class BMessage;
 class ColorPreview;
 
 class SimpleColorPicker : public ColorPickerView {
- public:
-								SimpleColorPicker();
+public:
 								SimpleColorPicker(rgb_color color);
 	virtual						~SimpleColorPicker();
 

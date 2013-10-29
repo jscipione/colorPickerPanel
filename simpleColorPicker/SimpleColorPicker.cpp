@@ -22,14 +22,6 @@ const int32 kColorChanged = 'clch';
 const int32 kColorDropped = 'PSTE';
 
 
-SimpleColorPicker::SimpleColorPicker()
-	:
-	ColorPickerView()
-{
-	_Init();
-}
-
-
 SimpleColorPicker::SimpleColorPicker(rgb_color color)
 	:
 	ColorPickerView(color)
