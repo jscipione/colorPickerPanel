@@ -9,9 +9,7 @@
 
 #include "HexagonalColorPickerApp.h"
 
-#include <Window.h>
-
-#include "../ColorPickerPanel.h"
+#include "../Protocol.h"
 #include "HexagonalColorPicker.h"
 
 
@@ -21,7 +19,7 @@ const char* kSignature = "application/x-vnd.Haiku.HexagonalColorPicker";
 HexagonalColorPickerApp::HexagonalColorPickerApp()
 	:
 	BApplication(kSignature),
-	fColorPickerPanel(NULL)
+	fPanel()
 {
 }
 
@@ -34,6 +32,14 @@ HexagonalColorPickerApp::~HexagonalColorPickerApp()
 void
 HexagonalColorPickerApp::MessageReceived(BMessage* message)
 {
+	if (message->what == kInitiateConnection) {
+		// This is the initial open message that ModuleProxy::Invoke is sending
+		// us. Pass it on to the new color picker dialog which will find all
+		// the details in it
+		fPanel = new ColorPickerPanel(
+			new HexagonalColorPicker((rgb_color){ 255, 0, 0 }), message);
+	}
+
 	BApplication::MessageReceived(message);
 }
 
@@ -41,19 +47,20 @@ HexagonalColorPickerApp::MessageReceived(BMessage* message)
 void
 HexagonalColorPickerApp::ReadyToRun()
 {
-	if (fColorPickerPanel == NULL) {
-		fColorPickerPanel = new ColorPickerPanel(BRect(100, 100, 100, 200),
-			new HexagonalColorPicker((rgb_color){ 255, 0, 0 }));
-		fColorPickerPanel->Show();
-	}		
+	if (fPanel != NULL)
+		fPanel->Show();
+	else
+		Quit();
+		// Quit if run directly
 }
 
 
 int
 main()
 {
-	HexagonalColorPickerApp app;
-	app.Run();
+	new HexagonalColorPickerApp();
+	be_app->Run();
+	delete be_app;
 
 	return 0;
 }

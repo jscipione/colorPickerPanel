@@ -1,13 +1,13 @@
 /*
  * Copyright 1999, Be Incorporated. All rights reserved.
- * Copyright 2012-2013 Haiku, Inc. All rights reserved.
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved. 
  * This file may be used under the terms of the Be Sample Code License.
  */
 #ifndef CRAYON_COLOR_PICKER_H
 #define CRAYON_COLOR_PICKER_H
 
 
-#include <View.h>
+#include "../ColorPickerView.h"
 
 
 const int32 kMaxCrayonCount = 48;
@@ -17,10 +17,10 @@ class BBitmap;
 class Crayon;
 class SelectedCrayon;
 
-class CrayonColorPicker : public BView {
- public:
+class CrayonColorPicker : public ColorPickerView {
+public:
 								CrayonColorPicker(rgb_color color);
-								~CrayonColorPicker();
+	virtual						~CrayonColorPicker();
 
 	virtual	void				AttachedToWindow();
 	virtual	void				MessageReceived(BMessage* message);

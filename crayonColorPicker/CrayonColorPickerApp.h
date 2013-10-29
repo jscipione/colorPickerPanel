@@ -11,24 +11,22 @@
 
 #include <Application.h>
 
+#include "../ColorPickerPanel.h"
 
-class BMessage;
-class BWindow;
-class ColorPickerPanel;
 
 extern const char* kSignature;
 
 
 class CrayonColorPickerApp : public BApplication {
 public:
-									CrayonColorPickerApp();
-									~CrayonColorPickerApp();
+								CrayonColorPickerApp();
+	virtual						~CrayonColorPickerApp();
 
 	virtual	void				MessageReceived(BMessage* message);
 	virtual	void				ReadyToRun();
 
 private:
-			ColorPickerPanel*		fColorPickerPanel;			
+			ColorPickerPanel*	fPanel;
 };
 
 

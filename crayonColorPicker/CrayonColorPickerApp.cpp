@@ -9,21 +9,17 @@
 
 #include "CrayonColorPickerApp.h"
 
-#include <Rect.h>
-#include <Window.h>
-
-#include "../ColorPickerPanel.h"
+#include "../Protocol.h"
 #include "CrayonColorPicker.h"
 
 
 const char* kSignature = "application/x-vnd.Haiku.CrayonColorPicker";
-//static int32 kColorControlValueChanged = 'ccvc';
 
 
 CrayonColorPickerApp::CrayonColorPickerApp()
 	:
 	BApplication(kSignature),
-	fColorPickerPanel(NULL)
+	fPanel()
 {
 }
 
@@ -36,6 +32,14 @@ CrayonColorPickerApp::~CrayonColorPickerApp()
 void
 CrayonColorPickerApp::MessageReceived(BMessage* message)
 {
+	if (message->what == kInitiateConnection) {
+		// This is the initial open message that ModuleProxy::Invoke is sending
+		// us. Pass it on to the new color picker dialog which will find all
+		// the details in it
+		fPanel = new ColorPickerPanel(
+			new CrayonColorPicker((rgb_color){ 200, 10, 10 }), message);
+	}
+
 	BApplication::MessageReceived(message);
 }
 
@@ -43,22 +47,20 @@ CrayonColorPickerApp::MessageReceived(BMessage* message)
 void
 CrayonColorPickerApp::ReadyToRun()
 {
-	if (fColorPickerPanel == NULL) {
-		CrayonColorPicker* colorPicker
-			= new CrayonColorPicker((rgb_color) { 200, 10, 10 });
-
-		fColorPickerPanel = new ColorPickerPanel(BRect(100, 100, 200, 200),
-			static_cast<BView*>(colorPicker));
-		fColorPickerPanel->Show();
-	}
+	if (fPanel != NULL)
+		fPanel->Show();
+	else
+		Quit();
+		// Quit if run directly
 }
 
 
 int
 main()
 {
-	CrayonColorPickerApp app;
-	app.Run();
+	new CrayonColorPickerApp();
+	be_app->Run();
+	delete be_app;
 
 	return 0;
 }

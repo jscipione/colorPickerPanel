@@ -9,7 +9,7 @@
 #define HEXAGONAL_COLOR_PICKER_H
 
 
-#include <View.h>
+#include "../ColorPickerView.h"
 
 
 const int32 kMaxHexagonCount = 143;
@@ -20,8 +20,8 @@ class BPoint;
 class BTextControl;
 class Hexagon;
 
-class HexagonalColorPicker : public BView {
- public:
+class HexagonalColorPicker : public ColorPickerView {
+public:
 								HexagonalColorPicker(rgb_color color);
 	virtual						~HexagonalColorPicker();
 

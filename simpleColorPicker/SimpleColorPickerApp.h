@@ -14,14 +14,12 @@
 #include "../ColorPickerPanel.h"
 
 
-class BMessage;
-
 extern const char* kSignature;
 
 
 class SimpleColorPickerApp : public BApplication {
 public:
-								SimpleColorPickerApp(const char* signature);
+								SimpleColorPickerApp();
 	virtual						~SimpleColorPickerApp();
 
 	virtual	void				MessageReceived(BMessage* message);

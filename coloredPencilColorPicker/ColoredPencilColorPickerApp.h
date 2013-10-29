@@ -11,10 +11,8 @@
 
 #include <Application.h>
 
+#include "../ColorPickerPanel.h"
 
-class BMessage;
-class BWindow;
-class ColorPickerPanel;
 
 extern const char* kSignature;
 
@@ -28,7 +26,7 @@ public:
 	virtual	void				ReadyToRun();
 
 private:
-			ColorPickerPanel*		fColorPickerPanel;			
+			ColorPickerPanel*	fPanel;
 };
 
 

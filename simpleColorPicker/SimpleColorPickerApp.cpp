@@ -16,9 +16,9 @@
 const char* kSignature = "application/x-vnd.Haiku.SimpleColorPicker";
 
 
-SimpleColorPickerApp::SimpleColorPickerApp(const char* signature)
+SimpleColorPickerApp::SimpleColorPickerApp()
 	:
-	BApplication(signature),
+	BApplication(kSignature),
 	fPanel()
 {
 }
@@ -58,8 +58,9 @@ SimpleColorPickerApp::ReadyToRun()
 int
 main()
 {
-	new SimpleColorPickerApp(kSignature);
+	new SimpleColorPickerApp();
 	be_app->Run();
 	delete be_app;
+
 	return 0;
 }
