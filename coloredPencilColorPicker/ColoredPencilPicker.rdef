@@ -3,7 +3,7 @@ resource file_types message {
 	"types" = "application/x-vnd.Haiku.ColorPicker"
 };
 
-resource app_signature "application/x-vnd.Haiku.SimpleColorPicker";
+resource app_signature "application/x-vnd.Haiku.ColoredPencilColorPicker";
 
 resource app_version {
 	major  = 1,
@@ -13,8 +13,8 @@ resource app_version {
 	variety = B_APPV_FINAL,
 	internal = 0,
 
-	short_info = "Simple Color Picker",
-	long_info = "Simple Color Picker ©2012-2013 Haiku, Inc."
+	short_info = "Colored Pencil Color Picker",
+	long_info = "Colored Pencil Color Picker ©2012-2013 Haiku, Inc."
 };
 
 resource app_flags B_MULTIPLE_LAUNCH | B_BACKGROUND_APP;
