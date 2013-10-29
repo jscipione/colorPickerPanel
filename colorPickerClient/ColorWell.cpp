@@ -1,5 +1,5 @@
 /*
- * Copyright 2001-2013 Haiku, Inc. All Rights Reserved.
+ * Copyright 2001-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Authors:
@@ -344,6 +344,9 @@ BColorWell::MouseMoved(BPoint where, uint32 transit, const BMessage* message)
 }
 
 
+// #pragma mark -
+
+
 void
 BColorWell::GetPreferredSize(float* _width, float* _height)
 {
@@ -383,7 +386,7 @@ BSize
 BColorWell::MaxSize()
 {
 	return BLayoutUtils::ComposeSize(ExplicitMaxSize(),
-		BSize(B_SIZE_UNLIMITED, _ValidatePreferredSize().height));
+		_ValidatePreferredSize());
 }
 
 
@@ -393,6 +396,17 @@ BColorWell::PreferredSize()
 	return BLayoutUtils::ComposeSize(ExplicitPreferredSize(),
 		_ValidatePreferredSize());
 }
+
+
+BAlignment
+BColorWell::LayoutAlignment()
+{
+	return BLayoutUtils::ComposeAlignment(ExplicitAlignment(),
+		BAlignment(B_ALIGN_LEFT, B_ALIGN_VERTICAL_CENTER));
+}
+
+
+// #pragma mark -
 
 
 void

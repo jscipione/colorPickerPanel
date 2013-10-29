@@ -1,5 +1,5 @@
 /*
- * Copyright 2001-2013 Haiku, Inc. All Rights Reserved.
+ * Copyright 2001-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  */
 #ifndef _COLOR_WELL_H
@@ -8,12 +8,6 @@
 
 #include <Control.h>
 
-
-class BArchivable;
-class BMessage;
-class BMessenger;
-class BPoint;
-class BSize;
 
 class BColorWell : public BControl {
 public:
@@ -61,6 +55,7 @@ public:
 	virtual	BSize				MinSize();
 	virtual	BSize				MaxSize();
 	virtual	BSize				PreferredSize();
+	virtual	BAlignment			LayoutAlignment();
 
 	virtual	void				MakeFocus(bool focused = true);
 
