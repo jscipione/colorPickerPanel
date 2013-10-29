@@ -96,7 +96,7 @@ BColorWell::~BColorWell()
 
 
 BArchivable*
-BColorWell::Instantiate(BMessage *archive)
+BColorWell::Instantiate(BMessage* archive)
 {
 	if (validate_instantiation(archive, "BColorWell"))
 		return new(std::nothrow) BColorWell(archive);
@@ -106,7 +106,7 @@ BColorWell::Instantiate(BMessage *archive)
 
 
 status_t
-BColorWell::Archive(BMessage *archive, bool deep) const
+BColorWell::Archive(BMessage* archive, bool deep) const
 {
 	return BControl::Archive(archive, deep);
 }
@@ -207,7 +207,7 @@ BColorWell::Invoke(BMessage* message)
 
 
 void
-BColorWell::MessageReceived(BMessage *message)
+BColorWell::MessageReceived(BMessage* message)
 {
 	switch (message->what) {
 		case B_VALUE_CHANGED:
@@ -268,7 +268,7 @@ BColorWell::MessageReceived(BMessage *message)
 
 
 void
-BColorWell::KeyDown(const char *bytes, int32 numBytes)
+BColorWell::KeyDown(const char* bytes, int32 numBytes)
 {
 	BControl::KeyDown(bytes, numBytes);
 }
@@ -476,7 +476,7 @@ BColorWell::SetPreferredApp(const char* type)
 
 BHandler*
 BColorWell::ResolveSpecifier(BMessage* message, int32 index,
-	BMessage *specifier, int32 what, const char *property)
+	BMessage* specifier, int32 what, const char* property)
 {
 	return BControl::ResolveSpecifier(message, index, specifier, what,
 		property);

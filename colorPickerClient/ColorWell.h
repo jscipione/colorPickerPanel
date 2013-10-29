@@ -109,7 +109,7 @@ private:
 			BSize				_ValidatePreferredSize();
 
 	// Forbidden
-			BColorWell&		operator=(const BColorWell&);
+			BColorWell&			operator=(const BColorWell&);
 
 private:
 			rgb_color			fColor;
