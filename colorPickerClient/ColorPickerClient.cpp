@@ -139,12 +139,12 @@ public:
 				.Add(fSquareColorWell)
 				.Add(fCircleColorWell)
 				.AddStrut(20)
-				.AddGroup(B_HORIZONTAL, 10)
+				.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 					.Add(fTriangle)
 					.Add(fSquare)
 					.Add(fCircle)
 				.End()
-				.SetInsets(B_USE_DEFAULT_SPACING)			
+				.SetInsets(B_USE_DEFAULT_SPACING)
 			.End();
 	}
 
@@ -248,9 +248,9 @@ public:
 		BMimeType type("application/x-vnd.Haiku.ColorPicker");
 		type.SetShortDescription("Color picker");
 		if (!type.IsInstalled())
- 			type.Install();
+			type.Install();
 
- 		type.SetPreferredApp("SimpleColorPicker");
+		type.SetPreferredApp("SimpleColorPicker");
 	}
 
 protected:
