@@ -18,7 +18,7 @@ class BRect;
 class SelectedColoredPencil : public ColoredPencil {
 public:
 								SelectedColoredPencil(rgb_color color);
-								~SelectedColoredPencil();
+	virtual						~SelectedColoredPencil();
 
 	virtual	void				AttachedToWindow();
 };

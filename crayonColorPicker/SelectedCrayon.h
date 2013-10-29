@@ -18,7 +18,7 @@ class BRect;
 class SelectedCrayon : public Crayon {
 public:
 								SelectedCrayon(rgb_color color);
-								~SelectedCrayon();
+	virtual						~SelectedCrayon();
 
 	virtual	void				AttachedToWindow();
 };

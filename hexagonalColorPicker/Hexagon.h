@@ -26,7 +26,7 @@ class Hexagon : public BControl {
 public:
 								Hexagon();
 								Hexagon(rgb_color color);
-								~Hexagon();
+	virtual						~Hexagon();
 
 	virtual	void				AttachedToWindow();
 	virtual	void				Draw(BRect updateRect);
