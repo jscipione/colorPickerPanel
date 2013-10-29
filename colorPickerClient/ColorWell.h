@@ -118,6 +118,8 @@ private:
 			bool				fConnectionOpen;
 			bigtime_t			fLastInvokeTime;
 			BMessenger			fMessenger;
+
+			uint32				_reserved[20];
 };
 
 
