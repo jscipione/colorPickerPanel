@@ -21,11 +21,11 @@ extern const char* kSignature;
 
 class ColoredPencilColorPickerApp : public BApplication {
 public:
-									ColoredPencilColorPickerApp();
-									~ColoredPencilColorPickerApp();
+								ColoredPencilColorPickerApp();
+								~ColoredPencilColorPickerApp();
 
-	virtual	void					MessageReceived(BMessage* message);
-	virtual	void					ReadyToRun();
+	virtual	void				MessageReceived(BMessage* message);
+	virtual	void				ReadyToRun();
 
 private:
 			ColorPickerPanel*		fColorPickerPanel;			

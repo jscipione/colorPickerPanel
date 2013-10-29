@@ -11,7 +11,7 @@
 
 
 class ColorPreview : public BControl {
- public:
+public:
 								ColorPreview(BRect frame, const char* name,
 									const char* label, BMessage *message,
 									uint32 resizingMode = B_FOLLOW_LEFT
@@ -26,7 +26,7 @@ class ColorPreview : public BControl {
 			rgb_color			Color() const;
 			void				SetColor(rgb_color color);
 
- private:
+private:
 
 			rgb_color			fColor;
 };

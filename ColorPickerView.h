@@ -13,15 +13,15 @@
 
 
 class ColorPickerView : public BView {
- public:
- 								ColorPickerView(rgb_color color);
- 								ColorPickerView();
+public:
+								ColorPickerView(rgb_color color);
+								ColorPickerView();
 	virtual						~ColorPickerView();
 
 	virtual	rgb_color			Color();
 	virtual	void				SetColor(rgb_color color);
 
- protected:
+protected:
 			rgb_color			fColor;
 };
 

@@ -16,7 +16,7 @@ class BBitmap;
 class BRect;
 
 class SelectedColoredPencil : public ColoredPencil {
- public:
+public:
 								SelectedColoredPencil(rgb_color color);
 								~SelectedColoredPencil();
 

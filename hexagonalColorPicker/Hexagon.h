@@ -23,8 +23,8 @@ class BPoint;
 class BRect;
 
 class Hexagon : public BControl {
- public:
- 								Hexagon();
+public:
+								Hexagon();
 								Hexagon(rgb_color color);
 								~Hexagon();
 
@@ -39,7 +39,7 @@ class Hexagon : public BControl {
 			bool				Selected() const;
 			void				SetSelected(bool isSelected);
 
- protected:
+protected:
 			rgb_color			fColor;
 			bool				fIsSelected;
 };

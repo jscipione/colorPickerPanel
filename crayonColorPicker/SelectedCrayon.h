@@ -16,7 +16,7 @@ class BBitmap;
 class BRect;
 
 class SelectedCrayon : public Crayon {
- public:
+public:
 								SelectedCrayon(rgb_color color);
 								~SelectedCrayon();
 

@@ -28,7 +28,7 @@ class CrayonColorPicker : public BView {
 			rgb_color			Color() const { return fColor; };
 			void				SetColor(rgb_color color);
 
- private:
+private:
 			rgb_color			fColor;
 			SelectedCrayon*		fSelectedColor;
 			Crayon*				fCrayonList[kMaxCrayonCount];

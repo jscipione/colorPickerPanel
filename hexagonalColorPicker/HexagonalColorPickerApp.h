@@ -24,8 +24,8 @@ public:
 									HexagonalColorPickerApp();
 									~HexagonalColorPickerApp();
 
-	virtual	void					MessageReceived(BMessage*);
-	virtual	void					ReadyToRun();
+	virtual	void				MessageReceived(BMessage* message);
+	virtual	void				ReadyToRun();
 
 private:
 			ColorPickerPanel*		fColorPickerPanel;			

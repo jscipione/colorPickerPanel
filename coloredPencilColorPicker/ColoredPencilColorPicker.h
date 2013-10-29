@@ -28,10 +28,10 @@ class ColoredPencilColorPicker : public BView {
 			rgb_color			Color() const { return fColor; };
 			void				SetColor(rgb_color color);
 
- private:
+private:
 			rgb_color			fColor;
-			SelectedColoredPencil*		fSelectedColor;
-			ColoredPencil*				fColoredPencilList[kMaxColoredPencilCount];
+			SelectedColoredPencil*	fSelectedColor;
+			ColoredPencil*		fColoredPencilList[kMaxColoredPencilCount];
 			int32				fColoredPencilCount;
 };
 

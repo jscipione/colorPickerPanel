@@ -18,7 +18,7 @@ class ColorPreview;
 
 class SimpleColorPicker : public ColorPickerView {
  public:
- 								SimpleColorPicker();
+								SimpleColorPicker();
 								SimpleColorPicker(rgb_color color);
 	virtual						~SimpleColorPicker();
 
@@ -27,10 +27,10 @@ class SimpleColorPicker : public ColorPickerView {
 
 	virtual	void				SetColor(rgb_color color);
 
- private:
- 			void				_Init();
+private:
+			void				_Init();
 
- private:
+private:
 			ColorPreview*		fColorPreview;
 			BColorControl*		fColorControl;
 };

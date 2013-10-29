@@ -21,10 +21,10 @@ class BPoint;
 class BRect;
 
 class Crayon : public BControl {
- public:
- 								Crayon();
+public:
+								Crayon();
 								Crayon(rgb_color color);
-								~Crayon();
+	virtual						~Crayon();
 
 	virtual	void				AttachedToWindow();
 	virtual	void				Draw(BRect updateRect);
@@ -34,7 +34,7 @@ class Crayon : public BControl {
 			rgb_color			Color() const;
 			void				SetColor(rgb_color color);
 
- protected:
+protected:
 			rgb_color			fColor;
 			BBitmap*			fIcon;
 };

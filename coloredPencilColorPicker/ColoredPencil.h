@@ -21,8 +21,8 @@ class BPoint;
 class BRect;
 
 class ColoredPencil : public BControl {
- public:
- 								ColoredPencil();
+public:
+								ColoredPencil();
 								ColoredPencil(rgb_color color);
 								~ColoredPencil();
 
@@ -34,7 +34,7 @@ class ColoredPencil : public BControl {
 			rgb_color			Color() const;
 			void				SetColor(rgb_color color);
 
- protected:
+protected:
 			rgb_color			fColor;
 			BBitmap*			fIcon;
 };
