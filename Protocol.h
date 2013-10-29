@@ -1,9 +1,11 @@
 /*
-	Copyright 1999, Be Incorporated.   All Rights Reserved.
-	This file may be used under the terms of the Be Sample Code License.
-*/
+ * Copyright 1999, Be Incorporated. All rights reserved.
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved. 
+ * This file may be used under the terms of the Be Sample Code License.
+ */
 #ifndef __PROTOCOL__
 #define __PROTOCOL__
+
 
 const uint32 kInitiateConnection = 'init';
 const uint32 kOpenConnection = 'open';
@@ -19,5 +21,6 @@ const uint32 kActivateWindow = 'awin';
 #define kProvidedValues "be:providedValues"
 #define kServerAddress "be:serverAddress"
 #define kClientAddress "be:clientAddress"
+
 
 #endif	// __PROTOCOL__

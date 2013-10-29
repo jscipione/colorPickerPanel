@@ -1,7 +1,8 @@
 /*
-	Copyright 1999, Be Incorporated.   All Rights Reserved.
-	This file may be used under the terms of the Be Sample Code License.
-*/
+ * Copyright 1999, Be Incorporated. All rights reserved.
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved.
+ * This file may be used under the terms of the Be Sample Code License.
+ */
 #ifndef COLORED_PENCIL_COLOR_PICKER_H
 #define COLORED_PENCIL_COLOR_PICKER_H
 

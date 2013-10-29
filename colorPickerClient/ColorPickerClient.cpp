@@ -1,3 +1,12 @@
+/*
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved.
+ * Distributed under the terms of the MIT License.
+ *
+ * Authors:
+ *		John Scipione, jscipione@gmail.com
+ */
+
+
 #include <Application.h>
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>

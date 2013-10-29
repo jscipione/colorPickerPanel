@@ -1,10 +1,10 @@
 /*
- * Copyright 2012 Haiku, Inc.
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Authors:
- *		Stephan Aßmus <superstippi@gmx.de>
- *		John Scipione <jscipione@gmail.com>
+ *		Stephan Aßmus, superstippi@gmx.de
+ *		John Scipione, jscipione@gmail.com
  */
 
 

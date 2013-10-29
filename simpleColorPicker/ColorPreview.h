@@ -1,6 +1,6 @@
 /*
- * Copyright 2009-2012 Haiku, Inc. All Rights Reserved.
  * Copyright 2001-2008 Werner Freytag.
+ * Copyright 2009-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  */
 #ifndef _COLOR_PREVIEW_H

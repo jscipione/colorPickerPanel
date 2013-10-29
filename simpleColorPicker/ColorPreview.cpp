@@ -1,12 +1,13 @@
 /*
- * Copyright 2009-2012 Haiku, Inc. All Rights Reserved.
  * Copyright 2001-2008 Werner Freytag.
+ * Copyright 2009-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Original Author:
- *		Werner Freytag <freytag@gmx.de>
+ *		Werner Freytag, freytag@gmx.de
+ *
  * Authors:
- *		John Scipione <jscipione@gmail.com>
+ *		John Scipione, jscipione@gmail.com
  */
 
 

@@ -1,9 +1,9 @@
 /*
- * Copyright 2012 Haiku, Inc.
+ * Copyright 2012-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Authors:
- *		John Scipione <jscipione@gmail.com>
+ *		John Scipione, jscipione@gmail.com
  */
 #ifndef COLORED_PENCIL_H
 #define COLORED_PENCIL_H
