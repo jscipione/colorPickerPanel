@@ -21,6 +21,8 @@
 #include <View.h>
 #include <Window.h>
 
+#include <string.h>
+
 #include "ColorWell.h"
 
 
@@ -122,10 +124,10 @@ private:
 
 class ColorPickerClientView : public BView {
 public:
-	ColorPickerClientView(),
-	fPickerMenu(new BPopUpMenu("pickerMenu"))
+	ColorPickerClientView()
 	:
-	BView("ColorPickerClientView", B_WILL_DRAW)
+	BView("ColorPickerClientView", B_WILL_DRAW),
+	fPickerMenu(new BPopUpMenu("pickerMenu"))
 	{
 		fTriangle = new TriangleView(BRect(0, 0, 40, 40), "triangle",
 			B_FOLLOW_ALL_SIDES, B_WILL_DRAW);
@@ -148,11 +150,11 @@ public:
 		BMessage message(kMsgSetPreferredColorPicker);
 		message.AddString("signature",
 			"application/x-vnd.Haiku.SimpleColorPicker");
-		fPickerMenu->AddItem(new BMenuItem("Default", message));
+		fPickerMenu->AddItem(new BMenuItem("Default", &message));
 
 		// Add additional color picker items (if available)
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
-		BMessage supportedApps();
+		BMessage supportedApps;
 		if (colorPicker.GetSupportingApps(&supportedApps) == B_OK) {
 			int32 subs = 0;
 			supportedApps.FindInt32("be:subs", &subs);
@@ -160,7 +162,7 @@ public:
 				fPickerMenu->AddSeparatorItem();
 
 			for (int32 i = 0; i < subs; i++) {
-				char* appSignature = NULL;
+				const char* appSignature;
 				if (supportedApps.FindString("applications", i, &appSignature) == B_OK) {
 					message.RemoveName("signature");
 					message.AddString("signature", appSignature);
@@ -200,6 +202,7 @@ public:
 		fCircleColorWell->SetTarget(this);
 
 		fPickerMenu->SetTargetForItems(this);
+		fPickerMenu->ItemAt(0)->SetMarked(true);
 	}
 
 	virtual void MessageReceived(BMessage* message)
@@ -267,19 +270,19 @@ public:
 
 			case kMsgSetPreferredColorPicker:
 			{
-				char* signature;
-				if (messsage->FindString("signature", &signature) != B_OK)
+				const char* signature;
+				if (message->FindString("signature", &signature) != B_OK)
 					break;
 
 				BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
-				BMessage supportedApps();
+				BMessage supportedApps;
 				if (colorPicker.GetSupportingApps(&supportedApps) != B_OK)
 					break;
 
 				int32 subs = 0;
 				supportedApps.FindInt32("be:sub", &subs);
 				for (int32 i = 0; i < subs; i++) {
-					char* application = NULL;
+					const char* application = NULL;
 					if (supportedApps.FindString("applications", i, &application) == B_OK)
 						if (strcasecmp(application, signature) == 0);
 							colorPicker.SetPreferredApp(signature);
