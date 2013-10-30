@@ -150,7 +150,7 @@ public:
 		BMessage message(kMsgSetPreferredColorPicker);
 		message.AddString("signature",
 			"application/x-vnd.Haiku.SimpleColorPicker");
-		fPickerMenu->AddItem(new BMenuItem("Default", &message));
+		fPickerMenu->AddItem(new BMenuItem("Default", new BMessage(message)));
 
 		// Add additional color picker items (if available)
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
@@ -166,7 +166,8 @@ public:
 				if (supportedApps.FindString("applications", i, &appSignature) == B_OK) {
 					message.RemoveName("signature");
 					message.AddString("signature", appSignature);
-					fPickerMenu->AddItem(new BMenuItem(appSignature, &message));
+					fPickerMenu->AddItem(new BMenuItem(appSignature,
+						new BMessage(message)));
 				}
 			}
 		}
