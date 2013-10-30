@@ -30,6 +30,7 @@ private:
 			void				_Init();
 
 private:
+			rgb_color			fColor;
 			ColorPreview*		fColorPreview;
 			BColorControl*		fColorControl;
 };
