@@ -592,3 +592,24 @@ SelectedCrayon::AttachedToWindow()
 	ResizeTo(kCrayonWidth - 1, kCrayonHeight - 1);
 	fIcon = new BBitmap(Bounds(), kCrayonColorSpace, false, false);
 }
+
+
+void
+SelectedCrayon::Draw(BRect updateRect)
+{
+	BRect frame(Bounds());
+
+	PushState();
+	SetHighColor(fColor);
+	SetLowColor(Parent()->ViewColor());
+	FillRect(frame);
+
+	if (fIcon != NULL) {
+		bool useInverted = fColor.red + fColor.green + fColor.blue <= 32 * 3;
+		fIcon->SetBits(useInverted ? kCrayonInvertedBits : kCrayonBits,
+			kCrayonWidth * kCrayonHeight, 0, kCrayonColorSpace);
+		SetDrawingMode(B_OP_OVER);
+		DrawBitmap(fIcon, frame);
+	}
+	PopState();
+}

@@ -21,6 +21,7 @@ public:
 	virtual						~SelectedCrayon();
 
 	virtual	void				AttachedToWindow();
+	virtual	void				Draw(BRect updateRect);
 };
 
 

@@ -161,7 +161,7 @@ Crayon::Draw(BRect updateRect)
 	FillRect(frame);
 
 	if (fIcon != NULL) {
-		bool useInverted = fColor.red + fColor.green + fColor.blue <= 64 * 3;
+		bool useInverted = fColor.red + fColor.green + fColor.blue <= 32 * 3;
 		fIcon->SetBits(useInverted ? kCrayonInvertedBits : kCrayonBits,
 			kCrayonWidth * kCrayonHeight, 0, kCrayonColorSpace);
 		SetDrawingMode(B_OP_OVER);
