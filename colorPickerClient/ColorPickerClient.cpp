@@ -141,10 +141,16 @@ public:
 
 		fTriangleColorWell = new BColorWell("Triangle", "triangle color",
 			(rgb_color){ 255, 0, 0 });
+		fTriangleColorWell->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED,
+			B_SIZE_UNSET));
 		fSquareColorWell = new BColorWell("Square", "square color",
 			(rgb_color){ 0, 255, 0 });
+		fSquareColorWell->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED,
+			B_SIZE_UNSET));
 		fCircleColorWell = new BColorWell("Circle", "circle color",
 			(rgb_color){ 0, 0, 255 });
+		fCircleColorWell->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED,
+			B_SIZE_UNSET));
 
 		// Add the default color picker item
 		BMessage message(kMsgSetPreferredColorPicker);
