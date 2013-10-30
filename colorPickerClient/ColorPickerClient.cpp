@@ -21,6 +21,11 @@
 #include "ColorWell.h"
 
 
+static const uint32 kMsgTriangle = 'tria';
+static const uint32 kMsgSquare = 'squa';
+static const uint32 kMsgCircle = 'circ';
+
+
 class TriangleView : public BView {
 public:
 	TriangleView(BRect frame, const char* name, uint32 resizingMode,
@@ -150,20 +155,20 @@ public:
 
 	virtual void AttachedToWindow()
 	{
-		fTriangleColorWell->SetMessage(new BMessage('tria'));
+		fTriangleColorWell->SetMessage(new BMessage(kMsgTriangle));
 		fTriangleColorWell->SetTarget(this);
 
-		fSquareColorWell->SetMessage(new BMessage('squa'));
+		fSquareColorWell->SetMessage(new BMessage(kMsgSquare));
 		fSquareColorWell->SetTarget(this);
 
-		fCircleColorWell->SetMessage(new BMessage('circ'));
+		fCircleColorWell->SetMessage(new BMessage(kMsgCircle));
 		fCircleColorWell->SetTarget(this);
 	}
 
 	virtual void MessageReceived(BMessage* message)
 	{
 		switch (message->what) {
-			case 'tria':
+			case kMsgTriangle:
 			{
 				char* nameFound;
 				type_code typeFound;
@@ -183,7 +188,7 @@ public:
 				break;
 			}
 
-			case 'squa':
+			case kMsgSquare:
 			{
 				char* nameFound;
 				type_code typeFound;
@@ -203,7 +208,7 @@ public:
 				break;
 			}
 
-			case 'circ':
+			case kMsgCircle:
 			{
 				char* nameFound;
 				type_code typeFound;
