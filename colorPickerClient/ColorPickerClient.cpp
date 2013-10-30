@@ -177,8 +177,8 @@ public:
 					message.AddString("signature", signature);
 					entry_ref entry;
 					const char* itemName = be_roster->FindApp(signature, &entry) == B_OK
-						? entry.name : signature
-					BMenuItem* item = new BMenuItem(itemName, new BMessage(message);
+						? entry.name : signature;
+					BMenuItem* item = new BMenuItem(itemName, new BMessage(message));
 					fPickerMenu->AddItem(item);
 					char* preferredSignature;
 					if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
