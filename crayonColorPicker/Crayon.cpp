@@ -117,6 +117,9 @@ const unsigned char kCrayonFilledBits[] = {
 };
 
 
+//	#pragma mark - Crayon
+
+
 Crayon::Crayon()
 	:
 	BControl(BRect(0, 0, kCrayonWidth - 1, kCrayonHeight - 1), "Crayon", "",

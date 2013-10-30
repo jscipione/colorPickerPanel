@@ -69,6 +69,9 @@ const unsigned char kColoredPencilBits[] = {
 };
 
 
+//	#pragma mark - ColoredPencil
+
+
 ColoredPencil::ColoredPencil()
 	:
 	BControl(BRect(0, 0, kColoredPencilWidth - 1, kColoredPencilHeight - 1),

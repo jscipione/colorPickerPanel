@@ -297,6 +297,9 @@ const unsigned char kColoredPencilBits[] = {
 };
 
 
+//	#pragma mark - SelectedColoredPencil
+
+
 SelectedColoredPencil::SelectedColoredPencil(rgb_color color)
 	:
 	ColoredPencil(color)

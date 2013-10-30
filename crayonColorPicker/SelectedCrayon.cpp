@@ -573,6 +573,9 @@ const unsigned char kCrayonFilledBits[] = {
 };
 
 
+//	#pragma mark - SelectedCrayon
+
+
 SelectedCrayon::SelectedCrayon(rgb_color color)
 	:
 	Crayon(color)
