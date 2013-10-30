@@ -17,6 +17,7 @@
 #include <Point.h>
 #include <PopUpMenu.h>
 #include <Rect.h>
+#include <Roster.h>
 #include <Size.h>
 #include <View.h>
 #include <Window.h>
@@ -156,7 +157,9 @@ public:
 		BMessage message(kMsgSetPreferredColorPicker);
 		message.AddString("signature",
 			"application/x-vnd.Haiku.SimpleColorPicker");
-		fPickerMenu->AddItem(new BMenuItem("Default", new BMessage(message)));
+		BMenuItem* defaultItem = new BMenuItem("Default", new BMessage(message));
+		fPickerMenu->AddItem(defaultItem);
+		defaultItem->SetMarked(true);
 
 		// Add additional color picker items (if available)
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
@@ -168,12 +171,20 @@ public:
 				fPickerMenu->AddSeparatorItem();
 
 			for (int32 i = 0; i < subs; i++) {
-				const char* appSignature;
-				if (supportedApps.FindString("applications", i, &appSignature) == B_OK) {
+				const char* signature;
+				if (supportedApps.FindString("applications", i, &signature) == B_OK) {
 					message.RemoveName("signature");
-					message.AddString("signature", appSignature);
-					fPickerMenu->AddItem(new BMenuItem(appSignature,
-						new BMessage(message)));
+					message.AddString("signature", signature);
+					entry_ref entry;
+					const char* itemName = be_roster->FindApp(signature, &entry) == B_OK
+						? entry.name : signature
+					BMenuItem* item = new BMenuItem(itemName, new BMessage(message);
+					fPickerMenu->AddItem(item);
+					char* preferredSignature;
+					if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
+						&& strcasecmp(preferredSignature, signature) == 0) {
+						item->SetMarked(true);
+					}
 				}
 			}
 		}
@@ -209,7 +220,6 @@ public:
 		fCircleColorWell->SetTarget(this);
 
 		fPickerMenu->SetTargetForItems(this);
-		fPickerMenu->ItemAt(0)->SetMarked(true);
 	}
 
 	virtual void MessageReceived(BMessage* message)
