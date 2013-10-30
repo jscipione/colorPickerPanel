@@ -24,7 +24,8 @@ const int32 kColorDropped = 'PSTE';
 
 SimpleColorPicker::SimpleColorPicker(rgb_color color)
 	:
-	ColorPickerView(color)
+	ColorPickerView(color),
+	fColor(color)
 {
 	_Init();
 }

@@ -21,7 +21,7 @@
 
 ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 	:
-	BView("ColoredPencilColorPicker", 0),
+	ColorPickerView(),
 	fColor(color)
 {
 	fSelectedColor = new SelectedColoredPencil(color);

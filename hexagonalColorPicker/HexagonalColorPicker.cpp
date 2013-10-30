@@ -23,7 +23,7 @@
 
 HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 	:
-	BView("HexagonalColorPicker", 0),
+	ColorPickerView(),
 	fColor(color)
 {
 	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
