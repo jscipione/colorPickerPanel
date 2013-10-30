@@ -10,9 +10,12 @@
 #include <Application.h>
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>
+#include <MenuField.h>
+#include <MenuItem.h>
 #include <Message.h>
 #include <MimeType.h>
 #include <Point.h>
+#include <PopUpMenu.h>
 #include <Rect.h>
 #include <Size.h>
 #include <View.h>
@@ -24,6 +27,8 @@
 static const uint32 kMsgTriangle = 'tria';
 static const uint32 kMsgSquare = 'squa';
 static const uint32 kMsgCircle = 'circ';
+
+static const uint32 kMsgSetPreferredColorPicker = 'spcp';
 
 
 class TriangleView : public BView {
@@ -117,7 +122,8 @@ private:
 
 class ColorPickerClientView : public BView {
 public:
-	ColorPickerClientView()
+	ColorPickerClientView(),
+	fPickerMenu(new BPopUpMenu("pickerMenu"))
 	:
 	BView("ColorPickerClientView", B_WILL_DRAW)
 	{
@@ -138,18 +144,47 @@ public:
 		fCircleColorWell = new BColorWell("Circle", "circle color",
 			(rgb_color){ 0, 0, 255 });
 
-		BLayoutBuilder::Group<>(this)
-			.AddGroup(B_VERTICAL, 0)
-				.Add(fTriangleColorWell)
-				.Add(fSquareColorWell)
-				.Add(fCircleColorWell)
-				.AddStrut(20)
-				.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
-					.Add(fTriangle)
-					.Add(fSquare)
-					.Add(fCircle)
+		// Add the default color picker item
+		BMessage message(kMsgSetPreferredColorPicker);
+		message.AddString("signature",
+			"application/x-vnd.Haiku.SimpleColorPicker");
+		fPickerMenu->AddItem(new BMenuItem("Default", message));
+
+		// Add additional color picker items (if available)
+		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
+		BMessage supportedApps();
+		if (colorPicker.GetSupportingApps(&supportedApps) == B_OK) {
+			int32 subs = 0;
+			supportedApps.FindInt32("be:subs", &subs);
+			if (subs > 0)
+				fPickerMenu->AddSeparatorItem();
+
+			for (int32 i = 0; i < subs; i++) {
+				char* appSignature = NULL;
+				if (supportedApps.FindString("applications", i, &appSignature) == B_OK) {
+					message.RemoveName("signature");
+					message.AddString("signature", appSignature);
+					fPickerMenu->AddItem(new BMenuItem(appSignature, &message));
+				}
+			}
+		}
+
+		BMenuField* pickerField = new BMenuField("pickerField", "Color Picker: ",
+			fPickerMenu);
+
+		BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
+			.Add(pickerField)
+			.AddStrut(B_USE_DEFAULT_SPACING)
+			.Add(fTriangleColorWell)
+			.Add(fSquareColorWell)
+			.Add(fCircleColorWell)
+			.AddStrut(20)
+			.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
+				.Add(fTriangle)
+				.Add(fSquare)
+				.Add(fCircle)
 				.End()
-				.SetInsets(B_USE_DEFAULT_SPACING)
+			.SetInsets(B_USE_DEFAULT_SPACING)
 			.End();
 	}
 
@@ -163,6 +198,8 @@ public:
 
 		fCircleColorWell->SetMessage(new BMessage(kMsgCircle));
 		fCircleColorWell->SetTarget(this);
+
+		fPickerMenu->SetTargetForItems(this);
 	}
 
 	virtual void MessageReceived(BMessage* message)
@@ -228,6 +265,28 @@ public:
 				break;
 			}
 
+			case kMsgSetPreferredColorPicker:
+			{
+				char* signature;
+				if (messsage->FindString("signature", &signature) != B_OK)
+					break;
+
+				BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
+				BMessage supportedApps();
+				if (colorPicker.GetSupportingApps(&supportedApps) != B_OK)
+					break;
+
+				int32 subs = 0;
+				supportedApps.FindInt32("be:sub", &subs);
+				for (int32 i = 0; i < subs; i++) {
+					char* application = NULL;
+					if (supportedApps.FindString("applications", i, &application) == B_OK)
+						if (strcasecmp(application, signature) == 0);
+							colorPicker.SetPreferredApp(signature);
+				}
+				break;
+			}
+
 			default:
 				BView::MessageReceived(message);
 		}
@@ -241,6 +300,8 @@ private:
 	BColorWell*			fTriangleColorWell;
 	BColorWell*			fSquareColorWell;
 	BColorWell*			fCircleColorWell;
+
+	BPopUpMenu*			fPickerMenu;
 };
 
 
@@ -248,14 +309,14 @@ class ColorPickerClient : public BApplication {
 public:
 	ColorPickerClient()
 	:
-	BApplication("application/x-vnd.Haiku.ColorPickerSample")
+	BApplication("application/x-vnd.Haiku.ColorPickerExample")
 	{
-		BMimeType type("application/x-vnd.Haiku.ColorPicker");
-		type.SetShortDescription("Color picker");
-		if (!type.IsInstalled())
-			type.Install();
+		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
+		colorPicker.SetShortDescription("Color picker");
+		if (!colorPicker.IsInstalled())
+			colorPicker.Install();
 
-		type.SetPreferredApp("SimpleColorPicker");
+		colorPicker.SetPreferredApp("application/x-vnd.Haiku.SimpleColorPicker");
 	}
 
 protected:
