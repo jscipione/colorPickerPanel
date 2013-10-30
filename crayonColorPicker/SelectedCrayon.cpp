@@ -605,7 +605,7 @@ SelectedCrayon::Draw(BRect updateRect)
 	FillRect(frame);
 
 	if (fIcon != NULL) {
-		bool useFilled = fColor.red + fColor.green + fColor.blue <= 32 * 3;
+		bool useFilled = fColor.red + fColor.green + fColor.blue <= 42 * 3;
 		fIcon->SetBits(useFilled ? kCrayonFilledBits : kCrayonBits,
 			kCrayonWidth * kCrayonHeight, 0, kCrayonColorSpace);
 		SetDrawingMode(B_OP_OVER);
