@@ -337,9 +337,10 @@ public:
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
 		colorPicker.SetShortDescription("Color picker");
 		app_info appInfo;
-		if (be_roster->GetAppInfo(kSignature, &appInfo) == B_OK) {
-			BFile executable(&appInfo.ref);
-			BAppFileInfo appFileInfo(&exectuable);
+		if (be_roster->GetAppInfo("application/x-vnd.Haiku.ColorPicker", &appInfo)
+				== B_OK) {
+			BFile executable(&appInfo.ref, B_READ_ONLY);
+			BAppFileInfo appFileInfo(&executable);
 			BMessage message;
 			if (appFileInfo.GetSupportedTypes(&message) == B_OK) {
 				message.AddString("types", "application/x-vnd.Haiku.CrayonColorPicker");
