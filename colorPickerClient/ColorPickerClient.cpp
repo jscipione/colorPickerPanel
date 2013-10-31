@@ -174,20 +174,21 @@ public:
 
 			for (int32 i = 0; i < subs; i++) {
 				const char* signature;
-				if (supportingApps.FindString("applications", i, &signature) == B_OK) {
-					message.RemoveName("signature");
-					message.AddString("signature", signature);
-					entry_ref entry;
-					const char* itemName = be_roster->FindApp(signature, &entry) == B_OK
-						? entry.name : signature;
-					BMenuItem* item = new BMenuItem(itemName, new BMessage(message));
-					fPickerMenu->AddItem(item);
-					char preferredSignature[B_MIME_TYPE_LENGTH];
-					if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
-						&& preferredSignature != NULL
-						&& strcasecmp(preferredSignature, signature) == 0) {
-						item->SetMarked(true);
-					}
+				if (supportingApps.FindString("applications", i, &signature) != B_OK)
+					break;
+
+				message.RemoveName("signature");
+				message.AddString("signature", signature);
+				entry_ref entry;
+				const char* itemName = be_roster->FindApp(signature, &entry) == B_OK
+					? entry.name : signature;
+				BMenuItem* item = new BMenuItem(itemName, new BMessage(message));
+				fPickerMenu->AddItem(item);
+				char preferredSignature[B_MIME_TYPE_LENGTH];
+				if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
+					&& preferredSignature != NULL
+					&& strcasecmp(preferredSignature, signature) == 0) {
+					item->SetMarked(true);
 				}
 			}
 		}
