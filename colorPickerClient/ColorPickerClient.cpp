@@ -7,7 +7,9 @@
  */
 
 
+#include <AppFileInfo.h>
 #include <Application.h>
+#include <File.h>
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>
 #include <MenuField.h>
@@ -334,6 +336,20 @@ public:
 	{
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
 		colorPicker.SetShortDescription("Color picker");
+		app_info appInfo;
+		if (be_roster->GetAppInfo(kSignature, &appInfo) == B_OK) {
+			BFile executable(&appInfo.ref);
+			BAppFileInfo appFileInfo(&exectuable);
+			BMessage message;
+			if (appFileInfo.GetSupportedTypes(&message) == B_OK) {
+				message.AddString("types", "application/x-vnd.Haiku.CrayonColorPicker");
+				message.AddString("types",
+					"application/x-vnd.Haiku.ColoredPencilColorPicker");
+				message.AddString("types", "application/x-vnd.Haiku.HexagonalColorPicker");
+				message.AddString("types", "application/x-vnd.Haiku.SimpleColorPicker");
+				appFileInfo.SetSupportedTypes(&message);
+			}
+		}
 		if (!colorPicker.IsInstalled())
 			colorPicker.Install();
 
