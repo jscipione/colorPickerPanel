@@ -163,16 +163,16 @@ public:
 
 		// Add additional color picker items (if available)
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
-		BMessage supportedApps;
-		if (colorPicker.GetSupportingApps(&supportedApps) == B_OK) {
+		BMessage supportingApps;
+		if (colorPicker.GetSupportingApps(&supportingApps) == B_OK) {
 			int32 subs = 0;
-			supportedApps.FindInt32("be:subs", &subs);
+			supportingApps.FindInt32("be:sub", &subs);
 			if (subs > 0)
 				fPickerMenu->AddSeparatorItem();
 
 			for (int32 i = 0; i < subs; i++) {
 				const char* signature;
-				if (supportedApps.FindString("applications", i, &signature) == B_OK) {
+				if (supportingApps.FindString("applications", i, &signature) == B_OK) {
 					message.RemoveName("signature");
 					message.AddString("signature", signature);
 					entry_ref entry;
@@ -292,17 +292,18 @@ public:
 					break;
 
 				BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
-				BMessage supportedApps;
-				if (colorPicker.GetSupportingApps(&supportedApps) != B_OK)
+				BMessage supportingApps;
+				if (colorPicker.GetSupportingApps(&supportingApps) != B_OK)
 					break;
 
-				int32 subs = 0;
-				supportedApps.FindInt32("be:sub", &subs);
-				for (int32 i = 0; i < subs; i++) {
-					const char* application = NULL;
-					if (supportedApps.FindString("applications", i, &application) == B_OK)
-						if (strcasecmp(application, signature) == 0);
-							colorPicker.SetPreferredApp(signature);
+				const char* application = NULL;
+				for (int32 i = 0;
+						supportingApps.FindString("applications", i, &application) == B_OK;
+						i++) {
+					if (strcasecmp(application, signature) == 0) {
+						colorPicker.SetPreferredApp(signature);
+						break;
+					}
 				}
 				break;
 			}
