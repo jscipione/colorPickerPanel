@@ -182,8 +182,9 @@ public:
 						? entry.name : signature;
 					BMenuItem* item = new BMenuItem(itemName, new BMessage(message));
 					fPickerMenu->AddItem(item);
-					char* preferredSignature;
+					char preferredSignature[B_MIME_TYPE_LENGTH];
 					if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
+						&& preferredSignature != NULL
 						&& strcasecmp(preferredSignature, signature) == 0) {
 						item->SetMarked(true);
 					}
