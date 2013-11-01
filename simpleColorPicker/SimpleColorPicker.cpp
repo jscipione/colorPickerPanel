@@ -27,7 +27,21 @@ SimpleColorPicker::SimpleColorPicker(rgb_color color)
 	ColorPickerView(color),
 	fColor(color)
 {
-	_Init();
+	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
+
+	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50), "ColorPreview", "",
+		new BMessage(kColorDropped));
+	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
+		B_ALIGN_BOTTOM));
+
+	fColorControl = new BColorControl(B_ORIGIN, B_CELLS_32x8,
+		8.0, "ColorPicker", new BMessage(kColorChanged));
+
+	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+		.Add(fColorPreview)
+		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+		.Add(fColorControl)
+		.End();
 }
 
 
@@ -95,25 +109,4 @@ SimpleColorPicker::SetColor(rgb_color color)
 	fColor = color;
 	fColorPreview->SetColor(color);
 	fColorControl->SetValue(color);
-}
-
-
-void
-SimpleColorPicker::_Init()
-{
-	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
-
-	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50), "ColorPreview", "",
-		new BMessage(kColorDropped));
-	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
-		B_ALIGN_BOTTOM));
-
-	fColorControl = new BColorControl(B_ORIGIN, B_CELLS_32x8,
-		8.0, "ColorPicker", new BMessage(kColorChanged));
-
-	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
-		.Add(fColorPreview)
-		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
-		.Add(fColorControl)
-		.End();
 }

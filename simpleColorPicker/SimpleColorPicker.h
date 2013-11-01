@@ -27,9 +27,6 @@ public:
 	virtual	void				SetColor(rgb_color color);
 
 private:
-			void				_Init();
-
-private:
 			rgb_color			fColor;
 			ColorPreview*		fColorPreview;
 			BColorControl*		fColorControl;
