@@ -243,6 +243,7 @@ public:
 						&numBytes) == B_OK) {
 					fTriangle->SetColor(*color);
 					fTriangle->Invalidate();
+					fTriangleColorWell->SetMessage(new BMessage(kMsgTriangle));
 				}
 				break;
 			}
@@ -263,6 +264,7 @@ public:
 						&numBytes) == B_OK) {
 					fSquare->SetColor(*color);
 					fSquare->Invalidate();
+					fSquareColorWell->SetMessage(new BMessage(kMsgSquare));
 				}
 				break;
 			}
@@ -283,6 +285,7 @@ public:
 						&numBytes) == B_OK) {
 					fCircle->SetColor(*color);
 					fCircle->Invalidate();
+					fCircleColorWell->SetMessage(new BMessage(kMsgCircle));
 				}
 				break;
 			}
