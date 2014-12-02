@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 Haiku, Inc. All rights reserved.
+ * Copyright 2012-2014 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Authors:
@@ -16,25 +16,29 @@
 
 
 class BMessage;
+
+class ColorContainersView;
 class ColorPickerView;
+
 
 class ColorPickerPanel : public BWindow {
  public:
-								ColorPickerPanel(ColorPickerView* view,
-									BMessage* message = NULL);
-	virtual						~ColorPickerPanel();
+									ColorPickerPanel(ColorPickerView* view,
+										BMessage* message = NULL);
+	virtual							~ColorPickerPanel();
 
-	virtual	void				MessageReceived(BMessage* message);
-	virtual	bool				QuitRequested();
+	virtual	void					MessageReceived(BMessage* message);
+	virtual	bool					QuitRequested();
 
-			void				Cancel();
-			void				Done();
+			void					Cancel();
+			void					Done();
 
  private:
-			ColorPickerView*	fColorPickerView;
-			BMessage*			fMessage;
-			BMessenger			fTarget;
-			rgb_color			fInitialColor;
+			ColorPickerView*		fColorPickerView;
+			ColorContainersView*	fColorContainersView;
+			BMessage*				fMessage;
+			BMessenger				fTarget;
+			rgb_color				fInitialColor;
 };
 
 

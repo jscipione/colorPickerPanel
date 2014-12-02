@@ -25,6 +25,7 @@
 #include <View.h>
 
 #include "ColorPickerView.h"
+#include "ColorContainersView.h"
 #include "Protocol.h"
 
 
@@ -45,6 +46,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
 			| B_CLOSE_ON_ESCAPE),
 	fColorPickerView(view),
+	fColorContainersView(new ColorContainersView()),
 	fMessage(message)
 {
 	BBox* divider = new BBox(
@@ -63,6 +65,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_SPACING)
 		.Add(fColorPickerView)
 		.Add(divider)
+		.Add(fColorContainersView)
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 			.AddGlue()
 			.Add(cancelButton)
@@ -74,11 +77,8 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 	if (message != NULL) {
 		// set the window title based on the client
 		const char* title;
-		if (message->FindString(kTargetName, &title) == B_OK) {
-			BString newTitle;
-			newTitle << "Select \"" << title << "\" color";
-			SetTitle(newTitle.String());
-		}
+		if (message->FindString(kTargetName, &title) == B_OK)
+			SetTitle(title);
 
 		// Move window under the mouse cursor
 		BPoint where;
@@ -86,7 +86,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 			MoveTo(where + BPoint(30, 0));
 
 		// set the initial color value
-		const rgb_color *color;
+		const rgb_color* color;
 		ssize_t size;
 		if (message && message->FindData(kInitialValue, B_RGB_COLOR_TYPE,
 				reinterpret_cast<const void **>(&color), &size) == B_OK) {
