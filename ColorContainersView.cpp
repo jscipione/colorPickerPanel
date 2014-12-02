@@ -1,6 +1,5 @@
 /*
- * Copyright 2009-2013 Haiku, Inc. All Rights Reserved.
- * Copyright 2001-2008 Werner Freytag.
+ * Copyright 2009-2013 Haiku, Inc. All rights reserved.
  * Distributed under the terms of the MIT License.
  *
  * Original Author:
@@ -14,17 +13,28 @@
 
 #include <iostream>
 
+#include <stdio.h>
+#include <string.h>
+
 #include <Application.h>
 #include <Bitmap.h>
+#include <File.h>
+#include <FindDirectory.h>
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>
+#include <Message.h>
+#include <Path.h>
 #include <Resources.h>
 #include <Size.h>
 #include <Window.h>
 
 #include "ColorContainer.h"
+#include "ColorPickerPanel.h"
 
 #define COLOR_TO_INT(c) (c.red << 16) + (c.green << 8) + (c.blue)
+
+
+static const char* kSettingsFileName = "Color_containers";
 
 
 ColorContainersView::ColorContainersView()
@@ -81,6 +91,8 @@ ColorContainersView::ColorContainersView()
 			.End()
 		.SetInsets(0)
 		.End();
+
+	_LoadSettings();
 }
 
 
@@ -93,6 +105,14 @@ void
 ColorContainersView::AttachedToWindow()
 {
 	BView::AttachedToWindow();
+
+	for (int32 i = 0; i < kColorContainerCount; ++i) {
+		long int int_color;
+		if (fSettings.FindInt32("color_container", i, &int_color) == B_OK)
+			fColorContainer[i]->SetColor(int_color);
+		else
+			fColorContainer[i]->SetColor(0xffffff);
+	}
 }
 
 
@@ -100,4 +120,87 @@ void
 ColorContainersView::Draw(BRect updateRect)
 {
 	BView::Draw(updateRect);
+}
+
+
+bool
+ColorContainersView::QuitRequested()
+{
+	
+	return true;
+}
+
+
+void
+ColorContainersView::SaveSettings()
+{
+	fSettings.RemoveName("color_container");
+	for (int32 i = 0; i < kColorContainerCount; ++i) {
+		fSettings.AddInt32("color_container",
+			COLOR_TO_INT(fColorContainer[i]->GetColor()));
+	}
+}
+
+
+//	#pragma mark - private methods
+
+
+status_t
+ColorContainersView::_InitSettingsFile(BFile* file, bool write)
+{
+	// find user settings directory
+	BPath prefsPath;
+	status_t result = find_directory(B_USER_SETTINGS_DIRECTORY, &prefsPath);
+	if (result != B_OK)
+		return result;
+
+	result = prefsPath.Append(kSettingsFileName);
+	if (result != B_OK)
+		return result;
+
+	if (write) {
+		result = file->SetTo(prefsPath.Path(),
+			B_CREATE_FILE | B_ERASE_FILE | B_WRITE_ONLY);
+	} else
+		result = file->SetTo(prefsPath.Path(), B_READ_ONLY);
+
+	return result;
+}
+
+
+void
+ColorContainersView::_LoadSettings()
+{
+	// locate preferences file
+	BFile prefsFile;
+	if (_InitSettingsFile(&prefsFile, false) != B_OK) {
+		printf("no preference file found.\n");
+		return;
+	}
+
+	// unflatten settings data
+	if (fSettings.Unflatten(&prefsFile) < B_OK) {
+		printf("error unflattening settings.\n");
+	}
+}
+
+
+void
+ColorContainersView::_SaveSettings()
+{
+	// flatten entire archive and write to settings file
+	BFile prefsFile;
+	status_t result = _InitSettingsFile(&prefsFile, true);
+	if (result != B_OK) {
+		fprintf(stderr, "ColorsApplication::_SaveSettings() - "
+			"error creating file: %s\n", strerror(result));
+		return;
+	}
+
+	result = fSettings.Flatten(&prefsFile);
+	if (result != B_OK) {
+		fprintf(stderr, "ColorsApplication::_SaveSettings() - error flattening "
+			"to file: %s\n", strerror(result));
+		return;
+	}
 }

@@ -7,7 +7,7 @@
 ## Application Specific Settings ---------------------------------------------
 
 # specify the name of the binary
-NAME= ColorPickerClient
+NAME= SimpleColorPicker
 
 # specify the type of binary
 #	APP:	Application
@@ -18,7 +18,7 @@ TYPE= APP
 
 # 	if you plan to use localization features 
 # 	specify the application MIME siganture
-APP_MIME_SIG= application/x-vnd.Haiku-ColorPickerClient
+APP_MIME_SIG= application/x-vnd.Haiku-SimpleColorPicker
 
 #	add support for new Pe and Eddie features
 #	to fill in generic makefile
@@ -38,12 +38,13 @@ SRCS= ColorPickerPanel.cpp \
 	ColorPickerView.cpp \
 	ColorContainer.cpp \
 	ColorContainersView.cpp \
-	colorPickerClient/ColorPickerClient.cpp \
-	colorPickerClient/ColorWell.cpp
+	simpleColorPicker/ColorPreview.cpp \
+	simpleColorPicker/SimpleColorPicker.cpp \
+	simpleColorPicker/SimpleColorPickerApp.cpp
 
 #	specify the resource definition files to use
 #	full path or a relative path to the resource file can be used.
-RDEFS= 
+RDEFS= simpleColorPicker/SimpleColorPicker.rdef
 
 #	specify the resource files to use. 
 #	full path or a relative path to the resource file can be used.

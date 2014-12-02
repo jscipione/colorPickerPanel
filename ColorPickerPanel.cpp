@@ -19,7 +19,6 @@
 #include <InterfaceDefs.h>
 #include <LayoutBuilder.h>
 #include <Locale.h>
-#include <Message.h>
 #include <Rect.h>
 #include <Size.h>
 #include <View.h>
@@ -175,7 +174,7 @@ ColorPickerPanel::QuitRequested()
 }
 
 
-// #pragma mark -
+//	#pragma mark -
 
 
 void

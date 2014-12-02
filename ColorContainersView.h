@@ -13,7 +13,11 @@
 static const int32 kColorContainerCount  = 40;
 
 
+class BFile;
+class BMessage;
+
 class ColorContainer;
+
 
 class ColorContainersView : public BView {
 public:
@@ -22,9 +26,19 @@ public:
 
 		virtual	void				AttachedToWindow();
 		virtual	void				Draw(BRect updateRect);
+		virtual	bool				QuitRequested();
+
+				BMessage*			Settings() { return &fSettings; }
+				void				SaveSettings();
+
+private:
+				status_t			_InitSettingsFile(BFile* file, bool write);
+				void				_LoadSettings();
+				void				_SaveSettings();
 
 private:
 				ColorContainer*		fColorContainer[kColorContainerCount];
+				BMessage			fSettings;
 };
 
 

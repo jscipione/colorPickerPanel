@@ -15,6 +15,7 @@
 #include <Window.h>
 
 
+class BFile;
 class BMessage;
 
 class ColorContainersView;
@@ -22,7 +23,7 @@ class ColorPickerView;
 
 
 class ColorPickerPanel : public BWindow {
- public:
+public:
 									ColorPickerPanel(ColorPickerView* view,
 										BMessage* message = NULL);
 	virtual							~ColorPickerPanel();
@@ -33,7 +34,7 @@ class ColorPickerPanel : public BWindow {
 			void					Cancel();
 			void					Done();
 
- private:
+private:
 			ColorPickerView*		fColorPickerView;
 			ColorContainersView*	fColorContainersView;
 			BMessage*				fMessage;

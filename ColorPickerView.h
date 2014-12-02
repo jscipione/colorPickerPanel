@@ -21,6 +21,8 @@ public:
 	virtual	rgb_color			Color();
 	virtual	void				SetColor(rgb_color color);
 
+			void				SaveSettings();
+
 protected:
 			rgb_color			fColor;
 };
