@@ -26,6 +26,12 @@
 #include <binary_compatibility/Interface.h>
 #endif
 
+// golden ratio
+#ifdef M_PHI
+#	undef M_PHI
+#endif
+#define M_PHI 1.61803398874989484820
+
 
 const char* kColorPickerType = "application/x-vnd.Haiku.ColorPicker";
 
@@ -129,7 +135,7 @@ BColorWell::Draw(BRect updateRect)
 
 	SetHighColor(background);
 	FillRect(colorWellRect);
-	colorWellRect.InsetBy(4.0, 4.0);
+	colorWellRect.InsetBy(3.0, 3.0);
 
 	SetHighColor(border);
 	StrokeRect(colorWellRect);
@@ -353,17 +359,19 @@ BColorWell::GetPreferredSize(float* _width, float* _height)
 	font_height fontHeight;
 	GetFontHeight(&fontHeight);
 
-	if (_width) {
-		float width = 12.0f + fontHeight.ascent;
+	// calculate height first because width is based on height
+	float itemHeight = ceilf(fontHeight.ascent + 10 + fontHeight.descent);
 
-		if (Label())
-			width += StringWidth(Label());
+	if (_height != NULL)
+		*_height = itemHeight;
 
-		*_width = (float)ceil(width);
+	if (_width != NULL) {
+		*_width = roundf(itemHeight * M_PHI) - 1 + 12;
+
+		const char* label = Label();
+		if (label != NULL)
+			*_width += StringWidth(label);
 	}
-
-	if (_height)
-		*_height = (float)ceil(6.0f + fontHeight.ascent + fontHeight.descent);
 }
 
 
@@ -588,13 +596,13 @@ void BColorWell::_ReservedBColorWell20() {}
 
 
 BRect
-BColorWell::_ColorWellFrame() const
+BColorWell::_ColorWellFrame()
 {
-	font_height fontHeight;
-	GetFontHeight(&fontHeight);
+	float itemWidth, itemHeight;
+	GetPreferredSize(NULL, &itemHeight);
+	itemWidth = roundf(itemHeight * M_PHI) - 1;
 
-	return BRect(4.0f, 2.0f, ceilf(28.0f + fontHeight.ascent),
-		ceilf(10.0f + fontHeight.ascent));
+	return BRect(4, 2, itemWidth - 4, itemHeight - 2);
 }
 
 
@@ -602,18 +610,11 @@ BSize
 BColorWell::_ValidatePreferredSize()
 {
 	if (!fPreferredSize.IsWidthSet()) {
-		font_height fontHeight;
-		GetFontHeight(&fontHeight);
+		float itemWidth, itemHeight;
+		GetPreferredSize(&itemWidth, &itemHeight);
 
-		float width = 12.0f + fontHeight.ascent;
-
-		if (Label())
-			width += StringWidth(Label());
-
-		fPreferredSize.width = (float)ceil(width);
-
-		fPreferredSize.height = (float)ceil(11.0f + fontHeight.ascent
-			+ fontHeight.descent);
+		fPreferredSize.width = itemWidth;
+		fPreferredSize.height = itemHeight;
 
 		ResetLayoutInvalidation();
 	}

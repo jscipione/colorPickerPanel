@@ -105,7 +105,7 @@ private:
 	virtual	void				_ReservedBColorWell20();
 
 private:
-			BRect				_ColorWellFrame() const;
+			BRect				_ColorWellFrame();
 			BSize				_ValidatePreferredSize();
 
 	// Forbidden
