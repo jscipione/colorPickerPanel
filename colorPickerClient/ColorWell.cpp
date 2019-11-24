@@ -322,7 +322,7 @@ BColorWell::MouseDown(BPoint where)
 		// interact with
 
 	if (fPreferredApp != NULL) {
-		// whe have a specific preferred appliacation for this instance
+		// whe have a specific preferred application for this instance
 		// launch the picker - use the application signature for
 		// this particular client
 		be_roster->Launch(fPreferredApp, &launchMessage);
