@@ -191,7 +191,7 @@ public:
 			}
 		}
 
-		BMenuField* pickerField = new BMenuField("pickerField", "Color Picker: ",
+		BMenuField* pickerField = new BMenuField("pickerField", "Color picker: ",
 			fPickerMenu);
 
 		BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
