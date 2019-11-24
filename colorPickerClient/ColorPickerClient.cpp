@@ -153,7 +153,7 @@ public:
 		fCircleColorWell->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED,
 			B_SIZE_UNSET));
 
-		// Add the default color picker item
+		// add the default color picker item
 		BMessage message(kMsgSetPreferredColorPicker);
 		message.AddString("signature",
 			"application/x-vnd.Haiku.SimpleColorPicker");
@@ -161,7 +161,7 @@ public:
 		fPickerMenu->AddItem(defaultItem);
 		defaultItem->SetMarked(true);
 
-		// Add additional color picker items (if available)
+		// add additional color picker items (if available)
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
 		BMessage supportingApps;
 		if (colorPicker.GetSupportingApps(&supportingApps) == B_OK) {
