@@ -241,7 +241,11 @@ HexagonalColorPicker::HexagonalColorPicker(rgb_color color)
 				.Add(BSpaceLayoutItem::CreateHorizontalStrut(ceilf(kHexagonWidth * 2.0)))
 			.End()
 		.End()
-		.Add(fHexTextControl)
+		.AddGroup(B_HORIZONTAL, 0)
+			.AddGlue()
+			.Add(fHexTextControl)
+			.AddGlue()
+		.End()
 	.End();
 }
 
@@ -257,164 +261,164 @@ HexagonalColorPicker::AttachedToWindow()
 	for (int32 i = 0; i < kMaxHexagonCount; i++)
 		fHexagonList[i]->SetTarget(this);
 
-	fHexagonList[0]->SetColor((rgb_color) { 0, 51, 102 });
-	fHexagonList[1]->SetColor((rgb_color) { 51, 102, 153 });
-	fHexagonList[2]->SetColor((rgb_color) { 51, 102, 204 });
-	fHexagonList[3]->SetColor((rgb_color) { 0, 51, 153 });
-	fHexagonList[4]->SetColor((rgb_color) { 0, 0, 102 });
-	fHexagonList[5]->SetColor((rgb_color) { 0, 0, 204 });
-	fHexagonList[6]->SetColor((rgb_color) { 0, 0, 51 });
+	fHexagonList[0]->SetColor(make_color(0, 51, 102));
+	fHexagonList[1]->SetColor(make_color(51, 102, 153));
+	fHexagonList[2]->SetColor(make_color(51, 102, 204));
+	fHexagonList[3]->SetColor(make_color(0, 51, 153));
+	fHexagonList[4]->SetColor(make_color(0, 0, 102));
+	fHexagonList[5]->SetColor(make_color(0, 0, 204));
+	fHexagonList[6]->SetColor(make_color(0, 0, 51));
 
-	fHexagonList[7]->SetColor((rgb_color) { 0, 102, 102 });
-	fHexagonList[8]->SetColor((rgb_color) { 0, 102, 153 });
-	fHexagonList[9]->SetColor((rgb_color) { 0, 153, 204 });
-	fHexagonList[10]->SetColor((rgb_color) { 0, 102, 204 });
-	fHexagonList[11]->SetColor((rgb_color) { 0, 51, 204 });
-	fHexagonList[12]->SetColor((rgb_color) { 0, 0, 255 });
-	fHexagonList[13]->SetColor((rgb_color) { 51, 51, 255 });
-	fHexagonList[14]->SetColor((rgb_color) { 51, 51, 153 });
+	fHexagonList[7]->SetColor(make_color(0, 102, 102));
+	fHexagonList[8]->SetColor(make_color(0, 102, 153));
+	fHexagonList[9]->SetColor(make_color(0, 153, 204));
+	fHexagonList[10]->SetColor(make_color(0, 102, 204));
+	fHexagonList[11]->SetColor(make_color(0, 51, 204));
+	fHexagonList[12]->SetColor(make_color(0, 0, 255));
+	fHexagonList[13]->SetColor(make_color(51, 51, 255));
+	fHexagonList[14]->SetColor(make_color(51, 51, 153));
 
-	fHexagonList[15]->SetColor((rgb_color) { 102, 153, 153 });
-	fHexagonList[16]->SetColor((rgb_color) { 0, 153, 153 });
-	fHexagonList[17]->SetColor((rgb_color) { 51, 204, 204 });
-	fHexagonList[18]->SetColor((rgb_color) { 0, 204, 255 });
-	fHexagonList[19]->SetColor((rgb_color) { 0, 153, 255 });
-	fHexagonList[20]->SetColor((rgb_color) { 0, 102, 255 });
-	fHexagonList[21]->SetColor((rgb_color) { 51, 102, 255 });
-	fHexagonList[22]->SetColor((rgb_color) { 51, 51, 204 });
-	fHexagonList[23]->SetColor((rgb_color) { 102, 102, 153 });
+	fHexagonList[15]->SetColor(make_color(102, 153, 153));
+	fHexagonList[16]->SetColor(make_color(0, 153, 153));
+	fHexagonList[17]->SetColor(make_color(51, 204, 204));
+	fHexagonList[18]->SetColor(make_color(0, 204, 255));
+	fHexagonList[19]->SetColor(make_color(0, 153, 255));
+	fHexagonList[20]->SetColor(make_color(0, 102, 255));
+	fHexagonList[21]->SetColor(make_color(51, 102, 255));
+	fHexagonList[22]->SetColor(make_color(51, 51, 204));
+	fHexagonList[23]->SetColor(make_color(102, 102, 153));
 
-	fHexagonList[24]->SetColor((rgb_color) { 51, 153, 102 });
-	fHexagonList[25]->SetColor((rgb_color) { 0, 204, 153 });
-	fHexagonList[26]->SetColor((rgb_color) { 0, 255, 204 });
-	fHexagonList[27]->SetColor((rgb_color) { 0, 255, 255 });
-	fHexagonList[28]->SetColor((rgb_color) { 51, 204, 255 });
-	fHexagonList[29]->SetColor((rgb_color) { 51, 153, 255 });
-	fHexagonList[30]->SetColor((rgb_color) { 102, 153, 255 });
-	fHexagonList[31]->SetColor((rgb_color) { 102, 102, 255 });
-	fHexagonList[32]->SetColor((rgb_color) { 102, 0, 255 });
-	fHexagonList[33]->SetColor((rgb_color) { 102, 0, 204 });
+	fHexagonList[24]->SetColor(make_color(51, 153, 102));
+	fHexagonList[25]->SetColor(make_color(0, 204, 153));
+	fHexagonList[26]->SetColor(make_color(0, 255, 204));
+	fHexagonList[27]->SetColor(make_color(0, 255, 255));
+	fHexagonList[28]->SetColor(make_color(51, 204, 255));
+	fHexagonList[29]->SetColor(make_color(51, 153, 255));
+	fHexagonList[30]->SetColor(make_color(102, 153, 255));
+	fHexagonList[31]->SetColor(make_color(102, 102, 255));
+	fHexagonList[32]->SetColor(make_color(102, 0, 255));
+	fHexagonList[33]->SetColor(make_color(102, 0, 204));
 
-	fHexagonList[34]->SetColor((rgb_color) { 51, 153, 51 });
-	fHexagonList[35]->SetColor((rgb_color) { 0, 204, 102 });
-	fHexagonList[36]->SetColor((rgb_color) { 0, 255, 153 });
-	fHexagonList[37]->SetColor((rgb_color) { 102, 255, 204 });
-	fHexagonList[38]->SetColor((rgb_color) { 102, 255, 255 });
-	fHexagonList[39]->SetColor((rgb_color) { 102, 204, 255 });
-	fHexagonList[40]->SetColor((rgb_color) { 153, 204, 255 });
-	fHexagonList[41]->SetColor((rgb_color) { 153, 153, 255 });
-	fHexagonList[42]->SetColor((rgb_color) { 153, 102, 255 });
-	fHexagonList[43]->SetColor((rgb_color) { 153, 51, 255 });
-	fHexagonList[44]->SetColor((rgb_color) { 153, 0, 255 });
+	fHexagonList[34]->SetColor(make_color(51, 153, 51));
+	fHexagonList[35]->SetColor(make_color(0, 204, 102));
+	fHexagonList[36]->SetColor(make_color(0, 255, 153));
+	fHexagonList[37]->SetColor(make_color(102, 255, 204));
+	fHexagonList[38]->SetColor(make_color(102, 255, 255));
+	fHexagonList[39]->SetColor(make_color(102, 204, 255));
+	fHexagonList[40]->SetColor(make_color(153, 204, 255));
+	fHexagonList[41]->SetColor(make_color(153, 153, 255));
+	fHexagonList[42]->SetColor(make_color(153, 102, 255));
+	fHexagonList[43]->SetColor(make_color(153, 51, 255));
+	fHexagonList[44]->SetColor(make_color(153, 0, 255));
 
-	fHexagonList[45]->SetColor((rgb_color) { 0, 102, 0 });
-	fHexagonList[46]->SetColor((rgb_color) { 0, 204, 0 });
-	fHexagonList[47]->SetColor((rgb_color) { 0, 255, 0 });
-	fHexagonList[48]->SetColor((rgb_color) { 102, 255, 153 });
-	fHexagonList[49]->SetColor((rgb_color) { 153, 255, 204 });
-	fHexagonList[50]->SetColor((rgb_color) { 204, 255, 255 });
-	fHexagonList[51]->SetColor((rgb_color) { 204, 204, 255 });
-	fHexagonList[52]->SetColor((rgb_color) { 204, 153, 255 });
-	fHexagonList[53]->SetColor((rgb_color) { 204, 102, 255 });
-	fHexagonList[54]->SetColor((rgb_color) { 204, 51, 255 });
-	fHexagonList[55]->SetColor((rgb_color) { 204, 0, 255 });
-	fHexagonList[56]->SetColor((rgb_color) { 153, 0, 204 });
+	fHexagonList[45]->SetColor(make_color(0, 102, 0));
+	fHexagonList[46]->SetColor(make_color(0, 204, 0));
+	fHexagonList[47]->SetColor(make_color(0, 255, 0));
+	fHexagonList[48]->SetColor(make_color(102, 255, 153));
+	fHexagonList[49]->SetColor(make_color(153, 255, 204));
+	fHexagonList[50]->SetColor(make_color(204, 255, 255));
+	fHexagonList[51]->SetColor(make_color(204, 204, 255));
+	fHexagonList[52]->SetColor(make_color(204, 153, 255));
+	fHexagonList[53]->SetColor(make_color(204, 102, 255));
+	fHexagonList[54]->SetColor(make_color(204, 51, 255));
+	fHexagonList[55]->SetColor(make_color(204, 0, 255));
+	fHexagonList[56]->SetColor(make_color(153, 0, 204));
 
-	fHexagonList[57]->SetColor((rgb_color) { 0, 51, 0 });
-	fHexagonList[58]->SetColor((rgb_color) { 0, 153, 51 });
-	fHexagonList[59]->SetColor((rgb_color) { 51, 204, 51 });
-	fHexagonList[60]->SetColor((rgb_color) { 102, 255, 102 });
-	fHexagonList[61]->SetColor((rgb_color) { 153, 255, 153 });
-	fHexagonList[62]->SetColor((rgb_color) { 204, 255, 204 });
-	fHexagonList[63]->SetColor((rgb_color) { 255, 255, 255 });
-	fHexagonList[64]->SetColor((rgb_color) { 255, 204, 255 });
-	fHexagonList[65]->SetColor((rgb_color) { 255, 153, 255 });
-	fHexagonList[66]->SetColor((rgb_color) { 255, 102, 255 });
-	fHexagonList[67]->SetColor((rgb_color) { 255, 0, 255 });
-	fHexagonList[68]->SetColor((rgb_color) { 204, 0, 204 });
-	fHexagonList[69]->SetColor((rgb_color) { 102, 0, 102 });
+	fHexagonList[57]->SetColor(make_color(0, 51, 0));
+	fHexagonList[58]->SetColor(make_color(0, 153, 51));
+	fHexagonList[59]->SetColor(make_color(51, 204, 51));
+	fHexagonList[60]->SetColor(make_color(102, 255, 102));
+	fHexagonList[61]->SetColor(make_color(153, 255, 153));
+	fHexagonList[62]->SetColor(make_color(204, 255, 204));
+	fHexagonList[63]->SetColor(make_color(255, 255, 255));
+	fHexagonList[64]->SetColor(make_color(255, 204, 255));
+	fHexagonList[65]->SetColor(make_color(255, 153, 255));
+	fHexagonList[66]->SetColor(make_color(255, 102, 255));
+	fHexagonList[67]->SetColor(make_color(255, 0, 255));
+	fHexagonList[68]->SetColor(make_color(204, 0, 204));
+	fHexagonList[69]->SetColor(make_color(102, 0, 102));
 
-	fHexagonList[70]->SetColor((rgb_color) { 51, 102, 0 });
-	fHexagonList[71]->SetColor((rgb_color) { 0, 153, 0 });
-	fHexagonList[72]->SetColor((rgb_color) { 102, 255, 51 });
-	fHexagonList[73]->SetColor((rgb_color) { 153, 255, 102 });
-	fHexagonList[74]->SetColor((rgb_color) { 204, 255, 153 });
-	fHexagonList[75]->SetColor((rgb_color) { 255, 255, 204 });
-	fHexagonList[76]->SetColor((rgb_color) { 255, 204, 204 });
-	fHexagonList[77]->SetColor((rgb_color) { 255, 153, 204 });
-	fHexagonList[78]->SetColor((rgb_color) { 255, 102, 204 });
-	fHexagonList[79]->SetColor((rgb_color) { 255, 51, 204 });
-	fHexagonList[80]->SetColor((rgb_color) { 204, 0, 153 });
-	fHexagonList[81]->SetColor((rgb_color) { 153, 51, 153 });
+	fHexagonList[70]->SetColor(make_color(51, 102, 0));
+	fHexagonList[71]->SetColor(make_color(0, 153, 0));
+	fHexagonList[72]->SetColor(make_color(102, 255, 51));
+	fHexagonList[73]->SetColor(make_color(153, 255, 102));
+	fHexagonList[74]->SetColor(make_color(204, 255, 153));
+	fHexagonList[75]->SetColor(make_color(255, 255, 204));
+	fHexagonList[76]->SetColor(make_color(255, 204, 204));
+	fHexagonList[77]->SetColor(make_color(255, 153, 204));
+	fHexagonList[78]->SetColor(make_color(255, 102, 204));
+	fHexagonList[79]->SetColor(make_color(255, 51, 204));
+	fHexagonList[80]->SetColor(make_color(204, 0, 153));
+	fHexagonList[81]->SetColor(make_color(153, 51, 153));
 
-	fHexagonList[82]->SetColor((rgb_color) { 51, 51, 0 });
-	fHexagonList[83]->SetColor((rgb_color) { 102, 153, 0 });
-	fHexagonList[84]->SetColor((rgb_color) { 153, 255, 51 });
-	fHexagonList[85]->SetColor((rgb_color) { 203, 255, 102 });
-	fHexagonList[86]->SetColor((rgb_color) { 255, 255, 153 });
-	fHexagonList[87]->SetColor((rgb_color) { 255, 203, 153 });
-	fHexagonList[88]->SetColor((rgb_color) { 255, 153, 153 });
-	fHexagonList[89]->SetColor((rgb_color) { 255, 102, 153 });
-	fHexagonList[90]->SetColor((rgb_color) { 255, 51, 153 });
-	fHexagonList[91]->SetColor((rgb_color) { 204, 51, 153 });
-	fHexagonList[92]->SetColor((rgb_color) { 153, 0, 153 });
+	fHexagonList[82]->SetColor(make_color(51, 51, 0));
+	fHexagonList[83]->SetColor(make_color(102, 153, 0));
+	fHexagonList[84]->SetColor(make_color(153, 255, 51));
+	fHexagonList[85]->SetColor(make_color(203, 255, 102));
+	fHexagonList[86]->SetColor(make_color(255, 255, 153));
+	fHexagonList[87]->SetColor(make_color(255, 203, 153));
+	fHexagonList[88]->SetColor(make_color(255, 153, 153));
+	fHexagonList[89]->SetColor(make_color(255, 102, 153));
+	fHexagonList[90]->SetColor(make_color(255, 51, 153));
+	fHexagonList[91]->SetColor(make_color(204, 51, 153));
+	fHexagonList[92]->SetColor(make_color(153, 0, 153));
 
-	fHexagonList[93]->SetColor((rgb_color) { 102, 102, 51 });
-	fHexagonList[94]->SetColor((rgb_color) { 153, 204, 0 });
-	fHexagonList[95]->SetColor((rgb_color) { 204, 255, 51 });
-	fHexagonList[96]->SetColor((rgb_color) { 255, 255, 102 });
-	fHexagonList[97]->SetColor((rgb_color) { 255, 204, 102 });
-	fHexagonList[98]->SetColor((rgb_color) { 255, 153, 102 });
-	fHexagonList[99]->SetColor((rgb_color) { 255, 102, 102 });
-	fHexagonList[100]->SetColor((rgb_color) { 255, 0, 102 });
-	fHexagonList[101]->SetColor((rgb_color) { 204, 102, 153 });
-	fHexagonList[102]->SetColor((rgb_color) { 153, 51, 102 });
+	fHexagonList[93]->SetColor(make_color(102, 102, 51));
+	fHexagonList[94]->SetColor(make_color(153, 204, 0));
+	fHexagonList[95]->SetColor(make_color(204, 255, 51));
+	fHexagonList[96]->SetColor(make_color(255, 255, 102));
+	fHexagonList[97]->SetColor(make_color(255, 204, 102));
+	fHexagonList[98]->SetColor(make_color(255, 153, 102));
+	fHexagonList[99]->SetColor(make_color(255, 102, 102));
+	fHexagonList[100]->SetColor(make_color(255, 0, 102));
+	fHexagonList[101]->SetColor(make_color(204, 102, 153));
+	fHexagonList[102]->SetColor(make_color(153, 51, 102));
 
-	fHexagonList[103]->SetColor((rgb_color) { 153, 153, 102 });
-	fHexagonList[104]->SetColor((rgb_color) { 204, 204, 0 });
-	fHexagonList[105]->SetColor((rgb_color) { 255, 255, 0 });
-	fHexagonList[106]->SetColor((rgb_color) { 255, 204, 0 });
-	fHexagonList[107]->SetColor((rgb_color) { 255, 153, 51 });
-	fHexagonList[108]->SetColor((rgb_color) { 255, 102, 0 });
-	fHexagonList[109]->SetColor((rgb_color) { 255, 80, 80 });
-	fHexagonList[110]->SetColor((rgb_color) { 204, 0, 102 });
-	fHexagonList[111]->SetColor((rgb_color) { 102, 0, 51 });
+	fHexagonList[103]->SetColor(make_color(153, 153, 102));
+	fHexagonList[104]->SetColor(make_color(204, 204, 0));
+	fHexagonList[105]->SetColor(make_color(255, 255, 0));
+	fHexagonList[106]->SetColor(make_color(255, 204, 0));
+	fHexagonList[107]->SetColor(make_color(255, 153, 51));
+	fHexagonList[108]->SetColor(make_color(255, 102, 0));
+	fHexagonList[109]->SetColor(make_color(255, 80, 80));
+	fHexagonList[110]->SetColor(make_color(204, 0, 102));
+	fHexagonList[111]->SetColor(make_color(102, 0, 51));
 
-	fHexagonList[112]->SetColor((rgb_color) { 153, 102, 51 });
-	fHexagonList[113]->SetColor((rgb_color) { 204, 153, 0 });
-	fHexagonList[114]->SetColor((rgb_color) { 255, 153, 0 });
-	fHexagonList[115]->SetColor((rgb_color) { 204, 102, 0 });
-	fHexagonList[116]->SetColor((rgb_color) { 255, 51, 0 });
-	fHexagonList[117]->SetColor((rgb_color) { 255, 0, 0 });
-	fHexagonList[118]->SetColor((rgb_color) { 204, 0, 0 });
-	fHexagonList[119]->SetColor((rgb_color) { 153, 0, 51 });
+	fHexagonList[112]->SetColor(make_color(153, 102, 51));
+	fHexagonList[113]->SetColor(make_color(204, 153, 0));
+	fHexagonList[114]->SetColor(make_color(255, 153, 0));
+	fHexagonList[115]->SetColor(make_color(204, 102, 0));
+	fHexagonList[116]->SetColor(make_color(255, 51, 0));
+	fHexagonList[117]->SetColor(make_color(255, 0, 0));
+	fHexagonList[118]->SetColor(make_color(204, 0, 0));
+	fHexagonList[119]->SetColor(make_color(153, 0, 51));
 
-	fHexagonList[120]->SetColor((rgb_color) { 102, 51, 0 });
-	fHexagonList[121]->SetColor((rgb_color) { 153, 102, 0 });
-	fHexagonList[122]->SetColor((rgb_color) { 204, 51, 0 });
-	fHexagonList[123]->SetColor((rgb_color) { 153, 51, 0 });
-	fHexagonList[124]->SetColor((rgb_color) { 153, 0, 0 });
-	fHexagonList[125]->SetColor((rgb_color) { 128, 0, 0 });
-	fHexagonList[126]->SetColor((rgb_color) { 153, 51, 51 });
+	fHexagonList[120]->SetColor(make_color(102, 51, 0));
+	fHexagonList[121]->SetColor(make_color(153, 102, 0));
+	fHexagonList[122]->SetColor(make_color(204, 51, 0));
+	fHexagonList[123]->SetColor(make_color(153, 51, 0));
+	fHexagonList[124]->SetColor(make_color(153, 0, 0));
+	fHexagonList[125]->SetColor(make_color(128, 0, 0));
+	fHexagonList[126]->SetColor(make_color(153, 51, 51));
 
 	// greys
-	fHexagonList[127]->SetColor((rgb_color) { 255, 255, 255 });
-	fHexagonList[128]->SetColor((rgb_color) { 221, 221, 221 });
-	fHexagonList[129]->SetColor((rgb_color) { 178, 178, 178 });
-	fHexagonList[130]->SetColor((rgb_color) { 128, 128, 128 });
-	fHexagonList[131]->SetColor((rgb_color) { 95, 95, 95 });
-	fHexagonList[132]->SetColor((rgb_color) { 51, 51, 51 });
-	fHexagonList[133]->SetColor((rgb_color) { 28, 28, 28 });
-	fHexagonList[134]->SetColor((rgb_color) { 8, 8, 8 });
+	fHexagonList[127]->SetColor(make_color(255, 255, 255));
+	fHexagonList[128]->SetColor(make_color(221, 221, 221));
+	fHexagonList[129]->SetColor(make_color(178, 178, 178));
+	fHexagonList[130]->SetColor(make_color(128, 128, 128));
+	fHexagonList[131]->SetColor(make_color(95, 95, 95));
+	fHexagonList[132]->SetColor(make_color(51, 51, 51));
+	fHexagonList[133]->SetColor(make_color(28, 28, 28));
+	fHexagonList[134]->SetColor(make_color(8, 8, 8));
 
-	fHexagonList[135]->SetColor((rgb_color) { 234, 234, 234 });
-	fHexagonList[136]->SetColor((rgb_color) { 192, 192, 192 });
-	fHexagonList[137]->SetColor((rgb_color) { 150, 150, 150 });
-	fHexagonList[138]->SetColor((rgb_color) { 119, 119, 119 });
-	fHexagonList[139]->SetColor((rgb_color) { 77, 77, 77 });
-	fHexagonList[140]->SetColor((rgb_color) { 41, 41, 41 });
-	fHexagonList[141]->SetColor((rgb_color) { 17, 17, 17 });
-	fHexagonList[142]->SetColor((rgb_color) { 0, 0, 0 });
+	fHexagonList[135]->SetColor(make_color(234, 234, 234));
+	fHexagonList[136]->SetColor(make_color(192, 192, 192));
+	fHexagonList[137]->SetColor(make_color(150, 150, 150));
+	fHexagonList[138]->SetColor(make_color(119, 119, 119));
+	fHexagonList[139]->SetColor(make_color(77, 77, 77));
+	fHexagonList[140]->SetColor(make_color(41, 41, 41));
+	fHexagonList[141]->SetColor(make_color(17, 17, 17));
+	fHexagonList[142]->SetColor(make_color(0, 0, 0));
 
 	fHexTextControl->SetDivider(12.0);
 	fHexTextControl->SetTarget(this);
@@ -452,6 +456,15 @@ HexagonalColorPicker::MessageReceived(BMessage* message)
 			message->FindData(nameFound, typeFound, (const void **)&color,
 				&numBytes);
 			SetColor(*color);
+
+			// forward message onto window
+			BMessage* forward = new BMessage(kColorChanged);
+			forward->AddInt64("when", (int64)system_time());
+			forward->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
+				sizeof(fColor));
+			Window()->PostMessage(forward);
+			delete forward;
+
 			break;
 		}
 
@@ -473,7 +486,7 @@ HexagonalColorPicker::SetColor(rgb_color color)
 	}
 
 	// Update the hex text control
-	char string[5];
+	char string[8];
 	sprintf(string, "%.6X", (color.red << 16) | (color.green << 8)
 		| color.blue);
 	fHexTextControl->TextView()->SetText(string);

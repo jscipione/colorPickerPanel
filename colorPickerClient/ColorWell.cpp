@@ -322,7 +322,7 @@ BColorWell::MouseDown(BPoint where)
 		// interact with
 
 	if (fPreferredApp != NULL) {
-		// whe have a specific preferred application for this instance
+		// whe have a specific preferred appliacation for this instance
 		// launch the picker - use the application signature for
 		// this particular client
 		be_roster->Launch(fPreferredApp, &launchMessage);
@@ -434,7 +434,7 @@ BColorWell::WindowActivated(bool active)
 int32
 BColorWell::Value() const
 {
-	return fColor.red << 16 + fColor.green << 8 + fColor.blue;
+	return (fColor.red << 16) + (fColor.green << 8) + fColor.blue;
 }
 
 

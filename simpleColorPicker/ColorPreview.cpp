@@ -15,6 +15,7 @@
 
 #include <Application.h>
 #include <Bitmap.h>
+#include <ControlLook.h>
 #include <iostream>
 #include <MessageRunner.h>
 #include <Resources.h>
@@ -40,39 +41,13 @@ ColorPreview::~ColorPreview()
 void
 ColorPreview::Draw(BRect updateRect)
 {
-	rgb_color background = ui_color(B_PANEL_BACKGROUND_COLOR);
-	rgb_color shadow = tint_color(background, B_DARKEN_1_TINT);
-	rgb_color darkShadow = tint_color(background, B_DARKEN_3_TINT);
-	rgb_color light = tint_color(background, B_LIGHTEN_MAX_TINT);
+	BRect rect(Bounds());
 
-	BRect bounds(Bounds());
-
-	BeginLineArray(4);
-	AddLine(BPoint(bounds.left, bounds.bottom),
-		BPoint(bounds.left, bounds.top), shadow);
-	AddLine(BPoint(bounds.left + 1.0, bounds.top),
-		BPoint(bounds.right, bounds.top), shadow);
-	AddLine(BPoint(bounds.right, bounds.top + 1.0),
-		BPoint(bounds.right, bounds.bottom), light);
-	AddLine(BPoint(bounds.right - 1.0, bounds.bottom),
-		BPoint(bounds.left + 1.0, bounds.bottom), light);
-	EndLineArray();
-	bounds.InsetBy(1.0, 1.0);
-
-	BeginLineArray(4);
-	AddLine(BPoint(bounds.left, bounds.bottom),
-		BPoint(bounds.left, bounds.top), darkShadow);
-	AddLine(BPoint(bounds.left + 1.0, bounds.top),
-		BPoint(bounds.right, bounds.top), darkShadow);
-	AddLine(BPoint(bounds.right, bounds.top + 1.0),
-		BPoint(bounds.right, bounds.bottom), background);
-	AddLine(BPoint(bounds.right - 1.0, bounds.bottom),
-		BPoint(bounds.left + 1.0, bounds.bottom), background);
-	EndLineArray();
-	bounds.InsetBy(1.0, 1.0);
+	be_control_look->DrawTextControlBorder(this, rect, updateRect,
+		ui_color(B_PANEL_BACKGROUND_COLOR));
 
 	SetHighColor(fColor);
-	FillRect(bounds);
+	FillRect(rect);
 }
 
 

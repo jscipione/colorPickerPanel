@@ -27,8 +27,6 @@ SimpleColorPicker::SimpleColorPicker(rgb_color color)
 	ColorPickerView(color),
 	fColor(color)
 {
-	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
-
 	fColorPreview = new ColorPreview(BRect(0, 0, 50, 50), "ColorPreview", "",
 		new BMessage(kColorDropped));
 	fColorPreview->SetExplicitAlignment(BAlignment(B_ALIGN_HORIZONTAL_CENTER,
@@ -53,6 +51,10 @@ SimpleColorPicker::~SimpleColorPicker()
 void
 SimpleColorPicker::AttachedToWindow()
 {
+	BView::AttachedToWindow();
+
+	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));
+
 	fColorControl->SetTarget(this);
 	fColorPreview->SetTarget(this);
 	SetColor(fColor);
@@ -69,12 +71,15 @@ SimpleColorPicker::MessageReceived(BMessage* message)
 			fColor = fColorControl->ValueAsColor();
 			fColor.alpha = 255;
 			fColorPreview->SetColor(fColor);
+			
+			// forward message onto window
 			BMessage* forward = new BMessage(kColorChanged);
 			forward->AddInt64("when", (int64)system_time());
 			forward->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
 				sizeof(fColor));
 			Window()->PostMessage(forward);
 			delete forward;
+
 			break;
 		}
 

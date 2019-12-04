@@ -1,25 +1,4 @@
-
-resource file_types message {
-	"types" = "application/x-vnd.Haiku.ColorPicker"
-};
-
-resource app_signature "application/x-vnd.Haiku.SimpleColorPicker";
-
-resource app_version {
-	major  = 1,
-	middle = 0,
-	minor  = 0,
-
-	variety = B_APPV_FINAL,
-	internal = 0,
-
-	short_info = "Simple Color Picker",
-	long_info = "Simple Color Picker ©2012-2013 Haiku, Inc."
-};
-
-resource app_flags B_MULTIPLE_LAUNCH | B_BACKGROUND_APP;
-
-resource vector_icon {
+resource(0) #'VICN' array {
 	$"6E6369662303FF060602001402AAFFFFE8020016023FE82D3B6E5ABB6E5A3FE8"
 	$"2D45CDA3C50F11B0F7DD810200140280FFFFED050104006D03FF000003FBFF05"
 	$"03007FFF03E35D8303E25D9F035F88E303E0B27E03E35DD803E0A57E03D35DE3"

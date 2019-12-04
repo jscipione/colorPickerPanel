@@ -9,6 +9,12 @@
 
 #include "HexagonalColorPickerApp.h"
 
+#include <new>
+
+#include <LayoutBuilder.h>
+#include <Window.h>
+
+#include "../ColorPickerPanel.h"
 #include "../Protocol.h"
 #include "HexagonalColorPicker.h"
 
@@ -19,7 +25,8 @@ const char* kSignature = "application/x-vnd.Haiku.HexagonalColorPicker";
 HexagonalColorPickerApp::HexagonalColorPickerApp()
 	:
 	BApplication(kSignature),
-	fPanel()
+	fPanel(),
+	fDefaultColor(make_color(255, 0, 0))
 {
 }
 
@@ -36,8 +43,8 @@ HexagonalColorPickerApp::MessageReceived(BMessage* message)
 		// This is the initial open message that ModuleProxy::Invoke is sending
 		// us. Pass it on to the new color picker dialog which will find all
 		// the details in it
-		fPanel = new ColorPickerPanel(
-			new HexagonalColorPicker((rgb_color){ 255, 0, 0 }), message);
+		fPanel = new(std::nothrow) ColorPickerPanel(
+			new(std::nothrow)HexagonalColorPicker(fDefaultColor), message);
 	}
 
 	BApplication::MessageReceived(message);
@@ -49,9 +56,18 @@ HexagonalColorPickerApp::ReadyToRun()
 {
 	if (fPanel != NULL)
 		fPanel->Show();
-	else
-		Quit();
-		// Quit if run directly
+	else {
+		// create a window if run directly
+		BWindow* window = new BWindow(BRect(100, 100, 100, 100),
+			"Hexagonal picker", B_TITLED_WINDOW, B_NOT_ZOOMABLE
+				| B_NOT_RESIZABLE | B_QUIT_ON_WINDOW_CLOSE
+				| B_AUTO_UPDATE_SIZE_LIMITS);
+
+		BLayoutBuilder::Group<>(window, B_VERTICAL, 0)
+			.Add(new(std::nothrow) HexagonalColorPicker(fDefaultColor))
+			.End();
+		window->Show();
+	}
 }
 
 

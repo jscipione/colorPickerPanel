@@ -118,59 +118,59 @@ ColoredPencilColorPicker::AttachedToWindow()
 
 	SetColor(fColor);
 
-	fColoredPencilList[0]->SetColor((rgb_color) { 128, 0, 0 });
-	fColoredPencilList[1]->SetColor((rgb_color) { 128, 128, 0 });
-	fColoredPencilList[2]->SetColor((rgb_color) { 0, 128, 0 });
-	fColoredPencilList[3]->SetColor((rgb_color) { 0, 128, 128 });
-	fColoredPencilList[4]->SetColor((rgb_color) { 0, 0, 128 });
-	fColoredPencilList[5]->SetColor((rgb_color) { 128, 0, 128 });
-	fColoredPencilList[6]->SetColor((rgb_color) { 119, 119, 119 });
-	fColoredPencilList[7]->SetColor((rgb_color) { 128, 128, 128 });
+	fColoredPencilList[0]->SetColor(make_color(128, 0, 0));
+	fColoredPencilList[1]->SetColor(make_color(128, 128, 0));
+	fColoredPencilList[2]->SetColor(make_color(0, 128, 0));
+	fColoredPencilList[3]->SetColor(make_color(0, 128, 128));
+	fColoredPencilList[4]->SetColor(make_color(0, 0, 128));
+	fColoredPencilList[5]->SetColor(make_color(128, 0, 128));
+	fColoredPencilList[6]->SetColor(make_color(119, 119, 119));
+	fColoredPencilList[7]->SetColor(make_color(128, 128, 128));
 
-	fColoredPencilList[8]->SetColor((rgb_color) { 128, 64, 0 });
-	fColoredPencilList[9]->SetColor((rgb_color) { 64, 128, 0 });
-	fColoredPencilList[10]->SetColor((rgb_color) { 0, 128, 64 });
-	fColoredPencilList[11]->SetColor((rgb_color) { 0, 64, 128 });
-	fColoredPencilList[12]->SetColor((rgb_color) { 64, 0, 128 });
-	fColoredPencilList[13]->SetColor((rgb_color) { 128, 0, 64 });
-	fColoredPencilList[14]->SetColor((rgb_color) { 95, 95, 95 });
-	fColoredPencilList[15]->SetColor((rgb_color) { 150, 150, 150 });
+	fColoredPencilList[8]->SetColor(make_color(128, 64, 0));
+	fColoredPencilList[9]->SetColor(make_color(64, 128, 0));
+	fColoredPencilList[10]->SetColor(make_color(0, 128, 64));
+	fColoredPencilList[11]->SetColor(make_color(0, 64, 128));
+	fColoredPencilList[12]->SetColor(make_color(64, 0, 128));
+	fColoredPencilList[13]->SetColor(make_color(128, 0, 64));
+	fColoredPencilList[14]->SetColor(make_color(95, 95, 95));
+	fColoredPencilList[15]->SetColor(make_color(150, 150, 150));
 
-	fColoredPencilList[16]->SetColor((rgb_color) { 255, 0, 0 });
-	fColoredPencilList[17]->SetColor((rgb_color) { 255, 255, 0 });
-	fColoredPencilList[18]->SetColor((rgb_color) { 0, 255, 0 });
-	fColoredPencilList[19]->SetColor((rgb_color) { 0, 255, 255 });
-	fColoredPencilList[20]->SetColor((rgb_color) { 0, 0, 255 });
-	fColoredPencilList[21]->SetColor((rgb_color) { 255, 0, 255 });
-	fColoredPencilList[22]->SetColor((rgb_color) { 77, 77, 77 });
-	fColoredPencilList[23]->SetColor((rgb_color) { 178, 178, 178 });
+	fColoredPencilList[16]->SetColor(make_color(255, 0, 0));
+	fColoredPencilList[17]->SetColor(make_color(255, 255, 0));
+	fColoredPencilList[18]->SetColor(make_color(0, 255, 0));
+	fColoredPencilList[19]->SetColor(make_color(0, 255, 255));
+	fColoredPencilList[20]->SetColor(make_color(0, 0, 255));
+	fColoredPencilList[21]->SetColor(make_color(255, 0, 255));
+	fColoredPencilList[22]->SetColor(make_color(77, 77, 77));
+	fColoredPencilList[23]->SetColor(make_color(178, 178, 178));
 
-	fColoredPencilList[24]->SetColor((rgb_color) { 255, 128, 0 });
-	fColoredPencilList[25]->SetColor((rgb_color) { 128, 255, 0 });
-	fColoredPencilList[26]->SetColor((rgb_color) { 0, 255, 128 });
-	fColoredPencilList[27]->SetColor((rgb_color) { 0, 128, 255 });
-	fColoredPencilList[28]->SetColor((rgb_color) { 128, 0, 255 });
-	fColoredPencilList[29]->SetColor((rgb_color) { 255, 0, 128 });
-	fColoredPencilList[30]->SetColor((rgb_color) { 41, 41, 41 });
-	fColoredPencilList[31]->SetColor((rgb_color) { 192, 192, 192 });
+	fColoredPencilList[24]->SetColor(make_color(255, 128, 0));
+	fColoredPencilList[25]->SetColor(make_color(128, 255, 0));
+	fColoredPencilList[26]->SetColor(make_color(0, 255, 128));
+	fColoredPencilList[27]->SetColor(make_color(0, 128, 255));
+	fColoredPencilList[28]->SetColor(make_color(128, 0, 255));
+	fColoredPencilList[29]->SetColor(make_color(255, 0, 128));
+	fColoredPencilList[30]->SetColor(make_color(41, 41, 41));
+	fColoredPencilList[31]->SetColor(make_color(192, 192, 192));
 
-	fColoredPencilList[32]->SetColor((rgb_color) { 255, 102, 102 });
-	fColoredPencilList[33]->SetColor((rgb_color) { 255, 255, 102 });
-	fColoredPencilList[34]->SetColor((rgb_color) { 102, 255, 102 });
-	fColoredPencilList[35]->SetColor((rgb_color) { 102, 255, 255 });
-	fColoredPencilList[36]->SetColor((rgb_color) { 102, 102, 255 });
-	fColoredPencilList[37]->SetColor((rgb_color) { 255, 102, 255 });
-	fColoredPencilList[38]->SetColor((rgb_color) { 28, 28, 28 });
-	fColoredPencilList[39]->SetColor((rgb_color) { 221, 221, 221 });
+	fColoredPencilList[32]->SetColor(make_color(255, 102, 102));
+	fColoredPencilList[33]->SetColor(make_color(255, 255, 102));
+	fColoredPencilList[34]->SetColor(make_color(102, 255, 102));
+	fColoredPencilList[35]->SetColor(make_color(102, 255, 255));
+	fColoredPencilList[36]->SetColor(make_color(102, 102, 255));
+	fColoredPencilList[37]->SetColor(make_color(255, 102, 255));
+	fColoredPencilList[38]->SetColor(make_color(28, 28, 28));
+	fColoredPencilList[39]->SetColor(make_color(221, 221, 221));
 
-	fColoredPencilList[40]->SetColor((rgb_color) { 255, 204, 102 });
-	fColoredPencilList[41]->SetColor((rgb_color) { 204, 255, 102 });
-	fColoredPencilList[42]->SetColor((rgb_color) { 102, 255, 204 });
-	fColoredPencilList[43]->SetColor((rgb_color) { 102, 204, 255 });
-	fColoredPencilList[44]->SetColor((rgb_color) { 204, 102, 255 });
-	fColoredPencilList[45]->SetColor((rgb_color) { 255, 102, 204 });
-	fColoredPencilList[46]->SetColor((rgb_color) { 0, 0, 0 });
-	fColoredPencilList[47]->SetColor((rgb_color) { 255, 255, 255 });
+	fColoredPencilList[40]->SetColor(make_color(255, 204, 102));
+	fColoredPencilList[41]->SetColor(make_color(204, 255, 102));
+	fColoredPencilList[42]->SetColor(make_color(102, 255, 204));
+	fColoredPencilList[43]->SetColor(make_color(102, 204, 255));
+	fColoredPencilList[44]->SetColor(make_color(204, 102, 255));
+	fColoredPencilList[45]->SetColor(make_color(255, 102, 204));
+	fColoredPencilList[46]->SetColor(make_color(0, 0, 0));
+	fColoredPencilList[47]->SetColor(make_color(255, 255, 255));
 
 	for (int32 i = 0; i < kMaxColoredPencilCount; i++)
 		fColoredPencilList[i]->Invalidate();
@@ -196,6 +196,15 @@ ColoredPencilColorPicker::MessageReceived(BMessage* message)
 			message->FindData(nameFound, typeFound, (const void **)&color,
 				&numBytes);
 			SetColor(*color);
+
+			// forward message onto window
+			BMessage* forward = new BMessage(kColorChanged);
+			forward->AddInt64("when", (int64)system_time());
+			forward->AddData("be:value", B_RGB_COLOR_TYPE, &fColor,
+				sizeof(fColor));
+			Window()->PostMessage(forward);
+			delete forward;
+
 			break;
 		}
 

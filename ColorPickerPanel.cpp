@@ -40,7 +40,7 @@ const int32 kColorDropped = 'PSTE';
 
 ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 	:
-	BWindow(BRect(100, 100, 100, 200), "Pick a color",
+	BWindow(BRect(100, 100, 100, 100), "Pick a color",
 		B_FLOATING_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
 			| B_CLOSE_ON_ESCAPE),

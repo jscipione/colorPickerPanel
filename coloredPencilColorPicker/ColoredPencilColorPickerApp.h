@@ -11,11 +11,11 @@
 
 #include <Application.h>
 
-#include "../ColorPickerPanel.h"
-
 
 extern const char* kSignature;
 
+
+class ColorPickerPanel;
 
 class ColoredPencilColorPickerApp : public BApplication {
 public:
@@ -27,6 +27,7 @@ public:
 
 private:
 			ColorPickerPanel*	fPanel;
+			rgb_color			fDefaultColor;
 };
 
 

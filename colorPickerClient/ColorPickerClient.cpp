@@ -17,6 +17,7 @@
 #include <Point.h>
 #include <PopUpMenu.h>
 #include <Rect.h>
+#include <Resources.h>
 #include <Roster.h>
 #include <Size.h>
 #include <View.h>
@@ -331,14 +332,35 @@ private:
 };
 
 
+status_t
+get_app_resources(BResources& resources)
+{
+	app_info info;
+	status_t status = be_app->GetAppInfo(&info);
+	if (status != B_OK)
+		return status;
+
+	return resources.SetTo(&info.ref);
+}
+
+
 class ColorPickerClient : public BApplication {
 public:
 	ColorPickerClient()
 	:
-	BApplication("application/x-vnd.Haiku.ColorPickerExample")
+	BApplication("application/x-vnd.Haiku.ColorPickerClient")
 	{
 		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
 		colorPicker.SetShortDescription("Color picker");
+
+		BResources resources;
+		if (get_app_resources(resources) == B_OK) {
+			size_t size;
+			const void* data = resources.LoadResource(B_VECTOR_ICON_TYPE,
+				(int32)0, &size);
+			colorPicker.SetIcon((uint8*)data, size);
+		}
+
 		if (!colorPicker.IsInstalled())
 			colorPicker.Install();
 
