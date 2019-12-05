@@ -20,7 +20,7 @@
 
 CrayonColorPicker::CrayonColorPicker(rgb_color color)
 	:
-	ColorPickerView(),
+	ColorPicker(),
 	fColor(color)
 {
 	SetViewColor(ui_color(B_PANEL_BACKGROUND_COLOR));

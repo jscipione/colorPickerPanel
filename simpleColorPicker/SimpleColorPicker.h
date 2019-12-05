@@ -9,14 +9,14 @@
 #define SIMPLE_COLOR_PICKER_H
 
 
-#include "../ColorPickerView.h"
+#include "../ColorPicker.h"
 
 
 class BColorControl;
 class BMessage;
 class ColorPreview;
 
-class SimpleColorPicker : public ColorPickerView {
+class SimpleColorPicker : public ColorPicker {
 public:
 								SimpleColorPicker(rgb_color color);
 	virtual						~SimpleColorPicker();

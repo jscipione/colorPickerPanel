@@ -7,10 +7,10 @@
  */
 
 
-#include "ColorPickerView.h"
+#include "ColorPicker.h"
 
 
-ColorPickerView::ColorPickerView(rgb_color color)
+ColorPicker::ColorPicker(rgb_color color)
 	:
 	BView("color picker view", B_WILL_DRAW),
 	fColor(color)
@@ -18,7 +18,7 @@ ColorPickerView::ColorPickerView(rgb_color color)
 }
 
 
-ColorPickerView::ColorPickerView()
+ColorPicker::ColorPicker()
 	:
 	BView("color picker view", B_WILL_DRAW),
 	fColor((rgb_color) { 0, 0, 0 })
@@ -26,20 +26,20 @@ ColorPickerView::ColorPickerView()
 }
 
 
-ColorPickerView::~ColorPickerView()
+ColorPicker::~ColorPicker()
 {
 }
 
 
 rgb_color
-ColorPickerView::Color()
+ColorPicker::Color()
 {
 	return fColor;
 }
 
 
 void
-ColorPickerView::SetColor(rgb_color color)
+ColorPicker::SetColor(rgb_color color)
 {
 	fColor = color;
 }

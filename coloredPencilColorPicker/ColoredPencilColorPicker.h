@@ -7,7 +7,7 @@
 #define COLORED_PENCIL_COLOR_PICKER_H
 
 
-#include "../ColorPickerView.h"
+#include "../ColorPicker.h"
 
 
 const int32 kMaxColoredPencilCount = 48;
@@ -17,7 +17,7 @@ class BBitmap;
 class ColoredPencil;
 class SelectedColoredPencil;
 
-class ColoredPencilColorPicker : public ColorPickerView {
+class ColoredPencilColorPicker : public ColorPicker {
 public:
 								ColoredPencilColorPicker(rgb_color color);
 	virtual						~ColoredPencilColorPicker();

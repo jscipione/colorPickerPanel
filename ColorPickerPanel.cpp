@@ -24,7 +24,7 @@
 #include <Size.h>
 #include <View.h>
 
-#include "ColorPickerView.h"
+#include "ColorPicker.h"
 #include "Protocol.h"
 
 
@@ -38,13 +38,13 @@ const int32 kColorChanged = 'clch';
 const int32 kColorDropped = 'PSTE';
 
 
-ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
+ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message)
 	:
 	BWindow(BRect(100, 100, 100, 100), "Pick a color",
 		B_FLOATING_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
 		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS
 			| B_CLOSE_ON_ESCAPE),
-	fColorPickerView(view),
+	fColorPicker(view),
 	fMessage(message)
 {
 	BBox* divider = new BBox(
@@ -61,7 +61,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 		new BMessage(MSG_CANCEL));
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_SPACING)
-		.Add(fColorPickerView)
+		.Add(fColorPicker)
 		.Add(divider)
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 			.AddGlue()
@@ -91,7 +91,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPickerView* view, BMessage* message)
 		if (message && message->FindData(kInitialValue, B_RGB_COLOR_TYPE,
 				reinterpret_cast<const void **>(&color), &size) == B_OK) {
 			fInitialColor = *color;
-			fColorPickerView->SetColor(fInitialColor);
+			fColorPicker->SetColor(fInitialColor);
 		}
 
 		// save the address of of the client
@@ -142,7 +142,7 @@ ColorPickerPanel::MessageReceived(BMessage* message)
 			ssize_t size;
 			if (message->FindData("be:value", B_RGB_COLOR_TYPE,
 					(const void **)(&color), &size) == B_OK) {
-				fColorPickerView->SetColor(*color);
+				fColorPicker->SetColor(*color);
 			}
 			break;
 		}

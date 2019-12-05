@@ -7,7 +7,7 @@
 #define CRAYON_COLOR_PICKER_H
 
 
-#include "../ColorPickerView.h"
+#include "../ColorPicker.h"
 
 
 const int32 kMaxCrayonCount = 48;
@@ -17,7 +17,7 @@ class BBitmap;
 class Crayon;
 class SelectedCrayon;
 
-class CrayonColorPicker : public ColorPickerView {
+class CrayonColorPicker : public ColorPicker {
 public:
 								CrayonColorPicker(rgb_color color);
 	virtual						~CrayonColorPicker();

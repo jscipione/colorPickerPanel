@@ -16,11 +16,11 @@
 
 
 class BMessage;
-class ColorPickerView;
+class ColorPicker;
 
 class ColorPickerPanel : public BWindow {
  public:
-								ColorPickerPanel(ColorPickerView* view,
+								ColorPickerPanel(ColorPicker* view,
 									BMessage* message = NULL);
 	virtual						~ColorPickerPanel();
 
@@ -31,7 +31,7 @@ class ColorPickerPanel : public BWindow {
 			void				Done();
 
  private:
-			ColorPickerView*	fColorPickerView;
+			ColorPicker*	fColorPicker;
 			BMessage*			fMessage;
 			BMessenger			fTarget;
 			rgb_color			fInitialColor;
