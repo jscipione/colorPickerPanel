@@ -31,7 +31,7 @@ class ColorPickerPanel : public BWindow {
 			void				Done();
 
  private:
-			ColorPicker*	fColorPicker;
+			ColorPicker*		fColorPicker;
 			BMessage*			fMessage;
 			BMessenger			fTarget;
 			rgb_color			fInitialColor;

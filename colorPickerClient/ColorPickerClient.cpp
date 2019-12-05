@@ -34,6 +34,11 @@ static const uint32 kMsgCircle = 'circ';
 
 static const uint32 kMsgSetPreferredColorPicker = 'spcp';
 
+static const char* kHaikuColorPickerSignature
+	= "application/x-vnd.Haiku-ColorPicker";
+static const char* kSimpleColorPickerSignature
+	= "application/x-vnd.Haiku-SimpleColorPicker";
+
 
 class TriangleView : public BView {
 public:
@@ -156,16 +161,15 @@ public:
 
 		// add the default color picker item
 		BMessage message(kMsgSetPreferredColorPicker);
-		message.AddString("signature",
-			"application/x-vnd.Haiku.SimpleColorPicker");
+		message.AddString("signature", kSimpleColorPickerSignature);
 		BMenuItem* defaultItem = new BMenuItem("Default", new BMessage(message));
 		fPickerMenu->AddItem(defaultItem);
 		defaultItem->SetMarked(true);
 
 		// add additional color picker items (if available)
-		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
+		BMimeType haikuColorPicker(kHaikuColorPickerSignature);
 		BMessage supportingApps;
-		if (colorPicker.GetSupportingApps(&supportingApps) == B_OK) {
+		if (haikuColorPicker.GetSupportingApps(&supportingApps) == B_OK) {
 			int32 subs = 0;
 			supportingApps.FindInt32("be:sub", &subs);
 			if (subs > 0)
@@ -184,7 +188,7 @@ public:
 				BMenuItem* item = new BMenuItem(itemName, new BMessage(message));
 				fPickerMenu->AddItem(item);
 				char preferredSignature[B_MIME_TYPE_LENGTH];
-				if (colorPicker.GetPreferredApp(preferredSignature) == B_OK
+				if (haikuColorPicker.GetPreferredApp(preferredSignature) == B_OK
 					&& preferredSignature != NULL
 					&& strcasecmp(preferredSignature, signature) == 0) {
 					item->SetMarked(true);
@@ -297,9 +301,9 @@ public:
 				if (message->FindString("signature", &signature) != B_OK)
 					break;
 
-				BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
+				BMimeType haikuColorPicker(kHaikuColorPickerSignature);
 				BMessage supportingApps;
-				if (colorPicker.GetSupportingApps(&supportingApps) != B_OK)
+				if (haikuColorPicker.GetSupportingApps(&supportingApps) != B_OK)
 					break;
 
 				const char* application = NULL;
@@ -307,7 +311,7 @@ public:
 						supportingApps.FindString("applications", i, &application) == B_OK;
 						i++) {
 					if (strcasecmp(application, signature) == 0) {
-						colorPicker.SetPreferredApp(signature);
+						haikuColorPicker.SetPreferredApp(signature);
 						break;
 					}
 				}
@@ -348,23 +352,23 @@ class ColorPickerClient : public BApplication {
 public:
 	ColorPickerClient()
 	:
-	BApplication("application/x-vnd.Haiku.ColorPickerClient")
+	BApplication("application/x-vnd.Haiku-ColorPickerClient")
 	{
-		BMimeType colorPicker("application/x-vnd.Haiku.ColorPicker");
-		colorPicker.SetShortDescription("Color picker");
+		BMimeType haikuColorPicker(kHaikuColorPickerSignature);
+		haikuColorPicker.SetShortDescription("Haiku color picker");
 
 		BResources resources;
 		if (get_app_resources(resources) == B_OK) {
 			size_t size;
 			const void* data = resources.LoadResource(B_VECTOR_ICON_TYPE,
 				(int32)0, &size);
-			colorPicker.SetIcon((uint8*)data, size);
+			haikuColorPicker.SetIcon((uint8*)data, size);
 		}
 
-		if (!colorPicker.IsInstalled())
-			colorPicker.Install();
+		if (!haikuColorPicker.IsInstalled())
+			haikuColorPicker.Install();
 
-		colorPicker.SetPreferredApp("application/x-vnd.Haiku.SimpleColorPicker");
+		haikuColorPicker.SetPreferredApp(kSimpleColorPickerSignature);
 	}
 
 protected:

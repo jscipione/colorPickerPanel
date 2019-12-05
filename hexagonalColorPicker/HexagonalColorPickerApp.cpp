@@ -19,7 +19,7 @@
 #include "HexagonalColorPicker.h"
 
 
-const char* kSignature = "application/x-vnd.Haiku.HexagonalColorPicker";
+const char* kSignature = "application/x-vnd.Haiku-HexagonalColorPicker";
 
 
 HexagonalColorPickerApp::HexagonalColorPickerApp()

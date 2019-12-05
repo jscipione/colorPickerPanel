@@ -10,6 +10,8 @@
 
 #include "ColorPickerPanel.h"
 
+#include <stdio.h>
+
 #include <Alignment.h>
 #include <Application.h>
 #include <Box.h>
@@ -26,6 +28,7 @@
 
 #include "ColorPicker.h"
 #include "Protocol.h"
+#include "ColorContainersView.h"
 
 
 enum {
@@ -52,6 +55,8 @@ ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message)
 			B_FRAME_EVENTS, B_FANCY_BORDER);
 	divider->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, 1));
 
+	ColorContainersView* containersView = new ColorContainersView();
+
 	BButton* defaultButton = new BButton("ok button", "OK",
 		new BMessage(MSG_DONE));
 	SetDefaultButton(defaultButton);
@@ -63,6 +68,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message)
 	BLayoutBuilder::Group<>(this, B_VERTICAL, B_USE_SMALL_SPACING)
 		.Add(fColorPicker)
 		.Add(divider)
+		.Add(containersView)
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 			.AddGlue()
 			.Add(cancelButton)

@@ -19,7 +19,7 @@
 #include "CrayonColorPicker.h"
 
 
-const char* kSignature = "application/x-vnd.Haiku.CrayonColorPicker";
+const char* kSignature = "application/x-vnd.Haiku-CrayonColorPicker";
 
 
 CrayonColorPickerApp::CrayonColorPickerApp()

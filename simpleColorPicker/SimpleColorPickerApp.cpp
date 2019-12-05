@@ -19,7 +19,7 @@
 #include "SimpleColorPicker.h"
 
 
-const char* kSignature = "application/x-vnd.Haiku.SimpleColorPicker";
+const char* kSignature = "application/x-vnd.Haiku-SimpleColorPicker";
 
 
 SimpleColorPickerApp::SimpleColorPickerApp()

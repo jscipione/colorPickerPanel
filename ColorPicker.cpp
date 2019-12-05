@@ -10,17 +10,17 @@
 #include "ColorPicker.h"
 
 
-ColorPicker::ColorPicker(rgb_color color)
+ColorPicker::ColorPicker(rgb_color color, int32 flags)
 	:
-	BView("color picker view", B_WILL_DRAW),
+	BView("color picker view", flags),
 	fColor(color)
 {
 }
 
 
-ColorPicker::ColorPicker()
+ColorPicker::ColorPicker(int32 flags)
 	:
-	BView("color picker view", B_WILL_DRAW),
+	BView("color picker", flags),
 	fColor((rgb_color) { 0, 0, 0 })
 {
 }

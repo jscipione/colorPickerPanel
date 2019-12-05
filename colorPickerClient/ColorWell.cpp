@@ -33,7 +33,8 @@
 #define M_PHI 1.61803398874989484820
 
 
-const char* kColorPickerType = "application/x-vnd.Haiku.ColorPicker";
+static const char* kColorPickerType
+	= "application/x-vnd.Haiku-ColorPicker";
 
 
 // #pragma mark - Constructors and destructor

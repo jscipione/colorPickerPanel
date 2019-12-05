@@ -1,9 +1,9 @@
 
 resource file_types message {
-	"types" = "application/x-vnd.Haiku.ColorPicker"
+	"types" = "application/x-vnd.Haiku-ColorPicker"
 };
 
-resource app_signature "application/x-vnd.Haiku.SimpleColorPicker";
+resource app_signature "application/x-vnd.Haiku-SimpleColorPicker";
 
 resource app_version {
 	major  = 1,

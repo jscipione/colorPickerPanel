@@ -14,11 +14,12 @@
 
 class ColorPicker : public BView {
 public:
-								ColorPicker(rgb_color color);
-								ColorPicker();
+								ColorPicker(rgb_color color,
+									int32 flags = B_WILL_DRAW);
+								ColorPicker(int32 flags = B_WILL_DRAW);
 	virtual						~ColorPicker();
 
-	virtual	rgb_color			Color();
+			rgb_color			Color();
 	virtual	void				SetColor(rgb_color color);
 
 protected:

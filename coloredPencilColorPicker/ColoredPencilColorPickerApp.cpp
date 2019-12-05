@@ -19,7 +19,7 @@
 #include "ColoredPencilColorPicker.h"
 
 
-const char* kSignature = "application/x-vnd.Haiku.ColoredPencilColorPicker";
+const char* kSignature = "application/x-vnd.Haiku-ColoredPencilColorPicker";
 
 
 ColoredPencilColorPickerApp::ColoredPencilColorPickerApp()
