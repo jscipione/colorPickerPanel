@@ -1,3 +1,18 @@
+
+resource app_signature "application/x-vnd.Haiku-ColorPickerClient";
+
+resource app_version {
+	major  = 1,
+	middle = 0,
+	minor  = 0,
+
+	variety = B_APPV_FINAL,
+	internal = 0,
+
+	short_info = "Color Picker Client",
+	long_info = "Color Picker Client ©2012-2013 Haiku, Inc."
+};
+
 resource(0) #'VICN' array {
 	$"6E6369662303FF060602001402AAFFFFE8020016023FE82D3B6E5ABB6E5A3FE8"
 	$"2D45CDA3C50F11B0F7DD810200140280FFFFED050104006D03FF000003FBFF05"
