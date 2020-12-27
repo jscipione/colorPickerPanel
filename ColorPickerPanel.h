@@ -10,6 +10,8 @@
 #define COLOR_PICKER_PANEL_H
 
 
+#include "ColorContainersView.h"
+
 #include <Messenger.h>
 #include <View.h>
 #include <Window.h>
@@ -21,7 +23,9 @@ class ColorPicker;
 class ColorPickerPanel : public BWindow {
  public:
 								ColorPickerPanel(ColorPicker* view,
-									BMessage* message = NULL);
+									BMessage* message = NULL,
+									color_control_layout layout
+										= B_CELLS_2x20);
 	virtual						~ColorPickerPanel();
 
 	virtual	void				MessageReceived(BMessage* message);

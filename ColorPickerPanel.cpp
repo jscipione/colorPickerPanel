@@ -28,7 +28,6 @@
 
 #include "ColorPicker.h"
 #include "Protocol.h"
-#include "ColorContainersView.h"
 
 
 enum {
@@ -41,7 +40,8 @@ const int32 kColorChanged = 'clch';
 const int32 kColorDropped = 'PSTE';
 
 
-ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message)
+ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message,
+	color_control_layout layout)
 	:
 	BWindow(BRect(100, 100, 100, 100), "Pick a color",
 		B_FLOATING_WINDOW_LOOK, B_NORMAL_WINDOW_FEEL,
@@ -55,7 +55,7 @@ ColorPickerPanel::ColorPickerPanel(ColorPicker* view, BMessage* message)
 			B_FRAME_EVENTS, B_FANCY_BORDER);
 	divider->SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, 1));
 
-	ColorContainersView* containersView = new ColorContainersView();
+	ColorContainersView* containersView = new ColorContainersView(layout);
 
 	BButton* defaultButton = new BButton("ok button", "OK",
 		new BMessage(MSG_DONE));

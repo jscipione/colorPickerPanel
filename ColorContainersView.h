@@ -11,6 +11,16 @@
 #include <View.h>
 
 
+enum color_control_layout {
+	B_CELLS_NONE	= 0,
+	B_CELLS_2x20	= 2,
+	B_CELLS_4x10	= 4,
+	B_CELLS_5x8     = 5,
+	B_CELLS_8x5     = 8,
+	B_CELLS_10x4	= 10,
+	B_CELLS_20x2	= 20,
+};
+
 static const int32 kColorContainerCount  = 40;
 
 
@@ -18,7 +28,8 @@ class ColorContainer;
 
 class ColorContainersView : public BView {
  public:
-									ColorContainersView();
+									ColorContainersView(color_control_layout
+										layout = B_CELLS_NONE);
 		virtual						~ColorContainersView();
 
 		virtual	void				AttachedToWindow();
