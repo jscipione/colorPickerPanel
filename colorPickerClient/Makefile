@@ -16,7 +16,7 @@ TARGET_DIR = .
 TYPE = APP
 
 # 	If you plan to use localization, specify the application's MIME signature.
-APP_MIME_SIG = 
+APP_MIME_SIG = application/x-vnd.Haiku-ColorPickerClient
 
 #	The following lines tell Pe and Eddie where the SRCS, RDEFS, and RSRCS are
 #	so that Pe and Eddie can fill them in for you.
@@ -29,17 +29,17 @@ APP_MIME_SIG =
 #	means this Makefile will not work correctly if two source files with the
 #	same name (source.c or source.cpp) are included from different directories.
 #	Also note that spaces in folder names do not work well with this Makefile.
-SRCS =  /boot/home/Projects/colorPickerPanel/ColorContainer.cpp \
- /boot/home/Projects/colorPickerPanel/ColorContainersView.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPicker.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPickerPanel.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPickerView.cpp \
- /boot/home/Projects/colorPickerPanel/colorPickerClient/ColorPickerClient.cpp \
- /boot/home/Projects/colorPickerPanel/colorPickerClient/ColorWell.cpp
+SRCS =  ../ColorContainer.cpp \
+ ../ColorContainersView.cpp \
+ ../ColorPicker.cpp \
+ ../ColorPickerPanel.cpp \
+ ../ColorPickerView.cpp \
+ ./ColorPickerClient.cpp \
+ ./ColorWell.cpp
 
 #	Specify the resource definition files to use. Full or relative paths can be
 #	used.
-RDEFS = /boot/home/Projects/colorPickerPanel/colorPickerClient/ColorPicker.rdef
+RDEFS = ./ColorPicker.rdef
 
 #	Specify the resource files to use. Full or relative paths can be used.
 #	Both RDEFS and RSRCS can be utilized in the same Makefile.
@@ -79,7 +79,7 @@ SYSTEM_INCLUDE_PATHS =  /boot/develop/headers/be /boot/develop/headers/cpp \
 #	Additional paths paths to look for local headers. These use the form
 #	#include "header". Directories that contain the files in SRCS are
 #	automatically included.
-LOCAL_INCLUDE_PATHS =  .. /boot/home/Projects/colorPickerPanel
+LOCAL_INCLUDE_PATHS =  .. .
 
 #	Specify the level of optimization that you want. Specify either NONE (O0),
 #	SOME (O1), FULL (O2), or leave blank (for the default optimization level).

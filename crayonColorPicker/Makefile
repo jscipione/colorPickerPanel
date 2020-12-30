@@ -6,7 +6,7 @@
 
 # The name of the binary.
 NAME = CrayonColorPicker
-TARGET_DIR = .
+TARGET_DIR = /boot/home/config/non-packaged/add-ons/Color\ Pickers
 
 # The type of binary, must be one of:
 #	APP:	Application
@@ -29,19 +29,19 @@ APP_MIME_SIG = application/x-vnd.Haiku-CrayonColorPicker
 #	means this Makefile will not work correctly if two source files with the
 #	same name (source.c or source.cpp) are included from different directories.
 #	Also note that spaces in folder names do not work well with this Makefile.
-SRCS =  /boot/home/Projects/colorPickerPanel/ColorContainer.cpp \
- /boot/home/Projects/colorPickerPanel/ColorContainersView.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPicker.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPickerPanel.cpp \
- /boot/home/Projects/colorPickerPanel/ColorPickerView.cpp \
- /boot/home/Projects/colorPickerPanel/crayonColorPicker/Crayon.cpp \
- /boot/home/Projects/colorPickerPanel/crayonColorPicker/CrayonColorPicker.cpp \
- /boot/home/Projects/colorPickerPanel/crayonColorPicker/CrayonColorPickerApp.cpp \
- /boot/home/Projects/colorPickerPanel/crayonColorPicker/SelectedCrayon.cpp
+SRCS =  ../ColorContainer.cpp \
+ ../ColorContainersView.cpp \
+ ../ColorPicker.cpp \
+ ../ColorPickerPanel.cpp \
+ ../ColorPickerView.cpp \
+ ./Crayon.cpp \
+ ./CrayonColorPicker.cpp \
+ ./CrayonColorPickerApp.cpp \
+ ./SelectedCrayon.cpp
 
 #	Specify the resource definition files to use. Full or relative paths can be
 #	used.
-RDEFS = /boot/home/Projects/colorPickerPanel/crayonColorPicker/CrayonColorPicker.rdef
+RDEFS = ./CrayonColorPicker.rdef
 
 #	Specify the resource files to use. Full or relative paths can be used.
 #	Both RDEFS and RSRCS can be utilized in the same Makefile.
@@ -81,7 +81,7 @@ SYSTEM_INCLUDE_PATHS =  /boot/develop/headers/be /boot/develop/headers/cpp \
 #	Additional paths paths to look for local headers. These use the form
 #	#include "header". Directories that contain the files in SRCS are
 #	automatically included.
-LOCAL_INCLUDE_PATHS =  .. /boot/home/Projects/simpleColorPicker
+LOCAL_INCLUDE_PATHS =  .. .
 #	Specify the level of optimization that you want. Specify either NONE (O0),
 #	SOME (O1), FULL (O2), or leave blank (for the default optimization level).
 OPTIMIZE := NONE
