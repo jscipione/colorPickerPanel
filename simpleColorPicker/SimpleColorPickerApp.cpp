@@ -26,7 +26,7 @@ SimpleColorPickerApp::SimpleColorPickerApp()
 	:
 	BApplication(kSignature),
 	fPanel(NULL),
-	fDefaultColor(make_color(0xAA, 0xAA, 0xAA))
+	fDefaultColor(make_color(0xFF, 0x00, 0x00))
 {
 }
 
