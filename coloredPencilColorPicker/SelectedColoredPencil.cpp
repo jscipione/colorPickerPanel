@@ -304,12 +304,13 @@ SelectedColoredPencil::SelectedColoredPencil(rgb_color color)
 	:
 	ColoredPencil(color)
 {
+	SetExplicitMaxSize(BSize(kColoredPencilWidth - 1,
+		kColoredPencilHeight - 1));
 }
 
 
 SelectedColoredPencil::~SelectedColoredPencil()
 {
-	delete fIcon;
 }
 
 

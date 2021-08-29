@@ -31,8 +31,10 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 		fColoredPencilList[i] = new ColoredPencil;
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+		.AddGlue()
 		.Add(fSelectedColor)
-		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+		.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+			B_USE_SMALL_SPACING))
 		.AddGroup(B_VERTICAL, 0)
 			.AddGroup(B_HORIZONTAL, 0)
 				.Add(fColoredPencilList[0])
@@ -43,10 +45,12 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 				.Add(fColoredPencilList[5])
 				.Add(fColoredPencilList[6])
 				.Add(fColoredPencilList[7])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fColoredPencilList[8])
 				.Add(fColoredPencilList[9])
 				.Add(fColoredPencilList[10])
@@ -65,10 +69,12 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 				.Add(fColoredPencilList[21])
 				.Add(fColoredPencilList[22])
 				.Add(fColoredPencilList[23])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fColoredPencilList[24])
 				.Add(fColoredPencilList[25])
 				.Add(fColoredPencilList[26])
@@ -87,10 +93,12 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 				.Add(fColoredPencilList[37])
 				.Add(fColoredPencilList[38])
 				.Add(fColoredPencilList[39])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fColoredPencilList[40])
 				.Add(fColoredPencilList[41])
 				.Add(fColoredPencilList[42])
@@ -100,7 +108,9 @@ ColoredPencilColorPicker::ColoredPencilColorPicker(rgb_color color)
 				.Add(fColoredPencilList[46])
 				.Add(fColoredPencilList[47])
 			.End()
-		.End();
+		.End()
+		.AddGlue()
+	.End();
 }
 
 
