@@ -1,8 +1,4 @@
 
-resource file_types message {
-	"types" = "application/x-vnd.Haiku-ColorPicker"
-};
-
 resource app_signature "application/x-vnd.Haiku-CrayonColorPicker";
 
 resource app_version {
@@ -18,6 +14,10 @@ resource app_version {
 };
 
 resource app_flags B_MULTIPLE_LAUNCH | B_BACKGROUND_APP;
+
+resource file_types message {
+	"types" = "application/x-vnd.Haiku-ColorPicker"
+};
 
 resource vector_icon {
 	$"6E6369662303FF060602001402AAFFFFE8020016023FE82D3B6E5ABB6E5A3FE8"
