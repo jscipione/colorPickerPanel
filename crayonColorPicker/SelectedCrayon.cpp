@@ -580,12 +580,12 @@ SelectedCrayon::SelectedCrayon(rgb_color color)
 	:
 	Crayon(color)
 {
+	SetExplicitMaxSize(BSize(kCrayonWidth - 1, kCrayonHeight - 1));
 }
 
 
 SelectedCrayon::~SelectedCrayon()
 {
-	delete fIcon;
 }
 
 

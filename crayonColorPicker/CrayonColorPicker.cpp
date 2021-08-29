@@ -32,6 +32,7 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 		fCrayonList[i] = new Crayon();
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+		.AddGlue()
 		.Add(fSelectedColor)
 		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
 		.AddGroup(B_VERTICAL, 1)
@@ -44,10 +45,12 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 				.Add(fCrayonList[5])
 				.Add(fCrayonList[6])
 				.Add(fCrayonList[7])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fCrayonList[8])
 				.Add(fCrayonList[9])
 				.Add(fCrayonList[10])
@@ -66,10 +69,12 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 				.Add(fCrayonList[21])
 				.Add(fCrayonList[22])
 				.Add(fCrayonList[23])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fCrayonList[24])
 				.Add(fCrayonList[25])
 				.Add(fCrayonList[26])
@@ -88,10 +93,12 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 				.Add(fCrayonList[37])
 				.Add(fCrayonList[38])
 				.Add(fCrayonList[39])
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 			.End()
 			.AddGroup(B_HORIZONTAL, 0)
-				.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
+				.Add(BSpaceLayoutItem::CreateHorizontalStrut(
+					B_USE_SMALL_SPACING))
 				.Add(fCrayonList[40])
 				.Add(fCrayonList[41])
 				.Add(fCrayonList[42])
@@ -101,7 +108,9 @@ CrayonColorPicker::CrayonColorPicker(rgb_color color)
 				.Add(fCrayonList[46])
 				.Add(fCrayonList[47])
 			.End()
-		.End();
+		.End()
+		.AddGlue()
+	.End();
 }
 
 
