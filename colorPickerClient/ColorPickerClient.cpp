@@ -355,7 +355,7 @@ public:
 	BApplication("application/x-vnd.Haiku-ColorPickerClient")
 	{
 		BMimeType haikuColorPicker(kHaikuColorPickerSignature);
-		haikuColorPicker.SetShortDescription("Haiku color picker");
+		haikuColorPicker.SetShortDescription("Color picker");
 
 		BResources resources;
 		if (get_app_resources(resources) == B_OK) {
