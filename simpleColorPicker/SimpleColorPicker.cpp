@@ -36,9 +36,11 @@ SimpleColorPicker::SimpleColorPicker(rgb_color color)
 		8.0, "ColorPicker", new BMessage(kColorChanged));
 
 	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
+		.AddGlue()
 		.Add(fColorPreview)
 		.Add(BSpaceLayoutItem::CreateHorizontalStrut(B_USE_SMALL_SPACING))
 		.Add(fColorControl)
+		.AddGlue()
 		.End();
 }
 
