@@ -9,8 +9,6 @@
 
 #include <View.h>
 
-#define MSG_MESSAGERUNNER 'MsgR'
-
 
 class BMessageRunner;
 
@@ -24,7 +22,7 @@ class ColorContainer : public BView {
 		virtual	void				MessageReceived(BMessage *message);
 
 		virtual	void				MouseDown(BPoint where);
-		virtual	void				MouseMoved(BPoint where, uint32 code,
+		virtual	void				MouseMoved(BPoint where, uint32 transit,
 										const BMessage* message);
 		virtual	void				MouseUp(BPoint where);
 
@@ -33,9 +31,8 @@ class ColorContainer : public BView {
 				void				SetColor(long int color);
 
 	private:
-				void				DragColor(BPoint where);
+				void				_DragColor(BPoint where);
 
-				bool				fMouseDown;
 				BPoint				fMouseOffset;
 				rgb_color			fColor;
 				BMessageRunner*		fMessageRunner;

@@ -12,11 +12,14 @@
 
 #include "ColorContainer.h"
 
-#include <iostream>
 #include <stdio.h>
+
+#include <algorithm>
+#include <iostream>
 
 #include <Application.h>
 #include <Bitmap.h>
+#include <Message.h>
 #include <MessageRunner.h>
 #include <Resources.h>
 #include <Size.h>
@@ -24,10 +27,12 @@
 #include <Window.h>
 
 
+static const int32 kMsgMessageRunner = 'MsgR';
+
+
 ColorContainer::ColorContainer(BRect frame)
 	:
 	BView(frame, "ColorContainer", B_FOLLOW_TOP | B_FOLLOW_LEFT, B_WILL_DRAW),
-	fMouseDown(false),
 	fMouseOffset(BPoint(0, 0)),
 	fMessageRunner(0),
 	fGotFirstClick(false)
@@ -61,13 +66,7 @@ ColorContainer::Draw(BRect updateRect)
 void
 ColorContainer::MessageReceived(BMessage* message)
 {
-	if (message->what == MSG_MESSAGERUNNER) {
-		BPoint where;
-		uint32 buttons;
-		GetMouse(&where, &buttons);
-
-		DragColor(where);
-	} else {
+	if (message->WasDropped()) {
 		char* nameFound;
 		type_code typeFound;
 		if (message->GetInfo(B_RGB_COLOR_TYPE, 0, &nameFound, &typeFound)
@@ -81,7 +80,15 @@ ColorContainer::MessageReceived(BMessage* message)
 		message->FindData(nameFound, typeFound, (const void **)&color,
 			&numBytes);
 		SetColor(*color);
+	} else if (message->what == kMsgMessageRunner) {
+		BPoint where;
+		uint32 buttons;
+		GetMouse(&where, &buttons);
+
+		_DragColor(where);
 	}
+
+	BView::MessageReceived(message);
 }
 
 
@@ -101,26 +108,30 @@ ColorContainer::MouseDown(BPoint where)
 			Window()->PostMessage(&message, colorpreview);
 	} else {
 		fGotFirstClick = (clicks == 1);
-		fMouseDown = true;
 
 		bigtime_t doubleClickSpeed;
 		if (get_click_speed(&doubleClickSpeed) != B_OK)
 			doubleClickSpeed = 300000;
 
 		fMessageRunner = new BMessageRunner(this,
-			new BMessage(MSG_MESSAGERUNNER), doubleClickSpeed, 1);
+			new BMessage(kMsgMessageRunner), doubleClickSpeed, 1);
 
 		SetMouseEventMask(B_POINTER_EVENTS,
 			B_SUSPEND_VIEW_FOCUS | B_LOCK_WINDOW_FOCUS);
 	}
+
+	BView::MouseDown(where);
 }
 
 
 void
-ColorContainer::MouseMoved(BPoint where, uint32 code, const BMessage* message)
+ColorContainer::MouseMoved(BPoint where, uint32 transit,
+	const BMessage* message)
 {
-	if (fMouseDown)
-		DragColor(where);
+	if (fMessageRunner != NULL)
+		_DragColor(where);
+
+	BView::MouseMoved(where, transit, message);
 }
 
 
@@ -128,9 +139,8 @@ void
 ColorContainer::MouseUp(BPoint where)
 {
 	delete fMessageRunner;
-	fMessageRunner = 0;
+	fMessageRunner = NULL;
 
-	fMouseDown = false;
 	BView::MouseUp(where);
 }
 
@@ -167,58 +177,59 @@ ColorContainer::SetColor(rgb_color color)
 
 
 void
-ColorContainer::DragColor(BPoint where)
+ColorContainer::_DragColor(BPoint where)
 {
 	fGotFirstClick = false;
 
-	char hexstr[8];
-	sprintf(hexstr, "#%.2X%.2X%.2X", fColor.red, fColor.green, fColor.blue);
+	BString hexStr;
+	hexStr.SetToFormat("#%.2X%.2X%.2X", fColor.red, fColor.green, fColor.blue);
 
 	BMessage message(B_PASTE);
-	message.AddData("text/plain", B_MIME_TYPE, &hexstr, sizeof(hexstr));
+	message.AddData("text/plain", B_MIME_TYPE, hexStr.String(),
+		hexStr.Length());
 	message.AddData("RGBColor", B_RGB_COLOR_TYPE, &fColor, sizeof(fColor));
 
-	BRect rect(0.0, 0.0, 20.0, 20.0);
+	BRect rect(0.0f, 0.0f, 16.0f, 16.0f);
 
 	BBitmap* bitmap = new BBitmap(rect, B_RGB32, true);
-	bitmap->Lock();
+	if (bitmap->Lock()) {
+		BView* view = new BView(rect, "", B_FOLLOW_NONE, B_WILL_DRAW);
+		bitmap->AddChild(view);
 
-	BView* view = new BView(rect, "", B_FOLLOW_NONE, B_WILL_DRAW);
-	bitmap->AddChild(view);
+		view->SetHighColor(B_TRANSPARENT_COLOR);
+		view->FillRect(view->Bounds());
 
-	view->SetHighColor(B_TRANSPARENT_COLOR);
-	view->FillRect(view->Bounds());
+		++rect.top;
+		++rect.left;
 
-	++rect.top;
-	++rect.left;
+		view->SetHighColor(0, 0, 0, 100);
+		view->FillRect(rect);
+		rect.OffsetBy(-1.0f, -1.0f);
 
-	view->SetHighColor(0, 0, 0, 100);
-	view->FillRect(rect);
-	rect.OffsetBy(-1.0, -1.0);
+		view->SetHighColor(std::min(255, (int)(1.2 * fColor.red + 40)),
+			std::min(255, (int)(1.2 * fColor.green + 40)),
+			std::min(255, (int)(1.2 * fColor.blue + 40)));
+		view->StrokeRect(rect);
 
-	view->SetHighColor(min_c(255, 1.2 * fColor.red + 40),
-		min_c(255, 1.2 * fColor.green + 40),
-		min_c(255, 1.2 * fColor.blue + 40));
-	view->StrokeRect(rect);
+		++rect.left;
+		++rect.top;
 
-	++rect.left;
-	++rect.top;
+		view->SetHighColor((int32)(0.8 * fColor.red),
+			(int32)(0.8 * fColor.green),
+			(int32)(0.8 * fColor.blue));
+		view->StrokeRect(rect);
 
-	view->SetHighColor(0.8 * fColor.red, 0.8 * fColor.green,
-		0.8 * fColor.blue);
-	view->StrokeRect(rect);
+		--rect.right;
+		--rect.bottom;
 
-	--rect.right;
-	--rect.bottom;
+		view->SetHighColor(fColor.red, fColor.green, fColor.blue);
+		view->FillRect(rect);
+		view->Sync();
 
-	view->SetHighColor(fColor.red, fColor.green, fColor.blue);
-	view->FillRect(rect);
+		bitmap->Unlock();
+	}
 
-	view->Flush();
-
-	bitmap->Unlock();
-
-	DragMessage(&message, bitmap, B_OP_ALPHA, BPoint(14.0, 14.0));
+	DragMessage(&message, bitmap, B_OP_ALPHA, BPoint(14.0f, 14.0f));
 
 	MouseUp(where);
 }

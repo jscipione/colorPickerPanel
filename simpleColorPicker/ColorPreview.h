@@ -10,6 +10,10 @@
 #include <Control.h>
 
 
+class BMessage;
+class BMessageRunner;
+
+
 class ColorPreview : public BControl {
 public:
 								ColorPreview(BRect frame, const char* name,
@@ -20,15 +24,21 @@ public:
 	virtual						~ColorPreview();
 
 	virtual	void				Draw(BRect updateRect);
-
 	virtual	void				MessageReceived(BMessage *message);
+	virtual	void				MouseDown(BPoint where);
+	virtual	void				MouseMoved(BPoint where, uint32 transit,
+									const BMessage* message);
+	virtual	void				MouseUp(BPoint where);
 
 			rgb_color			Color() const;
 			void				SetColor(rgb_color color);
 
 private:
+			void				_DragColor(BPoint where);
 
 			rgb_color			fColor;
+
+			BMessageRunner*		fMessageRunner;
 };
 
 #endif	// _COLOR_PREVIEW_H
